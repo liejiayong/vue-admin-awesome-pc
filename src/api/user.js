@@ -13,14 +13,21 @@ export async function login(data) {
   })
 }
 
-export function getInfo(accessToken) {
-  return request({
-    url: '/userInfo',
-    method: 'post',
+export function getInfo() {
+  return {
     data: {
-      accessToken,
-    },
-  })
+      permissions: '1231',
+      userName: 'L',
+      avatar: 'L'
+    }
+  }
+  // return request({
+  //   url: '/userInfo',
+  //   method: 'post',
+  //   data: {
+  //     accessToken,
+  //   },
+  // })
 }
 
 export function logout() {

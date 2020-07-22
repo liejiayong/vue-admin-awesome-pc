@@ -12,23 +12,23 @@ export const constantRoutes = [
         component: () => import('@/views/auth/register'),
         hidden: true,
     },
-    {
-        path: '/',
-        component: Layout,
-        redirect: 'index',
-        children: [
-            {
-                path: 'index',
-                name: 'Index',
-                component: () => import('@/views/index/index'),
-                meta: {
-                    title: '首页',
-                    icon: 'home',
-                    affix: true
-                }
-            }
-        ]
-    }
+    // {
+    //     path: '/',
+    //     component: Layout,
+    //     redirect: 'index',
+    //     children: [
+    //         {
+    //             path: 'index',
+    //             name: 'Index',
+    //             component: () => import('@/views/index/index'),
+    //             meta: {
+    //                 title: '首页',
+    //                 icon: 'home',
+    //                 affix: true
+    //             }
+    //         }
+    //     ]
+    // }
     // {
     //     path: '/401',
     //     name: '401',
@@ -62,3 +62,5 @@ export const asyncRoutes = [
         ]
     }
 ]
+
+export default constantRoutes

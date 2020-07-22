@@ -48,12 +48,7 @@ export function resetRouter() {
   }).matcher
 }
 
-
 router.beforeResolve(async (to, from, next) => {
-  // router.addRoutes(require('../router/routes').asyncRoutes)
-  next()
-  // console.log(router, to, from)
-  return
   if (progressBar) NProgress.start()
   let hasToken = store.getters['user/accessToken']
   if (!loginInterception) hasToken = true
@@ -68,6 +63,7 @@ router.beforeResolve(async (to, from, next) => {
       } else {
         try {
           const permissions = await store.dispatch('user/getInfo')
+          console.log(router, to, from)
           let accessRoutes = []
           if (authentication === 'intelligence') {
             accessRoutes = await store.dispatch('routes/setRoutes', permissions)
@@ -77,6 +73,7 @@ router.beforeResolve(async (to, from, next) => {
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })
         } catch {
+          console.log('false')
           await store.dispatch('user/resetAccessToken')
         }
       }

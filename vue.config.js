@@ -25,12 +25,12 @@ module.exports = {
     },
     configureWebpack() {
         return {
-            resolve: {
-                alias: {
-                    '@': resolve('src'),
-                    '^': resolve('src/components')
-                }
-            },
+            // resolve: {
+            //     alias: {
+            //         '@': resolve('src'),
+            //         '^': resolve('src/components')
+            //     }
+            // },
             plugins: [
                 new WebpackBar({
                     name: `vue-admin-awesome`
