@@ -1,0 +1,11 @@
+{
+  "name": "zx-rely",
+  "author": "chuzhixin <1204505056@qq.com>",
+  "version": "0.0.8",
+  "homepage": "http://chu1204505056.gitee.io/vue-admin-beautiful",
+  "main": "dist/export-compiled.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/chuzhixin/zx-rely"
+  }
+}
