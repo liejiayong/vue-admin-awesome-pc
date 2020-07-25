@@ -1,5 +1,5 @@
 import Layout from '@/layouts'
-// import EmptyLayout from '@/layouts/EmptyLayout'
+import EmptyLayout from '@/layouts/empty'
 
 export const constantRoutes = [
     {
@@ -29,18 +29,18 @@ export const constantRoutes = [
     //         }
     //     ]
     // }
-    // {
-    //     path: '/401',
-    //     name: '401',
-    //     component: () => import('@/views/401'),
-    //     hidden: true,
-    // },
-    // {
-    //     path: '/404',
-    //     name: '404',
-    //     component: () => import('@/views/404'),
-    //     hidden: true,
-    // },
+    {
+        path: '/401',
+        name: '401',
+        component: () => import('@/views/statcode/401'),
+        hidden: true,
+    },
+    {
+        path: '/404',
+        name: '404',
+        component: () => import('@/views/statcode/404'),
+        hidden: true,
+    },
 ]
 
 export const asyncRoutes = [
@@ -60,6 +60,32 @@ export const asyncRoutes = [
                 }
             }
         ]
+    },
+    {
+        path: "/error",
+        component: EmptyLayout,
+        redirect: "noRedirect",
+        name: "Error",
+        meta: { title: "错误页", icon: "bug" },
+        children: [
+            {
+                path: "401",
+                name: "Error401",
+                component: () => import('@/views/statcode/401'),
+                meta: { title: "401" },
+            },
+            {
+                path: "404",
+                name: "Error404",
+                component: () => import('@/views/statcode/404'),
+                meta: { title: "404" },
+            },
+        ],
+    },
+    {
+        path: "*",
+        redirect: "/404",
+        hidden: true,
     }
 ]
 

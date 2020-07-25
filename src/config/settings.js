@@ -23,7 +23,7 @@ module.exports = {
     //简写
     abbreviation: "vab",
     //开发环境端口号
-    devPort: "80",
+    devPort: "8888",
     //版本号
     version: process.env.VUE_APP_VERSION,
     //烦请保留package.json作者信息 保留版权可免费商用 如需去除并自定义为自己企业的版权请联系群主QQ 1204505056 需支付299元 恶意修改发生纠纷及出现任何问题 由修改人自行承担
@@ -50,7 +50,7 @@ module.exports = {
     //token存储位置localStorage sessionStorage cookie
     storage: "localStorage",
     //是否显示logo，不显示时设置false，显示时请填写remixIcon图标名称，暂时只支持设置remixIcon
-    logo: "vuejs-fill",
+    logo: "logo",
     //是否国定头部 固定fixed 不固定noFixed
     header: "fixed",
     //横纵布局 horizontal vertical

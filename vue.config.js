@@ -1,6 +1,6 @@
 
 const path = require('path')
-const { title } = require("./src/config/settings");
+const { title, publicPath, assetsDir, outputDir, lintOnSave, transpileDependencies, devPort } = require("./src/config/settings");
 const { version, author } = require("./package.json");
 const WebpackBar = require('webpackbar')
 const dayjs = require('dayjs');
@@ -11,7 +11,34 @@ process.env.VUE_APP_VERSION = version;
 function resolve(dir) {
     return path.join(__dirname, dir);
 }
+function mockServer() {
+    console.log('11111')
+    if (process.env.NODE_ENV === 'development') {
+        const mockServer = require('./mock/mockServer.js')
+        // console.log('mockServer', mockServer)
+        return mockServer
+    } else {
+        return ''
+    }
+}
 module.exports = {
+    publicPath,
+    assetsDir,
+    outputDir,
+    lintOnSave,
+    transpileDependencies,
+    devServer: {
+        hot: true,
+        port: devPort,
+        open: false,
+        noInfo: false,
+        overlay: {
+            warnings: true,
+            errors: true
+        },
+        after: mockServer()
+
+    },
     // runtimeCompiler: true,
     // productionSourceMap: false,
     css: {
@@ -25,12 +52,12 @@ module.exports = {
     },
     configureWebpack() {
         return {
-            // resolve: {
-            //     alias: {
-            //         '@': resolve('src'),
-            //         '^': resolve('src/components')
-            //     }
-            // },
+            resolve: {
+                alias: {
+                    '@': resolve('src'),
+                    '^': resolve('src/components')
+                }
+            },
             plugins: [
                 new WebpackBar({
                     name: `vue-admin-awesome`
