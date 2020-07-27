@@ -9,10 +9,10 @@ import {
   routesWhiteList,
   progressBar,
   routerMode
-} from "@/config/settings"
+} from '@/config/settings'
 import store from '@/store'
 import { constantRoutes } from './routes'
-import { setDocumentTitle } from "@/utils/dom"
+import { setDocumentTitle } from '@/utils/dom'
 
 Vue.use(VueRouter)
 NProgress.configure({

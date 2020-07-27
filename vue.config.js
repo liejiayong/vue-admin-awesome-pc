@@ -1,21 +1,18 @@
-
 const path = require('path')
-const { title, publicPath, assetsDir, outputDir, lintOnSave, transpileDependencies, devPort } = require("./src/config/settings");
-const { version, author } = require("./package.json");
+const { title, publicPath, assetsDir, outputDir, lintOnSave, transpileDependencies, devPort } = require("./src/config/settings")
+const { version, author } = require("./package.json")
 const WebpackBar = require('webpackbar')
-const dayjs = require('dayjs');
-process.env.VUE_APP_TITLE = title || "vue-admin-beautiful";
-process.env.VUE_APP_AUTHOR = author || "chuzhixin";
-process.env.VUE_APP_UPDATE_TIME = dayjs().format('YYYY-M-D HH:mm:ss');
-process.env.VUE_APP_VERSION = version;
+const dayjs = require('dayjs')
+process.env.VUE_APP_TITLE = title || "vue-admin-awesome"
+process.env.VUE_APP_AUTHOR = author || "JyLie"
+process.env.VUE_APP_UPDATE_TIME = dayjs().format('YYYY-M-D HH:mm:ss')
+process.env.VUE_APP_VERSION = version
 function resolve(dir) {
-    return path.join(__dirname, dir);
+    return path.join(__dirname, dir)
 }
 function mockServer() {
-    console.log('11111')
     if (process.env.NODE_ENV === 'development') {
         const mockServer = require('./mock/mockServer.js')
-        // console.log('mockServer', mockServer)
         return mockServer
     } else {
         return ''
@@ -39,14 +36,14 @@ module.exports = {
         after: mockServer()
 
     },
-    // runtimeCompiler: true,
-    // productionSourceMap: false,
+    runtimeCompiler: true,
+    productionSourceMap: false,
     css: {
         requireModuleExtension: true,
         sourceMap: true,
         loaderOptions: {
             scss: {
-                prependData: '@import "~@/styles/variables.scss";',
+                prependData: '@import "~@/styles/variables.scss"',
             },
         },
     },
@@ -70,8 +67,8 @@ module.exports = {
         //     .rule("svg")
         //     .exclude.add(resolve("src/assets/svg"))
         //     .add(resolve("src/colorfulIcon"))
-        //     .end();
-        config.module.rules.delete("svg"); //重点:删除默认配置中处理svg,
+        //     .end()
+        config.module.rules.delete("svg") //重点:删除默认配置中处理svg,
         //const svgRule = config.module.rule('svg')
         //svgRule.uses.clear()
         config.module

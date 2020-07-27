@@ -1,14 +1,15 @@
-const data = [];
+const data = []
 export default [
   {
-    url: "/upload",
-    type: "post",
+    url: '/upload',
+    type: 'post',
     response: (config) => {
       return {
         code: 200,
-        msg: "success",
+        msg: 'success',
         data: data,
-      };
+        config
+      }
     },
   },
-];
+]
