@@ -1,4 +1,4 @@
-/* eslint-disable */
+// /* eslint-disable */
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import NProgress from 'nprogress'
@@ -58,18 +58,20 @@ router.beforeResolve(async (to, from, next) => {
     } else {
       const permissions = store.getters['user/permissions']
       const hasPermission = permissions && permissions.length > 0
+      console.log('router judge permissions: ', permissions, hasPermission)
       if (hasPermission) {
         next()
       } else {
         try {
           const permissions = await store.dispatch('user/getInfo')
-          console.log(router, to, from)
+          console.log('router user/getInfo:', permissions, authentication)
           let accessRoutes = []
           if (authentication === 'intelligence') {
             accessRoutes = await store.dispatch('routes/setRoutes', permissions)
           } else {
             accessRoutes = await store.dispatch('routes/setAllRoutes')
           }
+          console.log('router accessRoutes', accessRoutes)
           router.addRoutes(accessRoutes)
           next({ ...to, replace: true })
         } catch {

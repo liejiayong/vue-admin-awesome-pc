@@ -35,10 +35,11 @@ const mutations = {
 }
 
 const actions = {
-    async loginInterception({ commit }, userInfo) {
+    async login({ commit }, userInfo) {
         const { data } = await login(userInfo)
         const accessToken = data[tokenName]
         if (accessToken) {
+            console.log('login accessToken', accessToken)
             commit('setAccessToken', accessToken)
             const hour = new Date().getHours()
             const time = hour < 8 ? '早上好'
@@ -58,6 +59,7 @@ const actions = {
             return false
         }
         let { permissions, userName, avatar } = data
+        console.log('getInfo', data)
         if (permissions && userName) {
             commit('setPermissions', permissions)
             commit('setUserName', userName)

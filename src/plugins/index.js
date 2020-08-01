@@ -1,6 +1,8 @@
-// import Vue from 'vue'
+import Vue from 'vue'
 import './ui-element'
 import './ui-ext'
 import './svg'
 import './registerServiceWorker'
-import './global'
+import vueGlobal from './global'
+
+Vue.use(vueGlobal)

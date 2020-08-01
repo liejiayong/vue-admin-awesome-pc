@@ -76,8 +76,8 @@ module.exports = {
     //是否显示在页面高亮错误
     errorLog: ["development", "test", "production"],
     //是否开启登录拦截
-    // loginInterception: true,
-    loginInterception: false, // test status
+    loginInterception: true,
+    // loginInterception: false, // test status
     //是否开启登录RSA加密
     loginRSA: false,
     //是否依据mock数据生成webstorm HTTP Request请求文件

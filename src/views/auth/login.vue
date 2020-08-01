@@ -111,6 +111,7 @@ export default {
 					this.loading = true
 					await this.$store.dispatch('user/login', this.loginForm)
 					const routerPath = this.redirect === '/404' || this.redirect === '/401' ? '/' : this.redirect
+					console.log('login nav to page:', routerPath)
 					await this.$router.push(routerPath).catch(() => {})
 					this.loading = false
 				} else {

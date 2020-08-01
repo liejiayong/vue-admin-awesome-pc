@@ -56,6 +56,7 @@ const responseFake = (url, type, respond) => {
  *
  * @param app
  */
+// vue@3.x.x版本以上后，vue学院开始模块编译，才能在nodejs中实用es6语法
 process.env.VUE_CLI_BABEL_TRANSPILE_MODULES = true
 module.exports = (app) => {
   require('@babel/register')

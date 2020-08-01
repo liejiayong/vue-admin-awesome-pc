@@ -83,6 +83,68 @@ export const asyncRoutes = [
         ],
     },
     {
+        path: "/user",
+        component: Layout,
+        hidden: true,
+        redirect: "index",
+        children: [
+            {
+                path: "index",
+                name: "userCenter",
+                component: () => import("@/views/user/index"),
+                meta: {
+                    title: "个人中心",
+                },
+            },
+        ],
+    },
+    {
+        path: "/temp",
+        component: Layout,
+        redirect: "noRedirect",
+        name: "Temp",
+        alwaysShow: true,
+        meta: { title: "组件模板", icon: "cloud" },
+        children: [
+            {
+                path: "excel",
+                component: EmptyLayout,
+                redirect: "noRedirect",
+                name: "Excel",
+                meta: {
+                    title: "Excel",
+                    permissions: ["admin"],
+                },
+                children: [
+                    {
+                        path: "export",
+                        component: () => import("@/views/temp/excel/exportExcel"),
+                        name: "ExportExcel",
+                        meta: { title: "导出Excel" },
+                    },
+                    // {
+                    //     path: "exportSelectedExcel",
+                    //     component: () => import("@/views/vab/excel/exportSelectExcel"),
+                    //     name: "ExportSelectedExcel",
+                    //     meta: { title: "导出选中行" },
+                    // },
+                    // {
+                    //     path: "exportMergeHeaderExcel",
+                    //     component: () => import("@/views/vab/excel/exportMergeHeaderExcel"),
+                    //     name: "ExportMergeHeaderExcel",
+                    //     meta: { title: "导出合并" },
+                    // },
+                    // {
+                    //     path: "uploadExcel",
+                    //     component: () => import("@/views/vab/excel/uploadExcel"),
+                    //     name: "UploadExcel",
+                    //     meta: { title: "上传Excel" },
+                    // },
+                ],
+            }
+        ]
+    },
+    {
         path: "*",
         redirect: "/404",
         hidden: true,

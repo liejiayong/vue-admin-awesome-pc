@@ -1,7 +1,8 @@
 const path = require('path')
-const { title, publicPath, assetsDir, outputDir, lintOnSave, transpileDependencies, devPort } = require("./src/config/settings")
+const { title, publicPath, assetsDir, outputDir, lintOnSave, transpileDependencies, devPort, providePlugin } = require("./src/config/settings")
 const { version, author } = require("./package.json")
 const WebpackBar = require('webpackbar')
+const Webpack = require('webpack')
 const dayjs = require('dayjs')
 process.env.VUE_APP_TITLE = title || "vue-admin-awesome"
 process.env.VUE_APP_AUTHOR = author || "JyLie"
@@ -43,7 +44,7 @@ module.exports = {
         sourceMap: true,
         loaderOptions: {
             scss: {
-                prependData: '@import "~@/styles/variables.scss"',
+                prependData: '@import "~@/styles/variables.scss";',
             },
         },
     },
@@ -56,6 +57,7 @@ module.exports = {
                 }
             },
             plugins: [
+                new Webpack.ProvidePlugin(providePlugin),
                 new WebpackBar({
                     name: `vue-admin-awesome`
                 })
@@ -83,5 +85,6 @@ module.exports = {
                 symbolId: 'svg-icon-[name]'
             })
 
+        config.plugin('banner').use(Webpack.BannerPlugin, ['copyright:JyLie 809206619@qq.com'])
     }
 }

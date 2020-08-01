@@ -13,21 +13,24 @@ export async function login(data) {
   })
 }
 
-export function getInfo() {
-  return {
-    data: {
-      permissions: '1231',
-      userName: 'L',
-      avatar: 'L'
-    }
-  }
-  // return request({
+export function getInfo(accessToken) {
+  // return {
   //   url: '/userInfo',
   //   method: 'post',
   //   data: {
   //     accessToken,
-  //   },
-  // })
+  //     permissions: '1231',
+  //     userName: 'L',
+  //     avatar: `https://picsum.photos/50/50?random=${Date.now()}`
+  //   }
+  // }
+  return request({
+    url: '/userInfo',
+    method: 'post',
+    data: {
+      accessToken,
+    },
+  })
 }
 
 export function logout() {

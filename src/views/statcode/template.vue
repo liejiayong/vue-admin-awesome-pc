@@ -30,27 +30,27 @@ export default {
 	props: {
 		interval: {
 			type: Number,
-			default: 6
+			default: 6,
 		},
 		head: {
 			type: String,
-			default: '当前页面不存在...'
+			default: '当前页面不存在...',
 		},
 		info: {
 			type: String,
-			default: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。'
+			default: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
 		},
 		oops: {
 			type: String,
-			default: '抱歉!'
+			default: '抱歉!',
 		},
 		btn: {
 			type: String,
-			default: '返回首页'
+			default: '返回首页',
 		},
 		codeUrl: {
 			// type: String
-        }
+		},
 	},
 	data() {
 		return {}
@@ -63,12 +63,12 @@ export default {
 				} else {
 					this.$router.push({ path: '/' })
 					this.$store.dispatch('tagsBar/delOthersRoutes', {
-						path: '/'
+						path: '/',
 					})
 					clearInterval(this.timer)
 				}
 			}, 1000)
-		}
+		},
 	},
 	beforeMount() {
 		this.timer = null
@@ -80,7 +80,7 @@ export default {
 	beforeDestroy() {
 		clearInterval(this.timer)
 		document.body.style.background = '#f2f2f2'
-	}
+	},
 }
 </script>
 
