@@ -16,7 +16,7 @@
 		</transition>
 		<footer v-show="footerCopyright" class="footer-copyright">
 			Copyright
-			<vab-icon :icon="['fas', 'copyright']"></vab-icon>
+			<jfas-icon :icon="['fas', 'copyright']"></jfas-icon>
 			{{ title }} {{ fullYear }} by {{ copyright }}
 		</footer>
 	</section>

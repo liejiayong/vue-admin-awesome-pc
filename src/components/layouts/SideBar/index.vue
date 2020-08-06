@@ -1,9 +1,23 @@
 <template>
 	<el-scrollbar class="side-bar-container" :class="{ 'is-collapse': collapse }">
 		<logo />
-		<el-menu :background-color="variables['menu-background']" :text-color="variables['menu-color']" :active-text-color="variables['menu-color-active']" :default-active="activeMenu" :collapse="collapse" :collapse-transition="false" :default-openeds="defaultOpens" :unique-opened="uniqueOpened" mode="vertical">
+		<el-menu
+			:background-color="variables['menu-background']"
+			:text-color="variables['menu-color']"
+			:active-text-color="variables['menu-color-active']"
+			:default-active="activeMenu"
+			:collapse="collapse"
+			:collapse-transition="false"
+			:default-openeds="defaultOpens"
+			:unique-opened="uniqueOpened"
+			mode="vertical"
+		>
 			<template v-for="route in routes">
-				<side-bar-item :key="route.path" :base-path="route.path" :item="route"></side-bar-item>
+				<side-bar-item
+					:key="route.path"
+					:base-path="route.path"
+					:item="route"
+				></side-bar-item>
 			</template>
 		</el-menu>
 	</el-scrollbar>
@@ -20,13 +34,13 @@ export default {
 	components: { SideBarItem, Logo },
 	data() {
 		return {
-			uniqueOpened
+			uniqueOpened,
 		}
 	},
 	computed: {
 		...mapGetters({
 			collapse: 'settings/collapse',
-			routes: 'routes/routes'
+			routes: 'routes/routes',
 		}),
 		defaultOpens() {
 			// if (this.collapse) {
@@ -43,8 +57,8 @@ export default {
 		},
 		variables() {
 			return variables
-		}
-	}
+		},
+	},
 }
 </script>
 <style lang="scss" scoped>

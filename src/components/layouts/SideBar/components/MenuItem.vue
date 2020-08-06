@@ -3,15 +3,15 @@
     @click.native="handleLink"
     :index="handlePath(onlyOneChildren.path)"
   >
-    <vab-icon
+    <jfas-icon
       v-if="onlyOneChildren.meta.icon"
       :icon="['fas', onlyOneChildren.meta.icon]"
-      class="vab-nav-icon"
+      class="jy-nav-icon"
     />
     <svg-icon
       v-if="onlyOneChildren.meta.remixIcon"
       :icon-class="onlyOneChildren.meta.remixIcon"
-      class="vab-nav-icon"
+      class="jy-nav-icon"
     />
     <span>{{ onlyOneChildren.meta.title }} </span>
     <el-tag

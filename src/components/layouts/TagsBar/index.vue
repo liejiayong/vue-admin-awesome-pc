@@ -11,23 +11,23 @@
 			</span>
 			<el-dropdown-menu slot="dropdown" class="tags-more">
 				<el-dropdown-item command="refreshRoute">
-					<vab-icon :icon="['fas', 'circle-notch']" />
+					<jfas-icon :icon="['fas', 'circle-notch']" />
 					刷新
 				</el-dropdown-item>
 				<el-dropdown-item command="closeOthersTags">
-					<vab-icon :icon="['fas', 'times-circle']" />
+					<jfas-icon :icon="['fas', 'times-circle']" />
 					关闭其他
 				</el-dropdown-item>
 				<el-dropdown-item command="closeLeftTags">
-					<vab-icon :icon="['fas', 'arrow-alt-circle-left']"></vab-icon>
+					<jfas-icon :icon="['fas', 'arrow-alt-circle-left']"></jfas-icon>
 					关闭左侧
 				</el-dropdown-item>
 				<el-dropdown-item command="closeRightTags">
-					<vab-icon :icon="['fas', 'arrow-alt-circle-right']"></vab-icon>
+					<jfas-icon :icon="['fas', 'arrow-alt-circle-right']"></jfas-icon>
 					关闭右侧
 				</el-dropdown-item>
 				<el-dropdown-item command="closeAllTags">
-					<vab-icon :icon="['fas', 'ban']"></vab-icon>
+					<jfas-icon :icon="['fas', 'ban']"></jfas-icon>
 					关闭全部
 				</el-dropdown-item>
 			</el-dropdown-menu>

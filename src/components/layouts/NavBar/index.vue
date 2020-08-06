@@ -12,9 +12,9 @@
 					<error-log></error-log>
 					<full-screen-bar @refresh="refreshRoute"></full-screen-bar>
 					<theme-bar></theme-bar>
-					<vab-icon title="重载所有路由" :pulse="pulse" :icon="['fas', 'redo']" @click="refreshRoute"></vab-icon>
+					<jfas-icon title="重载所有路由" :pulse="pulse" :icon="['fas', 'redo']" @click="refreshRoute"></jfas-icon>
 					<avatar></avatar>
-					<!--  <vab-icon
+					<!--  <jfas-icon
 						title="退出系统"
 						:icon="['fas', 'sign-out-alt']"
 						@click="logout"
