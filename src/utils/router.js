@@ -2,11 +2,12 @@
 /**
  * @copyright JyLie 809206619@qq.com
  * @description 判断当前路由是否包含权限
- * @param permissions
- * @param route
+ * @param {Array} route 要处理的当前路由对象
+ * @param {Array} permissions 用户权限
  * @returns {boolean|*}
  */
-function hasPermission(permissions, route) {
+function hasPermission(route, permissions) {
+    console.log('hasPermission', permissions, route)
     if (route.meta && route.meta.permissions) {
         return permissions.some(role => route.meta.permissions.includes(role))
     } else {
@@ -16,12 +17,35 @@ function hasPermission(permissions, route) {
 
 /**
  * @copyright JyLie 809206619@qq.com
- * @description all模式渲染后端返回路由
- * @param constantRoutes
+ * @description intelligence模式根据permissions数组拦截路由
+ * @param {Array} routes 要处理的所有路由对象
+ * @param {Array} permissions 用户权限
+ * @returns {[]}
+ */
+export function filterAsyncRoutes(routes, permissions) {
+    console.log('filterAsyncRoutes', routes, permissions)
+    const finallyRoutes = [];
+    routes.forEach((route) => {
+        const item = { ...route }
+        if (hasPermission(item, permissions)) {
+            if (item.children) {
+                item.children = filterAsyncRoutes(item.children, permissions)
+            }
+            finallyRoutes.push(item)
+        }
+    })
+    return finallyRoutes
+}
+
+/**
+ * @copyright JyLie 809206619@qq.com
+ * @description all模式渲染后端返回路由对象字符串routes,
+ *              将routes处理为vue可以使用的路由对象
+ * @param routes 要处理的所有路由对象字符串
  * @returns {*}
  */
-export function filterAllRoutes(constantRoutes) {
-    return constantRoutes.filter(route => {
+export function filterAllRoutes(routes) {
+    return routes.filter(route => {
         if (route.component) {
             if (route.component === 'Layout') {
                 console.log(1)
@@ -58,23 +82,3 @@ export function filterAllRoutes(constantRoutes) {
     })
 }
 
-/**
- * @copyright JyLie 809206619@qq.com
- * @description intelligence模式根据permissions数组拦截路由
- * @param routes
- * @param permissions
- * @returns {[]}
- */
-export function filterAsyncRoutes(routes, permissions) {
-    const finallyRoutes = [];
-    routes.forEach((route) => {
-        const item = { ...route }
-        if (hasPermission(permissions, item)) {
-            if (item.children) {
-                item.children = filterAsyncRoutes(item.children, permissions)
-            }
-            finallyRoutes.push(item)
-        }
-    })
-    return finallyRoutes
-}
