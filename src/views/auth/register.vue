@@ -7,16 +7,16 @@
 					<div class="title">hello !</div>
 					<div class="title-tips">欢迎来到{{ title }}！</div>
 					<el-form-item prop="userName">
-						<el-input v-model.trim="form.userName" v-focus style="margin-top: 20px;" type="text" placeholder="请输入用户名" auto-complete="off"> <vab-icon slot="prefix" :icon="['fas', 'user-alt']"></vab-icon> </el-input>
+						<el-input v-model.trim="form.userName" v-focus style="margin-top: 20px;" type="text" placeholder="请输入用户名" auto-complete="off"> <jfas-icon slot="prefix" :icon="['fas', 'user-alt']"></jfas-icon> </el-input>
 					</el-form-item>
 					<el-form-item prop="phone">
-						<el-input v-model.trim="form.phone" type="text" placeholder="请输入手机号" maxlength="11" show-word-limit autocomplete="off"> <vab-icon slot="prefix" :icon="['fas', 'mobile-alt']"></vab-icon> </el-input>
+						<el-input v-model.trim="form.phone" type="text" placeholder="请输入手机号" maxlength="11" show-word-limit autocomplete="off"> <jfas-icon slot="prefix" :icon="['fas', 'mobile-alt']"></jfas-icon> </el-input>
 					</el-form-item>
 					<el-form-item prop="phoneCode" style="position: relative;">
-						<el-input v-model.trim="form.phoneCode" type="text" placeholder="手机验证码"><vab-icon slot="prefix" :icon="['fas', 'envelope-open']"></vab-icon></el-input> <el-button type="primary" class="show-pwd phone-code" :disabled="isGetphone" @click="getPhoneCode"> {{ phoneCode }} </el-button>
+						<el-input v-model.trim="form.phoneCode" type="text" placeholder="手机验证码"><jfas-icon slot="prefix" :icon="['fas', 'envelope-open']"></jfas-icon></el-input> <el-button type="primary" class="show-pwd phone-code" :disabled="isGetphone" @click="getPhoneCode"> {{ phoneCode }} </el-button>
 					</el-form-item>
 					<el-form-item prop="password">
-						<el-input v-model.trim="form.password" type="password" placeholder="设置密码" autocomplete="new-password"><vab-icon slot="prefix" :icon="['fas', 'unlock']"></vab-icon></el-input>
+						<el-input v-model.trim="form.password" type="password" placeholder="设置密码" autocomplete="new-password"><jfas-icon slot="prefix" :icon="['fas', 'unlock']"></jfas-icon></el-input>
 					</el-form-item>
 					<el-form-item>
 						<el-button class="register-btn" type="primary" @click.native.prevent="handleReister">注册 </el-button> <router-link to="/login"> <div style="margin-top: 20px;">登录</div> </router-link>

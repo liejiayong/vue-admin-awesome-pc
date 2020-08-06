@@ -8,11 +8,11 @@
 
 		<el-dropdown-menu slot="dropdown">
 			<el-dropdown-item command="userCenter">
-				<vab-icon :icon="['fas', 'user']"></vab-icon>
+				<jfas-icon :icon="['fas', 'user']"></jfas-icon>
 				个人中心
 			</el-dropdown-item>
 			<el-dropdown-item command="logout" divided>
-				<vab-icon :icon="['fas', 'sign-out-alt']"></vab-icon>
+				<jfas-icon :icon="['fas', 'sign-out-alt']"></jfas-icon>
 				退出登录
 			</el-dropdown-item>
 		</el-dropdown-menu>

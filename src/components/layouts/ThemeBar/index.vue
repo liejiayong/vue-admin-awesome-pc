@@ -1,13 +1,13 @@
 <template>
 	<span v-if="themeBar">
-		<vab-icon title="主题配置" :icon="['fas', 'palette']" @click="handleChangeTheme" />
+		<jfas-icon title="主题配置" :icon="['fas', 'palette']" @click="handleChangeTheme" />
 		<div class="theme-bar-setting">
 			<div @click="handleChangeTheme">
-				<vab-icon :icon="['fas', 'palette']" />
+				<jfas-icon :icon="['fas', 'palette']" />
 				<p>主题配置</p>
 			</div>
 			<div @click="handleGetCode">
-				<vab-icon :icon="['fas', 'laptop-code']"></vab-icon>
+				<jfas-icon :icon="['fas', 'laptop-code']"></jfas-icon>
 				<p>拷贝代码</p>
 			</div>
 			<!--<div @click="handleChangeQq">

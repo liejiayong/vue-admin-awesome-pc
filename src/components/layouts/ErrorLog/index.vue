@@ -5,7 +5,7 @@
       @click.native="dialogTableVisible = true"
     >
       <el-button type="danger">
-        <vab-icon :icon="['fas', 'bug']" />
+        <jfas-icon :icon="['fas', 'bug']" />
       </el-button>
     </el-badge>
 
@@ -47,7 +47,7 @@
               target="_blank"
             >
               <el-button style="margin-left: 5px;" type="primary">
-                <vab-icon :icon="['fas', 'search']" />
+                <jfas-icon :icon="['fas', 'search']" />
                 {{ item.title }}
               </el-button>
             </a>

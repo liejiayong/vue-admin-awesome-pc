@@ -10,15 +10,15 @@
 					<div class="title-tips">欢迎来到{{ title }}！</div>
 					<el-form-item style="margin-top: 40px;" prop="userName">
 						<span class="svg-container svg-container-admin">
-							<vab-icon :icon="['fas', 'user']" />
+							<jfas-icon :icon="['fas', 'user']" />
 						</span>
 						<el-input v-model.trim="loginForm.userName" v-focus auto-complete="off" placeholder="请输入用户名" tabindex="1" type="text" />
 					</el-form-item>
 					<el-form-item prop="password">
-						<span class="svg-container svg-container-pass"><vab-icon :icon="['fas', 'lock']"/></span>
+						<span class="svg-container svg-container-pass"><jfas-icon :icon="['fas', 'lock']"/></span>
 						<el-input :key="passwordType" ref="password" v-model.trim="loginForm.password" :type="passwordType" auto-complete="off" placeholder="请输入密码" tabindex="2" @keyup.enter.native="handleLogin" />
-						<span v-if="passwordType === 'password'" class="show-pwd" @click="showPwd"><vab-icon :icon="['fas', 'eye-slash']"/></span>
-						<span v-else class="show-pwd" @click="showPwd"><vab-icon :icon="['fas', 'eye']"/></span>
+						<span v-if="passwordType === 'password'" class="show-pwd" @click="showPwd"><jfas-icon :icon="['fas', 'eye-slash']"/></span>
+						<span v-else class="show-pwd" @click="showPwd"><jfas-icon :icon="['fas', 'eye']"/></span>
 					</el-form-item>
 					<el-button :loading="loading" class="login-btn" type="primary" @click="handleLogin">登录 </el-button>
 					<router-link to="/register">

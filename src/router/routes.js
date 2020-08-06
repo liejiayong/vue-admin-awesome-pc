@@ -141,6 +141,24 @@ export const asyncRoutes = [
                     //     meta: { title: "上传Excel" },
                     // },
                 ],
+            },
+            {
+                path: "sprite",
+                component: EmptyLayout,
+                redirect: "noRedirect",
+                name: "Sprite",
+                meta: {
+                    title: "Sprite",
+                    permissions: ["admin"],
+                },
+                children: [
+                    {
+                        path: "Images",
+                        component: () => import("@/views/temp/sprite/images"),
+                        name: "SpriteImages",
+                        meta: { title: "Images" },
+                    }
+                ]
             }
         ]
     },

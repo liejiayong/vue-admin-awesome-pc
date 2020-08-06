@@ -17,7 +17,7 @@
 						<error-log class="hidden-md-and-down" />
 						<full-screen-bar class="hidden-md-and-down" @refresh="refreshRoute"></full-screen-bar>
 						<theme-bar></theme-bar>
-						<vab-icon class="hidden-md-and-down" title="重载路由" :pulse="pulse" :icon="['fas', 'redo']" @click="refreshRoute" />
+						<jfas-icon class="hidden-md-and-down" title="重载路由" :pulse="pulse" :icon="['fas', 'redo']" @click="refreshRoute" />
 						<avatar></avatar>
 					</div>
 				</el-col>
