@@ -1,8 +1,9 @@
 const path = require('path')
 const { title, publicPath, assetsDir, outputDir, lintOnSave, transpileDependencies, devPort, providePlugin } = require("./src/config/settings")
 const { version, author } = require("./package.json")
-const WebpackBar = require('webpackbar')
 const Webpack = require('webpack')
+const WebpackBar = require('webpackbar')
+// const WebpackAnalyzer = require('webpack-bundle-analyzer')
 const dayjs = require('dayjs')
 process.env.VUE_APP_TITLE = title || "vue-admin-awesome"
 process.env.VUE_APP_AUTHOR = author || "JyLie"
@@ -60,7 +61,8 @@ module.exports = {
                 new Webpack.ProvidePlugin(providePlugin),
                 new WebpackBar({
                     name: `vue-admin-awesome`
-                })
+                }),
+                // new WebpackAnalyzer()
             ]
         }
     },

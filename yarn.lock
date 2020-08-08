@@ -9061,16 +9061,15 @@ vue-eslint-parser@^7.0.0:
     esquery "^1.0.1"
     lodash "^4.17.15"
 
-vue-fas-icon@^0.0.1:
-  version "0.0.1"
-  resolved "https://registry.npm.taobao.org/vue-fas-icon/download/vue-fas-icon-0.0.1.tgz#d3740ed75f876f7c96a0e9015c1f3d835f96c23d"
+vue-fas-icon@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.npm.taobao.org/vue-fas-icon/download/vue-fas-icon-0.0.2.tgz#2f45812edf133f976137db5e22650416192591da"
+  integrity sha1-L0WBLt8TP5dhN9teImUEFhklkdo=
   dependencies:
     "@fortawesome/fontawesome-svg-core" "^1.2.28"
     "@fortawesome/free-solid-svg-icons" "^5.13.0"
     "@fortawesome/vue-fontawesome" "^0.1.9"
     core-js "^3.6.5"
-    vue "^2.6.11"
-    zx-rely "^0.0.8"
 
 vue-hot-reload-api@^2.3.0:
   version "2.3.4"
@@ -9147,6 +9146,7 @@ wcwidth@^1.0.0, wcwidth@^1.0.1:
 webpack-bundle-analyzer@^3.8.0:
   version "3.8.0"
   resolved "https://registry.npm.taobao.org/webpack-bundle-analyzer/download/webpack-bundle-analyzer-3.8.0.tgz#ce6b3f908daf069fd1f7266f692cbb3bded9ba16"
+  integrity sha1-zms/kI2vBp/R9yZvaSy7O97ZuhY=
   dependencies:
     acorn "^7.1.1"
     acorn-walk "^7.1.1"
@@ -9658,7 +9658,3 @@ zx-icon@^1.1.8:
     "@fortawesome/vue-fontawesome" "^0.1.10"
     core-js "^3.6.5"
     vue "^2.6.11"
-
-zx-rely@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.npm.taobao.org/zx-rely/download/zx-rely-0.0.8.tgz#816a222d9ea274d6229d0ca859e75c502331b075"
