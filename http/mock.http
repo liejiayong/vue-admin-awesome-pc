@@ -3,15 +3,11 @@
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/colorfulIcon/getList###POST http://localhost:8888/vab-mock-server/colorfulIcon/getList
-Content-Type: application/x-www-form-urlencoded
-###
-
 ###/goodsDetail/getList###POST http://localhost:8888/vab-mock-server/goodsDetail/getList
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/goodsDetail/doDelete###POST http://localhost:8888/vab-mock-server/goodsDetail/doDelete
+###/goodsDetail/doEdit###POST http://localhost:8888/vab-mock-server/goodsDetail/doEdit
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -19,7 +15,19 @@ Content-Type: application/x-www-form-urlencoded
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/goodsDetail/doEdit###POST http://localhost:8888/vab-mock-server/goodsDetail/doEdit
+###/goodsDetail/doDelete###POST http://localhost:8888/vab-mock-server/goodsDetail/doDelete
+Content-Type: application/x-www-form-urlencoded
+###
+
+###/icon/getList###POST http://localhost:8888/vab-mock-server/icon/getList
+Content-Type: application/x-www-form-urlencoded
+###
+
+###/notice/getList###POST http://localhost:8888/vab-mock-server/notice/getList
+Content-Type: application/x-www-form-urlencoded
+###
+
+###/personalCenter/getList###POST http://localhost:8888/vab-mock-server/personalCenter/getList
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -31,11 +39,11 @@ Content-Type: application/x-www-form-urlencoded
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/personalCenter/getList###POST http://localhost:8888/vab-mock-server/personalCenter/getList
+###/remixIcon/getList###POST http://localhost:8888/vab-mock-server/remixIcon/getList
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/remixIcon/getList###POST http://localhost:8888/vab-mock-server/remixIcon/getList
+###/roleManagement/getList###POST http://localhost:8888/vab-mock-server/roleManagement/getList
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -43,19 +51,11 @@ Content-Type: application/x-www-form-urlencoded
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/roleManagement/doDelete###POST http://localhost:8888/vab-mock-server/roleManagement/doDelete
-Content-Type: application/x-www-form-urlencoded
-###
-
-###/notice/getList###POST http://localhost:8888/vab-mock-server/notice/getList
-Content-Type: application/x-www-form-urlencoded
-###
-
 ###/menu/navigate###POST http://localhost:8888/vab-mock-server/menu/navigate
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/roleManagement/getList###POST http://localhost:8888/vab-mock-server/roleManagement/getList
+###/table/doEdit###POST http://localhost:8888/vab-mock-server/table/doEdit
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -64,14 +64,6 @@ Content-Type: application/x-www-form-urlencoded
 ###
 
 ###/table/doDelete###POST http://localhost:8888/vab-mock-server/table/doDelete
-Content-Type: application/x-www-form-urlencoded
-###
-
-###/table/doEdit###POST http://localhost:8888/vab-mock-server/table/doEdit
-Content-Type: application/x-www-form-urlencoded
-###
-
-###/icon/getList###POST http://localhost:8888/vab-mock-server/icon/getList
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -87,11 +79,11 @@ Content-Type: application/x-www-form-urlencoded
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/register###POST http://localhost:8888/vab-mock-server/register
+###/login###POST http://localhost:8888/vab-mock-server/login
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/login###POST http://localhost:8888/vab-mock-server/login
+###/register###POST http://localhost:8888/vab-mock-server/register
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -103,7 +95,7 @@ Content-Type: application/x-www-form-urlencoded
 Content-Type: application/x-www-form-urlencoded
 ###
 
-###/userManagement/doEdit###POST http://localhost:8888/vab-mock-server/userManagement/doEdit
+###/roleManagement/doDelete###POST http://localhost:8888/vab-mock-server/roleManagement/doDelete
 Content-Type: application/x-www-form-urlencoded
 ###
 
@@ -112,5 +104,13 @@ Content-Type: application/x-www-form-urlencoded
 ###
 
 ###/userManagement/doDelete###POST http://localhost:8888/vab-mock-server/userManagement/doDelete
+Content-Type: application/x-www-form-urlencoded
+###
+
+###/userManagement/doEdit###POST http://localhost:8888/vab-mock-server/userManagement/doEdit
+Content-Type: application/x-www-form-urlencoded
+###
+
+###/colorfulIcon/getList###POST http://localhost:8888/vab-mock-server/colorfulIcon/getList
 Content-Type: application/x-www-form-urlencoded
 ###
