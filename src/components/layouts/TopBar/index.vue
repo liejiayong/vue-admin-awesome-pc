@@ -1,6 +1,6 @@
 <template>
 	<div class="top-bar-container">
-		<div class="vab-main">
+		<div class="jy-main">
 			<el-row>
 				<el-col :xl="6" :lg="6" :md="6" :sm="2" :xs="3">
 					<logo />
@@ -83,7 +83,7 @@ export default {
 	justify-items: flex-end;
 	height: $base-top-bar-height;
 
-	.vab-main {
+	.jy-main {
 		background: $base-menu-background;
 
 		::v-deep {

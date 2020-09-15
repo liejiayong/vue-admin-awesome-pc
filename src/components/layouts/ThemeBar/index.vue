@@ -132,7 +132,7 @@ export default {
 			style.id = 'BYUI-VUE-THEME'
 			style.innerHTML = `
         .top-bar-container,
-        .top-bar-container .vab-main,
+        .top-bar-container .jy-main,
         .side-bar-container,
         .logo-container-vertical,
         .logo-container-horizontal,
@@ -153,7 +153,7 @@ export default {
           background-color:${menuBackgroundActive}!important;
         }
 
-        .vab-main .tags-bar-container .tags-content .el-tabs__header .el-tabs__item.is-active {
+        .jy-main .tags-bar-container .tags-content .el-tabs__header .el-tabs__item.is-active {
           background:  ${tagBackgroundActive}!important;
           border: 1px solid ${tagBackgroundActive}!important;
         }

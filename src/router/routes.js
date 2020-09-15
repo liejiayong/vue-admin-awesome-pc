@@ -62,27 +62,6 @@ export const asyncRoutes = [
         ]
     },
     {
-        path: "/error",
-        component: EmptyLayout,
-        redirect: "noRedirect",
-        name: "Error",
-        meta: { title: "错误页", icon: "bug" },
-        children: [
-            {
-                path: "401",
-                name: "Error401",
-                component: () => import('@/views/statcode/401'),
-                meta: { title: "401" },
-            },
-            {
-                path: "404",
-                name: "Error404",
-                component: () => import('@/views/statcode/404'),
-                meta: { title: "404" },
-            },
-        ],
-    },
-    {
         path: "/user",
         component: Layout,
         hidden: true,
@@ -184,6 +163,27 @@ export const asyncRoutes = [
                 ]
             }
         ]
+    },
+    {
+        path: "/error",
+        component: EmptyLayout,
+        redirect: "noRedirect",
+        name: "Error",
+        meta: { title: "错误页", icon: "bug" },
+        children: [
+            {
+                path: "401",
+                name: "Error401",
+                component: () => import('@/views/statcode/401'),
+                meta: { title: "401" },
+            },
+            {
+                path: "404",
+                name: "Error404",
+                component: () => import('@/views/statcode/404'),
+                meta: { title: "404" },
+            },
+        ],
     },
     {
         path: "*",

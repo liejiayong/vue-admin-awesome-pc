@@ -11,12 +11,12 @@
 			<div :class="header === 'fixed' ? 'fixed-header' : ''">
 				<top-bar></top-bar>
 				<div v-if="tagsBar === 'true' || tagsBar === true" :class="{ 'tag-view-show': tagsBar }">
-					<div class="vab-main">
+					<div class="jy-main">
 						<tags-bar></tags-bar>
 					</div>
 				</div>
 			</div>
-			<div class="vab-main main-padding">
+			<div class="jy-main main-padding">
 				<app-main></app-main>
 			</div>
 		</div>
@@ -30,7 +30,7 @@
 		>
 			<div v-if="device === 'mobile' && collapse === false" class="mask" @click="handleFoldSideBar" />
 			<side-bar></side-bar>
-			<div class="vab-main" :class="collapse ? 'is-collapse-main' : ''">
+			<div class="jy-main" :class="collapse ? 'is-collapse-main' : ''">
 				<div :class="header === 'fixed' ? 'fixed-header' : ''">
 					<nav-bar></nav-bar>
 					<tags-bar v-if="tagsBar === 'true' || tagsBar === true" />
@@ -123,7 +123,7 @@ export default {
 		}
 
 		::v-deep {
-			.vab-main {
+			.jy-main {
 				width: 88%;
 				margin: auto;
 			}
@@ -180,7 +180,7 @@ export default {
 			padding-top: $base-nav-bar-height;
 		}
 
-		.vab-main {
+		.jy-main {
 			position: relative;
 			min-height: 100%;
 			margin-left: $base-left-menu-width;
@@ -240,13 +240,13 @@ export default {
 					width: 0;
 				}
 
-				.vab-main {
+				.jy-main {
 					width: 100%;
 					margin-left: 0;
 				}
 			}
 
-			.vab-main {
+			.jy-main {
 				.fixed-header {
 					left: 0 !important;
 					width: 100% !important;
