@@ -40,6 +40,7 @@ const responseFake = (url, type, respond) => {
     url: new RegExp(`${baseURL}${url}`),
     type: type || 'get',
     response(req, res) {
+      res.status(200)
       if (JSON.stringify(req.body) !== '{}') {
         console.log(chalk.green(`> 请求地址：${req.path}`))
         console.log(chalk.green(`> 请求参数：${JSON.stringify(req.body)}\n`))

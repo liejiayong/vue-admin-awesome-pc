@@ -9,11 +9,13 @@ const mocks = []
 const files = require.context('./controller', false, /\.js$/)
 
 files.keys().forEach((key) => {
-  const obj = files(key).default
-  mocks.push(...obj)
+  // 方式一
+  // const obj = files(key).default
+  // mocks.push(...obj)
+  // 方式二
+  mocks.push(...files(key))
 })
 
-console.log(mocks)
 export function mockXHR() {
   Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send
   Mock.XHR.prototype.send = function () {
@@ -27,9 +29,9 @@ export function mockXHR() {
     this.proxy_send(...arguments)
   }
 
-  function XHR2ExpressReqWrap(respond) {
+  function XHRHttpRequst(respond) {
     return function (options) {
-      let result = null
+      let result
       if (respond instanceof Function) {
         const { body, type, url } = options
         result = respond({
@@ -44,11 +46,11 @@ export function mockXHR() {
     }
   }
 
-  for (const i of mocks) {
+  mocks.forEach((item) => {
     Mock.mock(
-      new RegExp(i.url),
-      i.type || 'get',
-      XHR2ExpressReqWrap(i.response)
+      new RegExp(item.url),
+      item.type || 'get',
+      XHRHttpRequst(item.response)
     )
-  }
+  })
 }
