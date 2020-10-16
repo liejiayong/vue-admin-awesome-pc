@@ -16,7 +16,7 @@ if (httpRequestFile) {
   })
 }
 mockArray.forEach(async (item) => {
-  const obj = require(item).default
+  const obj = require(item)
   await mocks.push(...obj)
   if (httpRequestFile) {
     obj.forEach((item) => {

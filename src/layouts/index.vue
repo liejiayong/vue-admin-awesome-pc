@@ -1,261 +1,274 @@
 <template>
-	<div class="app-layout-wrapper" :class="classObj">
-		<div
-			v-if="'horizontal' === layout"
-			class="layout-container-horizontal"
-			:class="{
-				fixed: header === 'fixed',
-				'no-tags-bar': tagsBar === 'false' || tagsBar === false
-			}"
-		>
-			<div :class="header === 'fixed' ? 'fixed-header' : ''">
-				<top-bar></top-bar>
-				<div v-if="tagsBar === 'true' || tagsBar === true" :class="{ 'tag-view-show': tagsBar }">
-					<div class="jy-main">
-						<tags-bar></tags-bar>
-					</div>
-				</div>
-			</div>
-			<div class="jy-main main-padding">
-				<app-main></app-main>
-			</div>
-		</div>
-		<div
-			v-else
-			class="layout-container-vertical"
-			:class="{
-				fixed: header === 'fixed',
-				'no-tags-bar': tagsBar === 'false' || tagsBar === false
-			}"
-		>
-			<div v-if="device === 'mobile' && collapse === false" class="mask" @click="handleFoldSideBar" />
-			<side-bar></side-bar>
-			<div class="jy-main" :class="collapse ? 'is-collapse-main' : ''">
-				<div :class="header === 'fixed' ? 'fixed-header' : ''">
-					<nav-bar></nav-bar>
-					<tags-bar v-if="tagsBar === 'true' || tagsBar === true" />
-				</div>
-				<app-main></app-main>
-			</div>
-		</div>
-		<el-backtop></el-backtop>
-	</div>
+  <div class="app-layout-wrapper" :class="classObj">
+    <div
+      v-if="'horizontal' === layout"
+      class="layout-container-horizontal"
+      :class="{
+        fixed: header === 'fixed',
+        'no-tags-bar': tagsBar === 'false' || tagsBar === false,
+      }"
+    >
+      <div :class="header === 'fixed' ? 'fixed-header' : ''">
+        <top-bar></top-bar>
+        <div
+          v-if="tagsBar === 'true' || tagsBar === true"
+          :class="{ 'tag-view-show': tagsBar }"
+        >
+          <div class="jy-main">
+            <tags-bar></tags-bar>
+          </div>
+        </div>
+      </div>
+      <div class="jy-main main-padding">
+        <app-main></app-main>
+      </div>
+    </div>
+    <div
+      v-else
+      class="layout-container-vertical"
+      :class="{
+        fixed: header === 'fixed',
+        'no-tags-bar': tagsBar === 'false' || tagsBar === false,
+      }"
+    >
+      <div
+        v-if="device === 'mobile' && collapse === false"
+        class="mask"
+        @click="handleFoldSideBar"
+      />
+      <side-bar></side-bar>
+      <div class="jy-main" :class="collapse ? 'is-collapse-main' : ''">
+        <div :class="header === 'fixed' ? 'fixed-header' : ''">
+          <nav-bar></nav-bar>
+          <tags-bar v-if="tagsBar === 'true' || tagsBar === true" />
+        </div>
+        <app-main></app-main>
+      </div>
+    </div>
+    <el-backtop></el-backtop>
+  </div>
 </template>
 
 <script>
-import { Media, AppMain, NavBar, SideBar, TagsBar, TopBar } from './components'
-import { mapActions, mapGetters } from 'vuex'
-import { tokenName } from '@/config/settings'
+  import {
+    Media,
+    AppMain,
+    NavBar,
+    SideBar,
+    TagsBar,
+    TopBar,
+  } from './components';
+  import { mapActions, mapGetters } from 'vuex';
+  import { tokenName } from '@/config/settings';
 
-export default {
-	name: 'Layout',
-	components: {
-		TopBar,
-		NavBar,
-		SideBar,
-		AppMain,
-		TagsBar
-	},
-	mixins: [Media],
-	data() {
-		return {}
-	},
-	computed: {
-		...mapGetters({
-			layout: 'settings/layout',
-			tagsBar: 'settings/tagsBar',
-			collapse: 'settings/collapse',
-			header: 'settings/header',
-			device: 'settings/device'
-		}),
-		classObj() {
-			return {
-				mobile: this.device === 'mobile'
-			}
-		}
-	},
-	mounted() {
-		this.$nextTick(() => {
-			window.addEventListener(
-				'storage',
-				e => {
-					if (e.key === tokenName || e.key === null) window.location.reload()
-					if (e.key === tokenName && e.value === null) window.location.reload()
-				},
-				false
-			)
-		})
-	},
-	methods: {
-		...mapActions({
-			handleFoldSideBar: 'settings/foldSideBar'
-		})
-	}
-}
+  export default {
+    name: 'Layout',
+    components: {
+      TopBar,
+      NavBar,
+      SideBar,
+      AppMain,
+      TagsBar,
+    },
+    mixins: [Media],
+    data() {
+      return {};
+    },
+    computed: {
+      ...mapGetters({
+        layout: 'settings/layout',
+        tagsBar: 'settings/tagsBar',
+        collapse: 'settings/collapse',
+        header: 'settings/header',
+        device: 'settings/device',
+      }),
+      classObj() {
+        return {
+          mobile: this.device === 'mobile',
+        };
+      },
+    },
+    mounted() {
+      this.$nextTick(() => {
+        window.addEventListener(
+          'storage',
+          (e) => {
+            if (e.key === tokenName || e.key === null) window.location.reload();
+            if (e.key === tokenName && e.value === null)
+              window.location.reload();
+          },
+          false
+        );
+      });
+    },
+    methods: {
+      ...mapActions({
+        handleFoldSideBar: 'settings/foldSideBar',
+      }),
+    },
+  };
 </script>
 
-
 <style lang="scss" scoped>
-@mixin fix-header {
-	position: fixed;
-	top: 0;
-	right: 0;
-	left: 0;
-	z-index: $base-z-index - 2;
-	width: 100%;
-	overflow: hidden;
-}
+  @mixin fix-header {
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: $base-z-index - 2;
+    width: 100%;
+    overflow: hidden;
+  }
 
-.app-layout-wrapper {
-	position: relative;
-	width: 100%;
-	height: 100%;
+  .app-layout-wrapper {
+    position: relative;
+    width: 100%;
+    height: 100%;
 
-	.layout-container-horizontal {
-		position: relative;
+    .layout-container-horizontal {
+      position: relative;
 
-		&.fixed {
-			padding-top: calc(#{$base-top-bar-height} + #{$base-tags-bar-height});
-		}
+      &.fixed {
+        padding-top: calc(#{$base-top-bar-height} + #{$base-tags-bar-height});
+      }
 
-		&.fixed.no-tags-bar {
-			padding-top: $base-top-bar-height;
-		}
+      &.fixed.no-tags-bar {
+        padding-top: $base-top-bar-height;
+      }
 
-		::v-deep {
-			.jy-main {
-				width: 88%;
-				margin: auto;
-			}
+      ::v-deep {
+        .jy-main {
+          width: 88%;
+          margin: auto;
+        }
 
-			.fixed-header {
-				@include fix-header;
-			}
+        .fixed-header {
+          @include fix-header;
+        }
 
-			.tag-view-show {
-				background: $base-color-white;
-				box-shadow: $base-box-shadow;
-			}
+        .tag-view-show {
+          background: $base-color-white;
+          box-shadow: $base-box-shadow;
+        }
 
-			.nav-bar-container {
-				.fold-unfold {
-					display: none;
-				}
-			}
+        .nav-bar-container {
+          .fold-unfold {
+            display: none;
+          }
+        }
 
-			.main-padding {
-				margin-top: 15px;
-				margin-bottom: 15px;
+        .main-padding {
+          margin-top: 15px;
+          margin-bottom: 15px;
 
-				.app-main-container {
-					min-height: calc(100vh - 180px);
-					background: $base-color-white;
-				}
-			}
-		}
-	}
+          .app-main-container {
+            min-height: calc(100vh - 180px);
+            background: $base-color-white;
+          }
+        }
+      }
+    }
 
-	.layout-container-vertical {
-		position: relative;
+    .layout-container-vertical {
+      position: relative;
 
-		.mask {
-			position: fixed;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			z-index: $base-z-index - 1;
-			width: 100%;
-			height: 100vh;
-			overflow: hidden;
-			background: #000;
-			opacity: 0.5;
-		}
+      .mask {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        z-index: $base-z-index - 1;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+        background: #000;
+        opacity: 0.5;
+      }
 
-		&.fixed {
-			padding-top: calc(#{$base-nav-bar-height} + #{$base-tags-bar-height});
-		}
+      &.fixed {
+        padding-top: calc(#{$base-nav-bar-height} + #{$base-tags-bar-height});
+      }
 
-		&.fixed.no-tags-bar {
-			padding-top: $base-nav-bar-height;
-		}
+      &.fixed.no-tags-bar {
+        padding-top: $base-nav-bar-height;
+      }
 
-		.jy-main {
-			position: relative;
-			min-height: 100%;
-			margin-left: $base-left-menu-width;
-			background: #f6f8f9;
-			transition: $base-transition;
+      .jy-main {
+        position: relative;
+        min-height: 100%;
+        margin-left: $base-left-menu-width;
+        background: #f6f8f9;
+        transition: $base-transition;
 
-			::v-deep {
-				.fixed-header {
-					@include fix-header;
+        ::v-deep {
+          .fixed-header {
+            @include fix-header;
 
-					left: $base-left-menu-width;
-					width: $base-right-content-width;
-					box-shadow: $base-box-shadow;
-					transition: $base-transition;
-				}
+            left: $base-left-menu-width;
+            width: $base-right-content-width;
+            box-shadow: $base-box-shadow;
+            transition: $base-transition;
+          }
 
-				.nav-bar-container {
-					position: relative;
-					box-sizing: border-box;
-				}
+          .nav-bar-container {
+            position: relative;
+            box-sizing: border-box;
+          }
 
-				.tags-bar-container {
-					box-sizing: border-box;
-				}
+          .tags-bar-container {
+            box-sizing: border-box;
+          }
 
-				.app-main-container {
-					width: calc(100% - #{$base-padding} - #{$base-padding});
-					margin: $base-padding auto;
-					background: $base-color-white;
-					border-radius: $base-border-radius;
-				}
-			}
+          .app-main-container {
+            width: calc(100% - #{$base-padding} - #{$base-padding});
+            margin: $base-padding auto;
+            background: $base-color-white;
+            border-radius: $base-border-radius;
+          }
+        }
 
-			&.is-collapse-main {
-				margin-left: $base-left-menu-width-min;
+        &.is-collapse-main {
+          margin-left: $base-left-menu-width-min;
 
-				::v-deep {
-					.fixed-header {
-						left: $base-left-menu-width-min;
-						width: calc(100% - 65px);
-					}
-				}
-			}
-		}
-	}
+          ::v-deep {
+            .fixed-header {
+              left: $base-left-menu-width-min;
+              width: calc(100% - 65px);
+            }
+          }
+        }
+      }
+    }
 
-	/* 手机端开始 */
-	&.mobile {
-		::v-deep {
-			.el-pager,
-			.el-pagination__jump {
-				display: none;
-			}
+    /* 手机端开始 */
+    &.mobile {
+      ::v-deep {
+        .el-pager,
+        .el-pagination__jump {
+          display: none;
+        }
 
-			.layout-container-vertical {
-				.el-scrollbar.side-bar-container.is-collapse {
-					width: 0;
-				}
+        .layout-container-vertical {
+          .el-scrollbar.side-bar-container.is-collapse {
+            width: 0;
+          }
 
-				.jy-main {
-					width: 100%;
-					margin-left: 0;
-				}
-			}
+          .jy-main {
+            width: 100%;
+            margin-left: 0;
+          }
+        }
 
-			.jy-main {
-				.fixed-header {
-					left: 0 !important;
-					width: 100% !important;
-				}
-			}
-		}
-	}
+        .jy-main {
+          .fixed-header {
+            left: 0 !important;
+            width: 100% !important;
+          }
+        }
+      }
+    }
 
-	/* 手机端结束 */
-}
+    /* 手机端结束 */
+  }
 </style>
-

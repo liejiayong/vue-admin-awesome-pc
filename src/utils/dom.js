@@ -1,4 +1,4 @@
-import { title } from "@/config/settings"
+import { title } from '@/config/settings';
 
 /**
  * @copyright JyLie 809206619@qq.com
@@ -7,6 +7,6 @@ import { title } from "@/config/settings"
  * @returns {aviod}
  */
 export function setDocumentTitle(pageTitle) {
-    const msg = pageTitle ? `${pageTitle}-${title}` : title
-    document.title = msg
+  const msg = pageTitle ? `${pageTitle}-${title}` : title;
+  document.title = msg;
 }

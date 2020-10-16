@@ -7,14 +7,14 @@
 </template>
 
 <script>
-export default {
-  name: "JyQueryFormTopPanel",
-  props: {},
-  data() {
-    return {};
-  },
-  created() {},
-  mounted() {},
-  methods: {},
-};
+  export default {
+    name: 'JyQueryFormTopPanel',
+    props: {},
+    data() {
+      return {};
+    },
+    created() {},
+    mounted() {},
+    methods: {},
+  };
 </script>

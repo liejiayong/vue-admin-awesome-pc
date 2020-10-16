@@ -7,19 +7,19 @@
 </template>
 
 <script>
-export default {
-  name: "JyQueryFormLeftPanel",
-  props: {
-    span: {
-      type: Number,
-      default: 14,
+  export default {
+    name: 'JyQueryFormLeftPanel',
+    props: {
+      span: {
+        type: Number,
+        default: 14,
+      },
     },
-  },
-  data() {
-    return {};
-  },
-  created() {},
-  mounted() {},
-  methods: {},
-};
+    data() {
+      return {};
+    },
+    created() {},
+    mounted() {},
+    methods: {},
+  };
 </script>

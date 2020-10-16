@@ -1,10 +1,10 @@
 let lastTime = 0;
-const prefixes = "webkit moz ms o".split(" ");
+const prefixes = 'webkit moz ms o'.split(' ');
 
 let requestAnimationFrame;
 let cancelAnimationFrame;
 
-const isServer = typeof window === "undefined";
+const isServer = typeof window === 'undefined';
 if (isServer) {
   requestAnimationFrame = function () {
     return;
@@ -22,11 +22,11 @@ if (isServer) {
     }
     prefix = prefixes[i];
     requestAnimationFrame =
-      requestAnimationFrame || window[prefix + "RequestAnimationFrame"];
+      requestAnimationFrame || window[prefix + 'RequestAnimationFrame'];
     cancelAnimationFrame =
       cancelAnimationFrame ||
-      window[prefix + "CancelAnimationFrame"] ||
-      window[prefix + "CancelRequestAnimationFrame"];
+      window[prefix + 'CancelAnimationFrame'] ||
+      window[prefix + 'CancelRequestAnimationFrame'];
   }
 
   if (!requestAnimationFrame || !cancelAnimationFrame) {

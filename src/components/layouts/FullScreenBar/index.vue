@@ -11,43 +11,43 @@
 </template>
 
 <script>
-import screenfull from "screenfull";
+  import screenfull from 'screenfull';
 
-export default {
-  name: "FullScreenBar",
-  data() {
-    return {
-      isFullscreen: false,
-    };
-  },
-  mounted() {
-    this.init();
-  },
-  beforeDestroy() {
-    this.destroy();
-  },
-  methods: {
-    click() {
-      if (!screenfull.isEnabled) {
-        this.$baseMessage("开启全屏失败", "error");
-        return false;
-      }
-      screenfull.toggle();
-      this.$emit("refresh");
+  export default {
+    name: 'FullScreenBar',
+    data() {
+      return {
+        isFullscreen: false,
+      };
     },
-    change() {
-      this.isFullscreen = screenfull.isFullscreen;
+    mounted() {
+      this.init();
     },
-    init() {
-      if (screenfull.isEnabled) {
-        screenfull.on("change", this.change);
-      }
+    beforeDestroy() {
+      this.destroy();
     },
-    destroy() {
-      if (screenfull.isEnabled) {
-        screenfull.off("change", this.change);
-      }
+    methods: {
+      click() {
+        if (!screenfull.isEnabled) {
+          this.$baseMessage('开启全屏失败', 'error');
+          return false;
+        }
+        screenfull.toggle();
+        this.$emit('refresh');
+      },
+      change() {
+        this.isFullscreen = screenfull.isFullscreen;
+      },
+      init() {
+        if (screenfull.isEnabled) {
+          screenfull.on('change', this.change);
+        }
+      },
+      destroy() {
+        if (screenfull.isEnabled) {
+          screenfull.off('change', this.change);
+        }
+      },
     },
-  },
-};
+  };
 </script>

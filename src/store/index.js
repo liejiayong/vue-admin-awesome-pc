@@ -1,19 +1,19 @@
-import Vue from 'vue'
-import Vuex from 'vuex'
+import Vue from 'vue';
+import Vuex from 'vuex';
 
-Vue.use(Vuex)
+Vue.use(Vuex);
 
-const files = require.context('./modules', false, /\.js$/)
-const modules = {}
+const files = require.context('./modules', false, /\.js$/);
+const modules = {};
 
-files.keys().forEach(key => {
-  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default
-})
-Object.keys(modules).forEach(key => {
-  modules[key]['namespaced'] = true
-})
-console.log('store modules', modules)
+files.keys().forEach((key) => {
+  modules[key.replace(/(\.\/|\.js)/g, '')] = files(key).default;
+});
+Object.keys(modules).forEach((key) => {
+  modules[key]['namespaced'] = true;
+});
+console.log('store modules', modules);
 
 export default new Vuex.Store({
-  modules
-})
+  modules,
+});

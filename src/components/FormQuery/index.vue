@@ -1,63 +1,63 @@
 <template>
-	<el-row :gutter="0" class="jy-form-query">
-		<slot></slot>
-	</el-row>
+  <el-row :gutter="0" class="jy-form-query">
+    <slot></slot>
+  </el-row>
 </template>
 
 <script>
-export default {
-	name: 'JyQueryForm',
-	props: {},
-	data() {
-		return {}
-	},
-	created() {},
-	mounted() {},
-	methods: {},
-}
+  export default {
+    name: 'JyQueryForm',
+    props: {},
+    data() {
+      return {};
+    },
+    created() {},
+    mounted() {},
+    methods: {},
+  };
 </script>
 
 <style lang="scss" scoped>
-@mixin panel {
-	display: flex;
-	flex-wrap: wrap;
-	align-items: center;
-	justify-content: flex-start;
-}
+  @mixin panel {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-start;
+  }
 
-.jy-form-query {
-	margin-bottom: 10px;
+  .jy-form-query {
+    margin-bottom: 10px;
 
-	::v-deep {
-		.top-panel {
-			@include panel;
-		}
+    ::v-deep {
+      .top-panel {
+        @include panel;
+      }
 
-		.bottom-panel {
-			@include panel;
+      .bottom-panel {
+        @include panel;
 
-			padding-top: 14px;
-			border-top: 1px solid #dcdfe6;
-		}
+        padding-top: 14px;
+        border-top: 1px solid #dcdfe6;
+      }
 
-		.left-panel {
-			@include panel;
+      .left-panel {
+        @include panel;
 
-			> .el-button,
-			.el-form-item {
-				margin: 5px;
-			}
-		}
+        > .el-button,
+        .el-form-item {
+          margin: 5px;
+        }
+      }
 
-		.right-panel {
-			@include panel;
+      .right-panel {
+        @include panel;
 
-			justify-content: flex-end;
+        justify-content: flex-end;
 
-			.el-form-item {
-				margin: 5px;
-			}
-		}
-	}
-}
+        .el-form-item {
+          margin: 5px;
+        }
+      }
+    }
+  }
 </style>

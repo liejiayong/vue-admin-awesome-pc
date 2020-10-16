@@ -1,10 +1,10 @@
-import "core-js/stable"
-import "regenerator-runtime/runtime"
-import Vue from 'vue'
-import App from './App.vue'
-import router from './router'
-import store from './store'
-import './plugins'
+import 'core-js/stable';
+// import 'regenerator-runtime/runtime'
+import Vue from 'vue';
+import App from './App.vue';
+import router from './router';
+import store from './store';
+import './plugins';
 
 /**
  * @author JyLie 809206619@qq.com （不想保留author可删除）
@@ -12,16 +12,14 @@ import './plugins'
  */
 
 if (process.env.NODE_ENV === 'production') {
-  const { mockXHR } = require('@/utils/static')
-  mockXHR()
+  const { mockXHR } = require('@/utils/static');
+  mockXHR();
 }
 
-
-Vue.config.productionTip = false
+Vue.config.productionTip = false;
 
 new Vue({
   router,
   store,
-  render: h => h(App)
-}).$mount('#app-awesome')
- 
+  render: (h) => h(App),
+}).$mount('#app-awesome');
