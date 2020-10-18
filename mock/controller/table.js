@@ -1,7 +1,8 @@
-import { mock } from 'mockjs'
-import { handleRandomImage } from '../utils'
-const List = []
-const count = 999
+const { mock } = require('mockjs');
+const { handleRandomImage } = require('../utils');
+
+const List = [];
+const count = 999;
 for (let i = 0; i < count; i++) {
   List.push(
     mock({
@@ -17,14 +18,14 @@ for (let i = 0; i < count; i++) {
       switch: '@boolean',
       percent: '@integer(80,99)',
     })
-  )
+  );
 }
 
-export default [
+module.exports = [
   {
     url: '/table/getList',
     type: 'post',
-    response: (config) => {
+    response(config) {
       if (!config.body) {
         return {
           code: 200,
@@ -46,45 +47,42 @@ export default [
               },
             ],
           }).data,
-        }
+        };
       }
-      const { title = '', pageNo = 1, pageSize = 20 } = config.body
+      const { title = '', pageNo = 1, pageSize = 20 } = config.body;
       let mockList = List.filter((item) => {
-        if (title && item.title.indexOf(title) < 0) return false
-        return true
-      })
+        return !(title && item.title.indexOf(title) < 0);
+      });
       const pageList = mockList.filter(
         (item, index) =>
           index < pageSize * pageNo && index >= pageSize * (pageNo - 1)
-      )
+      );
       return {
         code: 200,
         msg: 'success',
         totalCount: count,
         data: pageList,
-      }
+      };
     },
   },
   {
     url: '/table/doEdit',
     type: 'post',
-    response: (config) => {
+    response() {
       return {
         code: 200,
         msg: '模拟保存成功',
-        config
-      }
+      };
     },
   },
   {
     url: '/table/doDelete',
     type: 'post',
-    response: (config) => {
+    response() {
       return {
         code: 200,
         msg: '模拟删除成功',
-        config
-      }
+      };
     },
   },
-]
+];

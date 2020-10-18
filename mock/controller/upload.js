@@ -1,5 +1,5 @@
-const data = []
-export default [
+const data = [];
+module.exports = [
   {
     url: '/upload',
     type: 'post',
@@ -8,8 +8,8 @@ export default [
         code: 200,
         msg: 'success',
         data: data,
-        config
-      }
+        config,
+      };
     },
   },
-]
+];

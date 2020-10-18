@@ -1,16 +1,12 @@
 const data = [
   'alphabetical_sorting',
-  'advance',
-  'address_book',
   'alphabetical_sorting',
-  'advertising',
   'alarm_clock',
   'area_chart',
   'approval',
   'answers',
   'approve',
   'assistant',
-  'audio_file',
   'automotive',
   'automatic',
   'bad_decision',
@@ -302,27 +298,27 @@ const data = [
   'add_column',
   'add_database',
   'add_row',
-]
-export default [
+];
+module.exports = [
   {
     url: '/colorfulIcon/getList',
     type: 'post',
-    response: (config) => {
-      const { title, pageNo = 1, pageSize = 72 } = config.body
+    response(config) {
+      const { title, pageNo = 1, pageSize = 72 } = config.body;
       let mockList = data.filter((item) => {
-        if (title && item.indexOf(title) < 0) return false
-        return true
-      })
+        if (title && item.indexOf(title) < 0) return false;
+        return true;
+      });
       const pageList = mockList.filter(
         (item, index) =>
           index < pageSize * pageNo && index >= pageSize * (pageNo - 1)
-      )
+      );
       return {
         code: 200,
         msg: 'success',
         totalCount: mockList.length,
         data: pageList,
-      }
+      };
     },
   },
-]
+];

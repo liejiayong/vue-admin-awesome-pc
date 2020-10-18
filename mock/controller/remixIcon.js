@@ -20,8 +20,6 @@ const data = [
   'add-line',
   'admin-fill',
   'admin-line',
-  'advertisement-fill',
-  'advertisement-line',
   'airplay-fill',
   'airplay-line',
   'alarm-fill',
@@ -2270,27 +2268,27 @@ const data = [
   'zoom-out-line',
   'zzz-fill',
   'zzz-line',
-]
-export default [
+];
+module.exports = [
   {
     url: '/remixIcon/getList',
     type: 'post',
-    response: (config) => {
-      const { title, pageNo = 1, pageSize = 72 } = config.body
+    response(config) {
+      const { title, pageNo = 1, pageSize = 72 } = config.body;
       let mockList = data.filter((item) => {
-        if (title && item.indexOf(title) < 0) return false
-        return true
-      })
+        if (title && item.indexOf(title) < 0) return false;
+        return true;
+      });
       const pageList = mockList.filter(
         (item, index) =>
           index < pageSize * pageNo && index >= pageSize * (pageNo - 1)
-      )
+      );
       return {
         code: 200,
         msg: 'success',
         totalCount: mockList.length,
         data: pageList,
-      }
+      };
     },
   },
-]
+];

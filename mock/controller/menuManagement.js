@@ -25,7 +25,7 @@ module.exports = [
             ],
           },
         ],
-      }
+      };
     },
   },
   {
@@ -35,7 +35,7 @@ module.exports = [
       return {
         code: 200,
         msg: '模拟保存成功',
-      }
+      };
     },
   },
   {
@@ -45,7 +45,7 @@ module.exports = [
       return {
         code: 200,
         msg: '模拟删除成功',
-      }
+      };
     },
   },
-]
+];

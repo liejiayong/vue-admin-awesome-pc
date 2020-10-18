@@ -15,11 +15,11 @@
     data() {
       return {
         tabPosition: 'left',
-      };
+      }
     },
     created() {},
     methods: {},
-  };
+  }
 </script>
 
 <style></style>

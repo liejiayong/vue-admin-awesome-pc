@@ -1,10 +1,10 @@
-import { mock } from 'mockjs'
+const { mock } = require('mockjs');
 
-export default [
+module.exports = [
   {
     url: '/personalCenter/getList',
     type: 'post',
-    response: (config) => {
+    response(config) {
       return {
         code: 200,
         msg: 'success',
@@ -15,28 +15,28 @@ export default [
               id: '@id',
             },
           ],
-        }).data, config
-      }
+        }).data,
+      };
     },
   },
   {
     url: '/personalCenter/doEdit',
     type: 'post',
-    response: (config) => {
+    response() {
       return {
         code: 200,
-        msg: '模拟保存成功', config
-      }
+        msg: '模拟保存成功',
+      };
     },
   },
   {
     url: '/personalCenter/doDelete',
     type: 'post',
-    response: (config) => {
+    response() {
       return {
         code: 200,
-        msg: '模拟删除成功', config
-      }
+        msg: '模拟删除成功',
+      };
     },
   },
-]
+];

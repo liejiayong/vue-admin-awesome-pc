@@ -1,6 +1,6 @@
-import { mock } from 'mockjs'
+const { mock } = require('mockjs');
 
-export default [
+module.exports = [
   {
     url: '/goodsDetail/getList',
     type: 'post',
@@ -15,8 +15,9 @@ export default [
               id: '@id',
             },
           ],
-        }).data,config
-      }
+        }).data,
+        config,
+      };
     },
   },
   {
@@ -25,8 +26,9 @@ export default [
     response: (config) => {
       return {
         code: 200,
-        msg: '模拟保存成功',config
-      }
+        msg: '模拟保存成功',
+        config,
+      };
     },
   },
   {
@@ -35,8 +37,9 @@ export default [
     response: (config) => {
       return {
         code: 200,
-        msg: '模拟删除成功',config
-      }
+        msg: '模拟删除成功',
+        config,
+      };
     },
   },
-]
+];

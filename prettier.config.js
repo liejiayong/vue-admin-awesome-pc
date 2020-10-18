@@ -1,3 +1,4 @@
+const INLINE_ELEMENTS = ['span'];
 module.exports = {
   printWidth: 80,
   tabWidth: 2,
@@ -11,9 +12,8 @@ module.exports = {
   jsxBracketSameLine: false,
   arrowParens: 'always',
   htmlWhitespaceSensitivity: 'ignore',
-  vueIndentScriptAndStyle: true,
+  vueIndentScriptAndStyle: false,
   endOfLine: 'lf',
-  // endOfLine: 'auto',
   'vue/multiline-html-element-content-newline': [
     'error',
     {

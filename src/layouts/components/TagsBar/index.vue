@@ -177,7 +177,7 @@
         }
       },
       async refreshRoute() {
-        this.$baseEventBus.$emit('reloadRouterView');
+        this.$baseEventBus.$emit('reloadrouter');
       },
       async closeSelectedTag(view) {
         const { visitedRoutes } = await this.$store.dispatch(

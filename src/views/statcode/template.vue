@@ -69,7 +69,8 @@
         default: '返回首页',
       },
       codeUrl: {
-        // type: String
+        type: String,
+        default: '',
       },
     },
     data() {
@@ -88,9 +89,10 @@
     },
     methods: {
       timeChange() {
+        let interval = this.interval;
         this.timer = setInterval(() => {
           if (this.interval) {
-            this.interval--;
+            interval--;
           } else {
             this.$router.push({ path: '/' });
             this.$store.dispatch('tagsBar/delOthersRoutes', {

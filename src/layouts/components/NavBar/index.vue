@@ -73,7 +73,7 @@
         this.$store.dispatch('settings/changeCollapse');
       },
       async refreshRoute() {
-        this.$baseEventBus.$emit('reloadRouterView');
+        this.$baseEventBus.$emit('reloadrouter');
         this.pulse = true;
         setTimeout(() => {
           this.pulse = false;

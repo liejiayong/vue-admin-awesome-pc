@@ -1,11 +1,11 @@
 <template>
   <div class="login-container">
-    <el-alert
+    <!-- <el-alert
       v-if="nodeEnv !== 'development'"
       title="beautiful boys and girls欢迎加入vue-admin-beautifulQQ群：972435319"
       type="success"
       :closable="false"
-    ></el-alert>
+    ></el-alert> -->
     <el-row>
       <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
         <el-form
@@ -86,7 +86,7 @@
       },
     },
     data() {
-      const validateUserName = (rule, value, callback) => {
+      const validateuserName = (rule, value, callback) => {
         if ('' == value) {
           callback(new Error('用户名不能为空'));
         } else {
@@ -112,7 +112,7 @@
             {
               required: true,
               trigger: 'blur',
-              validator: validateUserName,
+              validator: validateuserName,
             },
           ],
           password: [

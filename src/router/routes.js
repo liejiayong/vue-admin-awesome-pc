@@ -115,6 +115,7 @@ export const asyncRoutes = [
           title: 'Excel',
           permissions: ['admin'],
         },
+        alwaysShow: true,
         children: [
           {
             path: 'export',
@@ -151,6 +152,7 @@ export const asyncRoutes = [
           title: 'Sprite',
           permissions: ['admin'],
         },
+        alwaysShow: true,
         children: [
           {
             path: 'Images',
