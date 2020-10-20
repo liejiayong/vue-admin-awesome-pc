@@ -112,99 +112,96 @@
 </template>
 
 <script>
-  import variables from '@/styles/variables.scss';
-  import { mapGetters } from 'vuex';
-  import GetCode from '../Mixin/GetCode';
+import variables from '@/styles/variables.scss';
+import { storageTheme } from '@/config/settings';
+import { mapGetters } from 'vuex';
+import GetCode from '../Mixin/GetCode';
 
-  export default {
-    name: 'ThemeBar',
-    mixins: [GetCode],
-    data() {
-      return {
-        drawerVisible: false,
-        theme: {
-          layout: '',
-          header: '',
-          tagsBar: '',
-          menuBackground: variables['menu-background'],
-          menuBackgroundActive: variables['menu-background-active'],
-          menuColor: variables['menu-color'],
-          tagBackgroundActive: variables['tag-background-active'],
-          buttonBackground: variables['button-background'],
-          paginationBackgroundActive: variables['pagination-background-active'],
-        },
-      };
-    },
-    computed: {
-      ...mapGetters({
-        layout: 'settings/layout',
-        header: 'settings/header',
-        tagsBar: 'settings/tagsBar',
-        themeBar: 'settings/themeBar',
-      }),
-    },
-    mounted() {},
-    created() {
-      this.$baseEventBus.$on('theme', () => {
-        this.handleChangeTheme();
-      });
-      const theme = localStorage.getItem('BYUI-VUE-THEME');
-      this.theme.layout = this.layout;
-      this.theme.header = this.header;
-      this.theme.tagsBar = this.tagsBar;
-      if (null !== theme) {
-        this.$set(
-          this.theme,
-          'menuBackground',
-          JSON.parse(theme).menuBackground
-        );
-        this.$set(
-          this.theme,
-          'menuBackgroundActive',
-          JSON.parse(theme).menuBackgroundActive
-        );
-        this.$set(this.theme, 'menuColor', JSON.parse(theme).menuColor);
-        this.$set(
-          this.theme,
-          'tagBackgroundActive',
-          JSON.parse(theme).tagBackgroundActive
-        );
-        this.$set(
-          this.theme,
-          'buttonBackground',
-          JSON.parse(theme).buttonBackground
-        );
-        this.$set(
-          this.theme,
-          'paginationBackgroundActive',
-          JSON.parse(theme).paginationBackgroundActive
-        );
-        this.handleSetTheme();
-      }
-    },
-    methods: {
-      handleChangeTheme() {
-        this.drawerVisible = true;
+export default {
+  name: 'ThemeBar',
+  mixins: [GetCode],
+  data() {
+    return {
+      drawerVisible: false,
+      theme: {
+        layout: '',
+        header: '',
+        tagsBar: '',
+        menuBackground: variables['menu-background'],
+        menuBackgroundActive: variables['menu-background-active'],
+        menuColor: variables['menu-color'],
+        tagBackgroundActive: variables['tag-background-active'],
+        buttonBackground: variables['button-background'],
+        paginationBackgroundActive: variables['pagination-background-active'],
       },
-      handleChangeQq() {
-        window.open('tencent://message/?uin=1204505056');
-      },
-      handleSetTheme() {
-        let {
-          layout,
-          header,
-          tagsBar,
-          menuBackground,
-          menuBackgroundActive,
-          menuColor,
-          tagBackgroundActive,
-          buttonBackground,
-          paginationBackgroundActive,
-        } = this.theme;
+    };
+  },
+  computed: {
+    ...mapGetters({
+      layout: 'settings/layout',
+      header: 'settings/header',
+      tagsBar: 'settings/tagsBar',
+      themeBar: 'settings/themeBar',
+    }),
+  },
+  mounted() {},
+  created() {
+    this.$baseEventBus.$on('theme', () => {
+      this.handleChangeTheme();
+    });
+    const theme = localStorage.getItem(storageTheme);
+    this.theme.layout = this.layout;
+    this.theme.header = this.header;
+    this.theme.tagsBar = this.tagsBar;
+    if (null !== theme) {
+      this.$set(this.theme, 'menuBackground', JSON.parse(theme).menuBackground);
+      this.$set(
+        this.theme,
+        'menuBackgroundActive',
+        JSON.parse(theme).menuBackgroundActive
+      );
+      this.$set(this.theme, 'menuColor', JSON.parse(theme).menuColor);
+      this.$set(
+        this.theme,
+        'tagBackgroundActive',
+        JSON.parse(theme).tagBackgroundActive
+      );
+      this.$set(
+        this.theme,
+        'buttonBackground',
+        JSON.parse(theme).buttonBackground
+      );
+      this.$set(
+        this.theme,
+        'paginationBackgroundActive',
+        JSON.parse(theme).paginationBackgroundActive
+      );
+      this.handleSetTheme();
+    }
+  },
+  methods: {
+    handleChangeTheme() {
+      this.drawerVisible = true;
+    },
+    handleChangeQq() {
+      window.open('tencent://message/?uin=1204505056');
+    },
+    handleSetTheme() {
+      let {
+        layout,
+        header,
+        tagsBar,
+        menuBackground,
+        menuBackgroundActive,
+        menuColor,
+        tagBackgroundActive,
+        buttonBackground,
+        paginationBackgroundActive,
+      } = this.theme;
 
-        let style = document.createElement('style');
-        style.id = 'BYUI-VUE-THEME';
-        style.innerHTML = `
+      let style = document.createElement('style');
+      style.id = storageTheme;
+      style.innerHTML = `
         .top-bar-container,
         .top-bar-container .jy-main,
         .side-bar-container,
@@ -253,10 +250,10 @@
         }
 
       `;
-        document.getElementsByTagName('head').item(0).appendChild(style);
-        localStorage.setItem(
-          'BYUI-VUE-THEME',
-          `{
+      document.getElementsByTagName('head').item(0).appendChild(style);
+      localStorage.setItem(
+        storageTheme,
+        `{
             "menuBackground":"${menuBackground}",
             "menuBackgroundActive":"${menuBackgroundActive}",
             "menuColor":"${menuColor}",
@@ -267,90 +264,90 @@
             "buttonBackground":"${buttonBackground}",
             "paginationBackgroundActive":"${paginationBackgroundActive}"
           }`
-        );
-        this.handleSwitchLayout(layout);
-        this.handleSwitchHeader(header);
-        this.handleSwitchTagsBar(tagsBar);
-        this.drawerVisible = false;
-      },
-      handleSaveTheme() {
-        this.handleSetTheme();
-        location.reload();
-      },
-      handleSetDfaultTheme() {
-        localStorage.removeItem('BYUI-VUE-THEME');
-        this.$store.dispatch('settings/changeLayout', this.theme.layout);
-        this.$refs['form'].resetFields();
-        Object.assign(this.$data, this.$options.data());
-        this.drawerVisible = false;
-        location.reload();
-      },
-      handleSwitchLayout(layout) {
-        this.$store.dispatch('settings/changeLayout', layout);
-      },
-      handleSwitchHeader(header) {
-        this.$store.dispatch('settings/changeHeader', header);
-      },
-      handleSwitchTagsBar(tagsBar) {
-        this.$store.dispatch('settings/changeTagsBar', tagsBar);
-      },
+      );
+      this.handleSwitchLayout(layout);
+      this.handleSwitchHeader(header);
+      this.handleSwitchTagsBar(tagsBar);
+      this.drawerVisible = false;
     },
-  };
+    handleSaveTheme() {
+      this.handleSetTheme();
+      location.reload();
+    },
+    handleSetDfaultTheme() {
+      localStorage.removeItem(storageTheme);
+      this.$store.dispatch('settings/changeLayout', this.theme.layout);
+      this.$refs['form'].resetFields();
+      Object.assign(this.$data, this.$options.data());
+      this.drawerVisible = false;
+      location.reload();
+    },
+    handleSwitchLayout(layout) {
+      this.$store.dispatch('settings/changeLayout', layout);
+    },
+    handleSwitchHeader(header) {
+      this.$store.dispatch('settings/changeHeader', header);
+    },
+    handleSwitchTagsBar(tagsBar) {
+      this.$store.dispatch('settings/changeTagsBar', tagsBar);
+    },
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  @mixin right-bar {
-    position: fixed;
-    right: 0;
-    z-index: $base-z-index;
-    width: 60px;
-    min-height: 60px;
-    text-align: center;
-    cursor: pointer;
-    background: $base-color-blue;
-    border-radius: $base-border-radius;
+@mixin right-bar {
+  position: fixed;
+  right: 0;
+  z-index: $base-z-index;
+  width: 60px;
+  min-height: 60px;
+  text-align: center;
+  cursor: pointer;
+  background: $base-color-blue;
+  border-radius: $base-border-radius;
 
-    > div {
-      padding-top: 10px;
-      border-bottom: 1px solid $base-color-white;
+  > div {
+    padding-top: 10px;
+    border-bottom: 1px solid $base-color-white;
 
-      &:hover {
-        opacity: 0.9;
-      }
+    &:hover {
+      opacity: 0.9;
+    }
 
-      p {
-        font-size: $base-font-size-small;
-        line-height: 30px;
-        color: $base-color-white;
-      }
+    p {
+      font-size: $base-font-size-small;
+      line-height: 30px;
+      color: $base-color-white;
     }
   }
+}
 
-  .theme-bar-setting {
-    @include right-bar;
+.theme-bar-setting {
+  @include right-bar;
 
-    top: 40vh;
+  top: 40vh;
 
-    ::v-deep {
-      svg:not(:root).svg-inline--fa {
-        display: block;
-        margin-right: auto;
-        margin-left: auto;
-        color: $base-color-white;
-      }
+  ::v-deep {
+    svg:not(:root).svg-inline--fa {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+      color: $base-color-white;
+    }
 
-      .svg-icon {
-        display: block;
-        margin-right: auto;
-        margin-left: auto;
-        font-size: 20px;
-        color: $base-color-white;
-        fill: $base-color-white;
-      }
+    .svg-icon {
+      display: block;
+      margin-right: auto;
+      margin-left: auto;
+      font-size: 20px;
+      color: $base-color-white;
+      fill: $base-color-white;
     }
   }
+}
 
-  .el-drawer__body {
-    padding: 20px;
-  }
+.el-drawer__body {
+  padding: 20px;
+}
 </style>

@@ -1,9 +1,9 @@
 /* eslint-disable  */
+import { Loading, Message, MessageBox, Notification } from 'element-ui'
 import * as lodash from 'lodash'
 import store from '@/store'
 import { getAccessToken } from '@/utils/accessToken'
 import { title, loadingText, messageDuration } from '@/config/settings'
-import { Loading, Message, MessageBox, Notification } from 'element-ui'
 
 const accessToken = store.getters['user/accessToken']
 const layout = store.getters['settings/layout']
@@ -32,13 +32,14 @@ const install = (Vue, opts = {}) => {
                 background: 'hsla(0,0%,100%,.8)'
             })
         }
-        if (callback) {
-            callback(loading)
-        } else {
-            setTimeout(() => {
-                loading.close()
-            }, messageDuration)
-        }
+        // if (callback) {
+        //     callback(loading)
+        // } else {
+        //     setTimeout(() => {
+        //         loading.close()
+        //     }, messageDuration)
+        // }
+        return loading
     }
     /* 全局多彩加载层 */
     Vue.prototype.$baseColorfullLoading = (index, text, callback) => {
@@ -72,13 +73,14 @@ const install = (Vue, opts = {}) => {
                 background: 'hsla(0,0%,100%,.8)',
             })
         }
-        if (callback) {
-            callback(loading)
-        } else {
-            setTimeout(() => {
-                loading.close()
-            }, messageDuration)
-        }
+        // if (callback) {
+        //     callback(loading)
+        // } else {
+        //     setTimeout(() => {
+        //         loading.close()
+        //     }, messageDuration)
+        // }
+        return loading
     }
     /* 全局Message */
     Vue.prototype.$baseMessage = (message, type) => {
@@ -106,7 +108,7 @@ const install = (Vue, opts = {}) => {
     }
 
     /* 全局Confirm */
-    Vue.prototype.$baseConfirm = (content, title, callback1, callback2) => {
+    Vue.prototype.$baseConfirm = (content, title, success, fail) => {
         MessageBox.confirm(content, title || '温馨提示', {
             confirmButtonText: '确定',
             cancelButtonText: '取消',
@@ -114,13 +116,13 @@ const install = (Vue, opts = {}) => {
             type: 'warning',
         })
             .then(() => {
-                if (callback1) {
-                    callback1()
+                if (success) {
+                    success()
                 }
             })
             .catch(() => {
-                if (callback2) {
-                    callback2()
+                if (fail) {
+                    fail()
                 }
             })
     }

@@ -162,6 +162,22 @@ export const asyncRoutes = [
           },
         ],
       },
+      {
+        path: 'charts',
+        components: EmptyLayout,
+        redirect: 'noRedirect',
+        name: 'ChartsLayout',
+        meta: { title: '图表' },
+        alwaysShow: true,
+        children: [
+          {
+            path: 'echarts',
+            component: () => import('@/views/temp/charts/echarts'),
+            name: 'Charts_echart',
+            meta: { title: 'echarts' },
+          },
+        ],
+      },
     ],
   },
   {

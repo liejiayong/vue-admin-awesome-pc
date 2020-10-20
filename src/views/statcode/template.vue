@@ -45,67 +45,67 @@
 </template>
 
 <script>
-  export default {
-    name: 'PageStatusCode',
-    props: {
-      interval: {
-        type: Number,
-        default: 6,
-      },
-      head: {
-        type: String,
-        default: '当前页面不存在...',
-      },
-      info: {
-        type: String,
-        default: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
-      },
-      oops: {
-        type: String,
-        default: '抱歉!',
-      },
-      btn: {
-        type: String,
-        default: '返回首页',
-      },
-      codeUrl: {
-        type: String,
-        default: '',
-      },
+export default {
+  name: 'PageStatusCode',
+  props: {
+    interval: {
+      type: Number,
+      default: 6,
     },
-    data() {
-      return {};
+    head: {
+      type: String,
+      default: '当前页面不存在...',
     },
-    beforeMount() {
-      this.timer = null;
+    info: {
+      type: String,
+      default: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
     },
-    mounted() {
-      this.timeChange();
-      document.body.style.background = '#ffffff';
+    oops: {
+      type: String,
+      default: '抱歉!',
     },
-    beforeDestroy() {
-      clearInterval(this.timer);
-      document.body.style.background = '#f2f2f2';
+    btn: {
+      type: String,
+      default: '返回首页',
     },
-    methods: {
-      timeChange() {
-        let interval = this.interval;
-        this.timer = setInterval(() => {
-          if (this.interval) {
-            interval--;
-          } else {
-            this.$router.push({ path: '/' });
-            this.$store.dispatch('tagsBar/delOthersRoutes', {
-              path: '/',
-            });
-            clearInterval(this.timer);
-          }
-        }, 1000);
-      },
+    codeUrl: {
+      type: String,
+      default: '',
     },
-  };
+  },
+  data() {
+    return {};
+  },
+  beforeMount() {
+    this.timer = null;
+  },
+  mounted() {
+    this.timeChange();
+    document.body.style.background = '#ffffff';
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
+    document.body.style.background = '#f2f2f2';
+  },
+  methods: {
+    timeChange() {
+      let interval = this.interval;
+      this.timer = setInterval(() => {
+        if (this.interval) {
+          interval--;
+        } else {
+          this.$router.push({ path: '/' });
+          this.$store.dispatch('tagsBar/delOthersRoutes', {
+            path: '/',
+          });
+          clearInterval(this.timer);
+        }
+      }, 1000);
+    },
+  },
+};
 </script>
 
 <style lang="scss">
-  @import './index.scss';
+@import './index.scss';
 </style>

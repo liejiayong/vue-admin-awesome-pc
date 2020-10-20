@@ -10,21 +10,21 @@
 </template>
 
 <script>
-  import Temp from './template';
+import Temp from './template';
 
-  export default {
-    name: 'Page401',
-    components: { temp: Temp },
-    data() {
-      return {};
-    },
-    beforeMount() {},
-    mounted() {},
-    beforeDestroy() {},
-    methods: {},
-  };
+export default {
+  name: 'Page401',
+  components: { temp: Temp },
+  data() {
+    return {};
+  },
+  beforeMount() {},
+  mounted() {},
+  beforeDestroy() {},
+  methods: {},
+};
 </script>
 
 <style lang="scss">
-  @import './index.scss';
+@import './index.scss';
 </style>

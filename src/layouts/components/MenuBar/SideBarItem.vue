@@ -46,7 +46,6 @@ export default {
   },
   computed: {
     menuComponent() {
-      console.log('sideBarItem', this.item, this.isNest, this.basePath);
       if (
         this.handleChildren(this.item.children, this.item) &&
         (!this.onlyOneChildren.children ||

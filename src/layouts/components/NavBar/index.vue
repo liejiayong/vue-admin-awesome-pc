@@ -36,114 +36,114 @@
 </template>
 
 <script>
-  import { mapGetters } from 'vuex';
+import { mapGetters } from 'vuex';
 
-  import {
+import {
+  Avatar,
+  Breadcrumb,
+  ErrorLog,
+  FullScreenBar,
+  ThemeBar,
+} from '@/layouts/components';
+
+export default {
+  name: 'NavBar',
+  components: {
     Avatar,
     Breadcrumb,
     ErrorLog,
     FullScreenBar,
     ThemeBar,
-  } from '@/layouts/components';
-
-  export default {
-    name: 'NavBar',
-    components: {
-      Avatar,
-      Breadcrumb,
-      ErrorLog,
-      FullScreenBar,
-      ThemeBar,
+  },
+  data() {
+    return {
+      pulse: false,
+    };
+  },
+  computed: {
+    ...mapGetters({
+      collapse: 'settings/collapse',
+      visitedRoutes: 'tagsBar/visitedRoutes',
+      device: 'settings/device',
+      routes: 'routes/routes',
+    }),
+  },
+  methods: {
+    handleCollapse() {
+      this.$store.dispatch('settings/changeCollapse');
     },
-    data() {
-      return {
-        pulse: false,
-      };
+    async refreshRoute() {
+      this.$baseEventBus.$emit('reloadrouter');
+      this.pulse = true;
+      setTimeout(() => {
+        this.pulse = false;
+      }, 1000);
     },
-    computed: {
-      ...mapGetters({
-        collapse: 'settings/collapse',
-        visitedRoutes: 'tagsBar/visitedRoutes',
-        device: 'settings/device',
-        routes: 'routes/routes',
-      }),
-    },
-    methods: {
-      handleCollapse() {
-        this.$store.dispatch('settings/changeCollapse');
-      },
-      async refreshRoute() {
-        this.$baseEventBus.$emit('reloadrouter');
-        this.pulse = true;
-        setTimeout(() => {
-          this.pulse = false;
-        }, 1000);
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  .nav-bar-container {
-    position: relative;
+.nav-bar-container {
+  position: relative;
+  height: $base-nav-bar-height;
+  padding-right: $base-padding;
+  padding-left: $base-padding;
+  overflow: hidden;
+  user-select: none;
+  background: $base-color-white;
+  box-shadow: $base-box-shadow;
+
+  .left-panel {
     height: $base-nav-bar-height;
-    padding-right: $base-padding;
-    padding-left: $base-padding;
-    overflow: hidden;
-    user-select: none;
-    background: $base-color-white;
-    box-shadow: $base-box-shadow;
+    display: flex;
+    align-items: center;
+    justify-items: center;
 
-    .left-panel {
-      height: $base-nav-bar-height;
-      display: flex;
-      align-items: center;
-      justify-items: center;
-
-      .fold-unfold {
-        font-size: 20px;
-        color: $base-color-gray;
-        cursor: pointer;
-      }
-
-      ::v-deep {
-        .breadcrumb-container {
-          margin-left: 10px;
-        }
-      }
+    .fold-unfold {
+      font-size: 20px;
+      color: $base-color-gray;
+      cursor: pointer;
     }
 
-    .right-panel {
-      height: $base-nav-bar-height;
-      display: flex;
-      align-content: center;
-      align-items: center;
-      justify-content: flex-end;
-
-      ::v-deep {
-        svg {
-          width: 1em;
-          height: 1em;
-          margin-right: 15px;
-          font-size: $base-font-size-big;
-          color: $base-color-gray;
-          cursor: pointer;
-          fill: $base-color-gray;
-        }
-
-        button {
-          svg {
-            margin-right: 0;
-            color: $base-color-white;
-            cursor: pointer;
-            fill: $base-color-white;
-          }
-        }
-
-        .el-badge {
-          margin-right: 15px;
-        }
+    ::v-deep {
+      .breadcrumb-container {
+        margin-left: 10px;
       }
     }
   }
+
+  .right-panel {
+    height: $base-nav-bar-height;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: flex-end;
+
+    ::v-deep {
+      svg {
+        width: 1em;
+        height: 1em;
+        margin-right: 15px;
+        font-size: $base-font-size-big;
+        color: $base-color-gray;
+        cursor: pointer;
+        fill: $base-color-gray;
+      }
+
+      button {
+        svg {
+          margin-right: 0;
+          color: $base-color-white;
+          cursor: pointer;
+          fill: $base-color-white;
+        }
+      }
+
+      .el-badge {
+        margin-right: 15px;
+      }
+    }
+  }
+}
 </style>

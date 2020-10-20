@@ -65,64 +65,64 @@
 </template>
 
 <script>
-  import { abbreviation, title } from '@/config/settings';
-  import { mapGetters } from 'vuex';
+import { abbreviation, title } from '@/config/settings';
+import { mapGetters } from 'vuex';
 
-  export default {
-    name: 'ErrorLog',
+export default {
+  name: 'ErrorLog',
 
-    data() {
-      return {
-        dialogTableVisible: false,
-        title: title,
-        abbreviation: abbreviation,
-        searchList: [
-          {
-            title: '百度搜索',
-            url: 'https://www.baidu.com/baidu?wd=',
-          },
-          {
-            title: '谷歌搜索',
-            url: 'https://www.google.com/search?q=',
-          },
-          {
-            title: 'Magi搜索',
-            url: 'https://magi.com/search?q=',
-          },
-        ],
-      };
-    },
+  data() {
+    return {
+      dialogTableVisible: false,
+      title: title,
+      abbreviation: abbreviation,
+      searchList: [
+        {
+          title: '百度搜索',
+          url: 'https://www.baidu.com/baidu?wd=',
+        },
+        {
+          title: '谷歌搜索',
+          url: 'https://www.google.com/search?q=',
+        },
+        {
+          title: 'Magi搜索',
+          url: 'https://magi.com/search?q=',
+        },
+      ],
+    };
+  },
 
-    computed: {
-      ...mapGetters({
-        errorLogs: 'errorLog/errorLogs',
-      }),
+  computed: {
+    ...mapGetters({
+      errorLogs: 'errorLog/errorLogs',
+    }),
+  },
+  methods: {
+    clearAll() {
+      this.dialogTableVisible = false;
+      this.$store.dispatch('errorLog/clearErrorLog');
     },
-    methods: {
-      clearAll() {
-        this.dialogTableVisible = false;
-        this.$store.dispatch('errorLog/clearErrorLog');
-      },
-      decodeUnicode(str) {
-        str = str.replace(/\\/g, '%');
-        str = unescape(str);
-        str = str.replace(/%/g, '\\');
-        str = str.replace(/\\/g, '');
-        return str;
-      },
+    decodeUnicode(str) {
+      str = str.replace(/\\/g, '%');
+      str = unescape(str);
+      str = str.replace(/%/g, '\\');
+      str = str.replace(/\\/g, '');
+      return str;
     },
-  };
+  },
+};
 </script>
 
 <style lang="scss" scoped>
-  ::v-deep {
-    .el-badge {
-      .el-button {
-        height: 28px;
-        display: flex;
-        justify-items: center;
-        align-items: center;
-      }
+::v-deep {
+  .el-badge {
+    .el-button {
+      height: 28px;
+      display: flex;
+      justify-items: center;
+      align-items: center;
     }
   }
+}
 </style>

@@ -65,88 +65,88 @@
       @size-change="handleSizeChange"
       @current-change="handleCurrentChange"
     ></el-pagination>
-    <edit ref="edit" @fetchData="fetchData"></edit>
+    <edit ref="edit" @change="fetchData"></edit>
   </div>
 </template>
 
 <script>
-  import { getList, doDelete } from '@/api/userManagement';
-  import Edit from './components/user-edit';
+import { getList, doDelete } from '@/api/userManagement';
+import Edit from './components/user-edit';
 
-  export default {
-    name: 'StaffUserManagement',
-    components: { Edit },
-    data() {
-      return {
-        list: null,
-        listLoading: true,
-        layout: 'total, sizes, prev, pager, next, jumper',
-        total: 0,
-        selectRows: '',
-        elementLoadingText: '正在加载...',
-        queryForm: {
-          pageNo: 1,
-          pageSize: 10,
-          userName: '',
-        },
-      };
-    },
-    created() {
-      this.fetchData();
-    },
-    methods: {
-      setSelectRows(val) {
-        this.selectRows = val;
+export default {
+  name: 'StaffUserManagement',
+  components: { Edit },
+  data() {
+    return {
+      list: null,
+      listLoading: true,
+      layout: 'total, sizes, prev, pager, next, jumper',
+      total: 0,
+      selectRows: '',
+      elementLoadingText: '正在加载...',
+      queryForm: {
+        pageNo: 1,
+        pageSize: 10,
+        userName: '',
       },
-      handleEdit(row) {
-        if (row.id) {
-          this.$refs['edit'].showEdit(row);
-        } else {
-          this.$refs['edit'].showEdit();
-        }
-      },
-      handleDelete(row) {
-        if (row.id) {
-          this.$baseConfirm('你确定要删除当前项吗', null, async () => {
+    };
+  },
+  created() {
+    this.fetchData();
+  },
+  methods: {
+    setSelectRows(val) {
+      this.selectRows = val;
+    },
+    handleEdit(row) {
+      if (row.id) {
+        this.$refs['edit'].showEdit(row);
+      } else {
+        this.$refs['edit'].showEdit();
+      }
+    },
+    handleDelete(row) {
+      if (row.id) {
+        this.$baseConfirm('你确定要删除当前项吗', null, async () => {
+          const { msg } = await doDelete({ ids: row.id });
+          this.$baseMessage(msg, 'success');
+          this.fetchData();
+        });
+      } else {
+        if (this.selectRows.length > 0) {
+          // const ids = this.selectRows.map((item) => item.id).join()
+          this.$baseConfirm('你确定要删除选中项吗', null, async () => {
             const { msg } = await doDelete({ ids: row.id });
             this.$baseMessage(msg, 'success');
             this.fetchData();
           });
         } else {
-          if (this.selectRows.length > 0) {
-            // const ids = this.selectRows.map((item) => item.id).join()
-            this.$baseConfirm('你确定要删除选中项吗', null, async () => {
-              const { msg } = await doDelete({ ids: row.id });
-              this.$baseMessage(msg, 'success');
-              this.fetchData();
-            });
-          } else {
-            this.$baseMessage('未选中任何行', 'error');
-            return false;
-          }
+          this.$baseMessage('未选中任何行', 'error');
+          return false;
         }
-      },
-      handleSizeChange(val) {
-        this.queryForm.pageSize = val;
-        this.fetchData();
-      },
-      handleCurrentChange(val) {
-        this.queryForm.pageNo = val;
-        this.fetchData();
-      },
-      queryData() {
-        this.queryForm.pageNo = 1;
-        this.fetchData();
-      },
-      async fetchData() {
-        this.listLoading = true;
-        const { data, totalCount } = await getList(this.queryForm);
-        this.list = data;
-        this.total = totalCount;
-        setTimeout(() => {
-          this.listLoading = false;
-        }, 300);
-      },
+      }
     },
-  };
+    handleSizeChange(val) {
+      this.queryForm.pageSize = val;
+      this.fetchData();
+    },
+    handleCurrentChange(val) {
+      this.queryForm.pageNo = val;
+      this.fetchData();
+    },
+    queryData() {
+      this.queryForm.pageNo = 1;
+      this.fetchData();
+    },
+    async fetchData() {
+      this.listLoading = true;
+      const { data, totalCount } = await getList(this.queryForm);
+      this.list = data;
+      this.total = totalCount;
+      setTimeout(() => {
+        this.listLoading = false;
+      }, 300);
+    },
+  },
+};
 </script>

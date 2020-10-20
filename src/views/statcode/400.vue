@@ -43,44 +43,44 @@
 </template>
 
 <script>
-  export default {
-    name: 'Page404',
-    data() {
-      return {
-        jumpTime: 5,
-        oops: '抱歉!',
-        headline: '当前页面不存在...',
-        info: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
-        btn: '返回首页',
-        timer: 0,
-      };
+export default {
+  name: 'Page404',
+  data() {
+    return {
+      jumpTime: 5,
+      oops: '抱歉!',
+      headline: '当前页面不存在...',
+      info: '请检查您输入的网址是否正确，或点击下面的按钮返回首页。',
+      btn: '返回首页',
+      timer: 0,
+    };
+  },
+  mounted() {
+    this.timeChange();
+    document.body.style.background = '#ffffff';
+  },
+  beforeDestroy() {
+    clearInterval(this.timer);
+    document.body.style.background = '#f2f2f2';
+  },
+  methods: {
+    timeChange() {
+      this.timer = setInterval(() => {
+        if (this.jumpTime) {
+          this.jumpTime--;
+        } else {
+          this.$router.push({ path: '/' });
+          this.$store.dispatch('tagsBar/delOthersRoutes', {
+            path: '/',
+          });
+          clearInterval(this.timer);
+        }
+      }, 1000);
     },
-    mounted() {
-      this.timeChange();
-      document.body.style.background = '#ffffff';
-    },
-    beforeDestroy() {
-      clearInterval(this.timer);
-      document.body.style.background = '#f2f2f2';
-    },
-    methods: {
-      timeChange() {
-        this.timer = setInterval(() => {
-          if (this.jumpTime) {
-            this.jumpTime--;
-          } else {
-            this.$router.push({ path: '/' });
-            this.$store.dispatch('tagsBar/delOthersRoutes', {
-              path: '/',
-            });
-            clearInterval(this.timer);
-          }
-        }, 1000);
-      },
-    },
-  };
+  },
+};
 </script>
 
 <style lang="scss">
-  @import './index.scss';
+@import './index.scss';
 </style>

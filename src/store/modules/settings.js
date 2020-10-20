@@ -1,3 +1,7 @@
+/**
+ * @author JyLie 809206619@qq.com （不想保留author可删除）
+ * @description 所有全局配置的状态管理，如无必要请勿修改
+ */
 import {
   tagsBar,
   logo,
@@ -5,9 +9,10 @@ import {
   header,
   themeBar,
   skeleton,
+  storageTheme,
 } from '@/config/settings';
 
-const theme = JSON.parse(localStorage.getItem('JYLie-VUE-ADMIN-THEME')) || '';
+const theme = JSON.parse(localStorage.getItem(storageTheme)) || '';
 
 const state = {
   tagsBar: theme.tagsBar || tagsBar,

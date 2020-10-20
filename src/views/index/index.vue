@@ -33,30 +33,30 @@
 </template>
 
 <script>
-  import { getList } from '@/api/changeLog';
-  import { getNoticeList } from '@/api/notice';
-  export default {
-    data() {
-      return {
-        noticeList: [],
-      };
-    },
-    beforeMount() {
-      this.fetchData();
-    },
-    mounted() {},
-    methods: {
-      async fetchData() {
-        const { data } = await getList();
-        data.map((item, index) => {
-          if (index === data.length - 1) {
-            item.color = '#0bbd87';
-          }
-        });
-        this.activities = data;
-        const res = await getNoticeList();
-        this.noticeList = res.data;
-        /* getRepos({
+import { getList } from '@/api/changeLog';
+import { getNoticeList } from '@/api/notice';
+export default {
+  data() {
+    return {
+      noticeList: [],
+    };
+  },
+  beforeMount() {
+    this.fetchData();
+  },
+  mounted() {},
+  methods: {
+    async fetchData() {
+      const { data } = await getList();
+      data.map((item, index) => {
+        if (index === data.length - 1) {
+          item.color = '#0bbd87';
+        }
+      });
+      this.activities = data;
+      const res = await getNoticeList();
+      this.noticeList = res.data;
+      /* getRepos({
         token: "1061286824f978ea3cf98b7b8ea26fe27ba7cea1",
       }).then((res) => {
         const per_page = Math.ceil(res.data.stargazers_count / 100);
@@ -69,9 +69,9 @@
           alert(JSON.stringify(res));
         });
       }); */
-      },
     },
-  };
+  },
+};
 </script>
 
 <style></style>
