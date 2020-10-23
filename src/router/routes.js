@@ -164,7 +164,7 @@ export const asyncRoutes = [
       },
       {
         path: 'charts',
-        components: EmptyLayout,
+        component: EmptyLayout,
         redirect: 'noRedirect',
         name: 'ChartsLayout',
         meta: { title: '图表' },
