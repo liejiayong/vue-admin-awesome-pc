@@ -43,7 +43,7 @@
               </el-radio-group>
             </el-form-item>
             <el-form-item label="多标签">
-              <el-radio-group v-model="theme.tagsBar">
+              <el-radio-group v-model="theme.tabsBar">
                 <el-radio-button label="true">开启</el-radio-button>
                 <el-radio-button label="false">不开启</el-radio-button>
               </el-radio-group>
@@ -126,7 +126,7 @@ export default {
       theme: {
         layout: '',
         header: '',
-        tagsBar: '',
+        tabsBar: '',
         menuBackground: variables['menu-background'],
         menuBackgroundActive: variables['menu-background-active'],
         menuColor: variables['menu-color'],
@@ -140,7 +140,7 @@ export default {
     ...mapGetters({
       layout: 'settings/layout',
       header: 'settings/header',
-      tagsBar: 'settings/tagsBar',
+      tabsBar: 'settings/tabsBar',
       themeBar: 'settings/themeBar',
     }),
   },
@@ -152,7 +152,7 @@ export default {
     const theme = localStorage.getItem(storageTheme);
     this.theme.layout = this.layout;
     this.theme.header = this.header;
-    this.theme.tagsBar = this.tagsBar;
+    this.theme.tabsBar = this.tabsBar;
     if (null !== theme) {
       this.$set(this.theme, 'menuBackground', JSON.parse(theme).menuBackground);
       this.$set(
@@ -190,7 +190,7 @@ export default {
       let {
         layout,
         header,
-        tagsBar,
+        tabsBar,
         menuBackground,
         menuBackgroundActive,
         menuColor,
@@ -260,14 +260,14 @@ export default {
             "tagBackgroundActive":"${tagBackgroundActive}",
             "layout":"${layout}",
             "header":"${header}",
-            "tagsBar":"${tagsBar}",
+            "tabsBar":"${tabsBar}",
             "buttonBackground":"${buttonBackground}",
             "paginationBackgroundActive":"${paginationBackgroundActive}"
           }`
       );
       this.handleSwitchLayout(layout);
       this.handleSwitchHeader(header);
-      this.handleSwitchTagsBar(tagsBar);
+      this.handleSwitchTagsBar(tabsBar);
       this.drawerVisible = false;
     },
     handleSaveTheme() {
@@ -288,8 +288,8 @@ export default {
     handleSwitchHeader(header) {
       this.$store.dispatch('settings/changeHeader', header);
     },
-    handleSwitchTagsBar(tagsBar) {
-      this.$store.dispatch('settings/changeTagsBar', tagsBar);
+    handleSwitchTagsBar(tabsBar) {
+      this.$store.dispatch('settings/changeTagsBar', tabsBar);
     },
   },
 };

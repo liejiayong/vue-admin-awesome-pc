@@ -104,7 +104,7 @@ export const asyncRoutes = [
     redirect: 'noRedirect',
     name: 'Temp',
     alwaysShow: true,
-    meta: { title: '组件模板', icon: 'cloud' },
+    meta: { title: '组件模板', remixIcon: 'user' },
     children: [
       {
         path: 'excel',

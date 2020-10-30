@@ -52,7 +52,7 @@ import path from 'path';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'TagsBar',
+  name: 'tabsBar',
   data() {
     return {
       affixTags: [],
@@ -62,7 +62,7 @@ export default {
 
   computed: {
     ...mapGetters({
-      visitedRoutes: 'tagsBar/visitedRoutes',
+      visitedRoutes: 'tabsBar/visitedRoutes',
       routes: 'routes/routes',
     }),
   },
@@ -94,7 +94,7 @@ export default {
         }
       });
       const { visitedRoutes } = await this.$store.dispatch(
-        'tagsBar/delRoute',
+        'tabsBar/delRoute',
         view
       );
       if (this.isActive(view)) {
@@ -146,14 +146,14 @@ export default {
       const affixTags = (this.affixTags = this.filterAffixTags(this.routes));
       for (const tag of affixTags) {
         if (tag.name) {
-          this.$store.dispatch('tagsBar/addVisitedRoute', tag);
+          this.$store.dispatch('tabsBar/addVisitedRoute', tag);
         }
       }
     },
     addTags() {
       const { name } = this.$route;
       if (name) {
-        this.$store.dispatch('tagsBar/addVisitedRoute', this.$route);
+        this.$store.dispatch('tabsBar/addVisitedRoute', this.$route);
       }
       return false;
     },
@@ -181,7 +181,7 @@ export default {
     },
     async closeSelectedTag(view) {
       const { visitedRoutes } = await this.$store.dispatch(
-        'tagsBar/delRoute',
+        'tabsBar/delRoute',
         view
       );
       if (this.isActive(view)) {
@@ -190,20 +190,20 @@ export default {
     },
     async closeOthersTags() {
       const view = await this.toThisTag();
-      await this.$store.dispatch('tagsBar/delOthersRoutes', view);
+      await this.$store.dispatch('tabsBar/delOthersRoutes', view);
     },
     async closeLeftTags() {
       const view = await this.toThisTag();
-      await this.$store.dispatch('tagsBar/delLeftRoutes', view);
+      await this.$store.dispatch('tabsBar/delLeftRoutes', view);
     },
     async closeRightTags() {
       const view = await this.toThisTag();
-      await this.$store.dispatch('tagsBar/delRightRoutes', view);
+      await this.$store.dispatch('tabsBar/delRightRoutes', view);
     },
     async closeAllTags() {
       const view = await this.toThisTag();
       const { visitedRoutes } = await this.$store.dispatch(
-        'tagsBar/delAllRoutes'
+        'tabsBar/delAllRoutes'
       );
       if (this.affixTags.some((tag) => tag.path === view.path)) {
         return;
@@ -235,7 +235,7 @@ export default {
 .tags-bar-container {
   position: relative;
   box-sizing: border-box;
-  height: $base-tags-bar-height;
+  height: $base-tabs-bar-height;
   user-select: none;
   background: $base-color-white;
   border-top: 1px solid #f6f6f6;

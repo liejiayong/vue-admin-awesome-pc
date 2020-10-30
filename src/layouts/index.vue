@@ -5,17 +5,17 @@
       class="layout-container-horizontal"
       :class="{
         fixed: header === 'fixed',
-        'no-tags-bar': tagsBar === 'false' || tagsBar === false,
+        'no-tabs-bar': tabsBar === 'false' || tabsBar === false,
       }"
     >
       <div :class="header === 'fixed' ? 'fixed-header' : ''">
         <top-bar></top-bar>
         <div
-          v-if="tagsBar === 'true' || tagsBar === true"
-          :class="{ 'tag-view-show': tagsBar }"
+          v-if="tabsBar === 'true' || tabsBar === true"
+          :class="{ 'tag-view-show': tabsBar }"
         >
           <div class="jy-main">
-            <tags-bar></tags-bar>
+            <tabs-bar></tabs-bar>
           </div>
         </div>
       </div>
@@ -28,7 +28,7 @@
       class="layout-container-vertical"
       :class="{
         fixed: header === 'fixed',
-        'no-tags-bar': tagsBar === 'false' || tagsBar === false,
+        'no-tabs-bar': tabsBar === 'false' || tabsBar === false,
       }"
     >
       <div
@@ -40,7 +40,7 @@
       <div class="jy-main" :class="collapse ? 'is-collapse-main' : ''">
         <div :class="header === 'fixed' ? 'fixed-header' : ''">
           <nav-bar></nav-bar>
-          <tags-bar v-if="tagsBar === 'true' || tagsBar === true" />
+          <tabs-bar v-if="tabsBar === 'true' || tabsBar === true" />
         </div>
         <app-main></app-main>
       </div>
@@ -50,7 +50,7 @@
 </template>
 
 <script>
-import { Media, AppMain, NavBar, MenuBar, TagsBar, TopBar } from './components';
+import { Media, AppMain, NavBar, MenuBar, TabsBar, TopBar } from './components';
 import { mapActions, mapGetters } from 'vuex';
 import { tokenName } from '@/config/settings';
 
@@ -61,7 +61,7 @@ export default {
     NavBar,
     MenuBar,
     AppMain,
-    TagsBar,
+    TabsBar,
   },
   mixins: [Media],
   data() {
@@ -70,7 +70,7 @@ export default {
   computed: {
     ...mapGetters({
       layout: 'settings/layout',
-      tagsBar: 'settings/tagsBar',
+      tabsBar: 'settings/tabsBar',
       collapse: 'settings/collapse',
       header: 'settings/header',
       device: 'settings/device',
@@ -121,10 +121,10 @@ export default {
     position: relative;
 
     &.fixed {
-      padding-top: calc(#{$base-top-bar-height} + #{$base-tags-bar-height});
+      padding-top: calc(#{$base-top-bar-height} + #{$base-tabs-bar-height});
     }
 
-    &.fixed.no-tags-bar {
+    &.fixed.no-tabs-bar {
       padding-top: $base-top-bar-height;
     }
 
@@ -179,10 +179,10 @@ export default {
     }
 
     &.fixed {
-      padding-top: calc(#{$base-nav-bar-height} + #{$base-tags-bar-height});
+      padding-top: calc(#{$base-nav-bar-height} + #{$base-tabs-bar-height});
     }
 
-    &.fixed.no-tags-bar {
+    &.fixed.no-tabs-bar {
       padding-top: $base-nav-bar-height;
     }
 
@@ -208,7 +208,7 @@ export default {
           box-sizing: border-box;
         }
 
-        .tags-bar-container {
+        .tabs-bar-container {
           box-sizing: border-box;
         }
 

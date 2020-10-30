@@ -77,7 +77,7 @@ export default {
   computed: {
     ...mapGetters({
       routes: 'routes/routes',
-      visitedRoutes: 'tagsBar/visitedRoutes',
+      visitedRoutes: 'tabsBar/visitedRoutes',
     }),
     activeMenu() {
       const route = this.$route;

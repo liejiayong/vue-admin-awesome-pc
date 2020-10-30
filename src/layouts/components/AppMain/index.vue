@@ -60,7 +60,7 @@ export default {
   },
   computed: {
     ...mapGetters({
-      visitedRoutes: 'tagsBar/visitedRoutes',
+      visitedRoutes: 'tabsBar/visitedRoutes',
       device: 'settings/device',
       skeleton: 'settings/skeleton',
     }),

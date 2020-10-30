@@ -3,7 +3,7 @@
  * @description 所有全局配置的状态管理，如无必要请勿修改
  */
 import {
-  tagsBar,
+  tabsBar,
   logo,
   layout,
   header,
@@ -15,7 +15,7 @@ import {
 const theme = JSON.parse(localStorage.getItem(storageTheme)) || '';
 
 const state = {
-  tagsBar: theme.tagsBar || tagsBar,
+  tabsBar: theme.tabsBar || tabsBar,
   logo,
   collapse: true,
   layout: theme.layout || layout,
@@ -31,7 +31,7 @@ const getters = {
   header: (state) => state.header,
   layout: (state) => state.layout,
   logo: (state) => state.logo,
-  tagsBar: (state) => state.tagsBar,
+  tabsBar: (state) => state.tabsBar,
   themeBar: (state) => state.themeBar,
   skeleton: (state) => state.skeleton,
 };
@@ -42,8 +42,8 @@ const mutations = {
   changeHeader: (state, header) => {
     if (header) state.header = header;
   },
-  changeTagsBar: (state, tagsBar) => {
-    if (tagsBar) state.tagsBar = tagsBar;
+  changeTagsBar: (state, tabsBar) => {
+    if (tabsBar) state.tabsBar = tabsBar;
   },
   changeCollapse: (state) => {
     state.collapse = !state.collapse;
@@ -66,8 +66,8 @@ const actions = {
   changeHeader({ commit }, header) {
     commit('changeHeader', header);
   },
-  changeTagsBar({ commit }, tagsBar) {
-    commit('changeTagsBar', tagsBar);
+  changeTagsBar({ commit }, tabsBar) {
+    commit('changeTagsBar', tabsBar);
   },
   changeCollapse({ commit }) {
     commit('changeCollapse');

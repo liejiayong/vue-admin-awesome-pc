@@ -63,7 +63,7 @@ export default {
   computed: {
     ...mapGetters({
       collapse: 'settings/collapse',
-      visitedRoutes: 'tagsBar/visitedRoutes',
+      visitedRoutes: 'tabsBar/visitedRoutes',
       device: 'settings/device',
       routes: 'routes/routes',
     }),

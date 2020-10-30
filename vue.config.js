@@ -85,24 +85,27 @@ module.exports = {
     };
   },
   chainWebpack(config) {
+    // config.module.rules.delete('svg'); //重点:删除默认配置中处理svg,
     // config.module
-    //     .rule("svg")
-    //     .exclude.add(resolve("src/assets/svg"))
-    //     .add(resolve("src/colorfulIcon"))
-    //     .end()
-    config.module.rules.delete('svg'); //重点:删除默认配置中处理svg,
-    //const svgRule = config.module.rule('svg')
-    //svgRule.uses.clear()
+    //   .rule('svg-sprite-loader')
+    //   .test(/\.svg$/)
+    //   .include.add(resolve('src/assets/svg')) //处理svg目录
+    //   .end()
+    //   .use('svg-sprite-loader')
+    //   .loader('svg-sprite-loader')
+    //   .options({
+    //     symbolId: 'svg-icon-[name]',
+    //   });
+    config.module.rule('svg').exclude.add(resolve('src/assets/svg')).end();
     config.module
-      .rule('svg-sprite-loader')
+      .rule('remixIcon')
       .test(/\.svg$/)
-      .include.add(resolve('src/assets/svg')) //处理svg目录
+      .include.add(resolve('src/assets/svg'))
       .end()
       .use('svg-sprite-loader')
       .loader('svg-sprite-loader')
-      .options({
-        symbolId: 'svg-icon-[name]',
-      });
+      .options({ symbolId: 'svg-icon-[name]' })
+      .end();
 
     config
       .plugin('banner')

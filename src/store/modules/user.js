@@ -84,7 +84,7 @@ const actions = {
   },
   async logout({ dispatch }) {
     await logout(state.accessToken);
-    await dispatch('tagsBar/delAllRoutes', null, { root: true });
+    await dispatch('tabsBar/delAllRoutes', null, { root: true });
     await dispatch('resetAccessToken');
     await resetRouter();
   },
