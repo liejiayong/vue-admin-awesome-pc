@@ -28,6 +28,30 @@
           </a>
         </el-alert>
       </el-col>
+      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
+        <el-card shadow="never">
+          <template #header><span>访问量</span></template>
+          <echarts :autoresize="true" :options="pv" theme="jtheme"></echarts>
+          <div class="bottom">
+            <span>日均访问量:</span>
+            <jcount :start-val="99" :end-val="9999" :duration="3000"></jcount>
+          </div>
+        </el-card>
+      </el-col>
+      <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
+        <el-card shadow="never">
+          <template #header><span>授权量</span></template>
+          <echarts
+            :autoresize="true"
+            :options="authcount"
+            theme="jtheme"
+          ></echarts>
+          <div class="bottom">
+            <span>总授权数:</span>
+            <jcount :start-val="99" :end-val="99999" :duration="3000"></jcount>
+          </div>
+        </el-card>
+      </el-col>
     </el-row>
   </div>
 </template>
@@ -35,17 +59,122 @@
 <script>
 import { getList } from '@/api/changeLog';
 import { getNoticeList } from '@/api/notice';
+import echarts from '@/plugins/echarts';
+
 export default {
+  name: 'Index',
+  components: { echarts },
   data() {
     return {
       noticeList: [],
+      pv: {
+        grid: {
+          top: '4%',
+          left: '2%',
+          right: '4%',
+          bottom: '0%',
+          containLabel: true,
+        },
+        xAxis: [
+          {
+            type: 'category',
+            boundaryGap: false,
+            data: [],
+            axisTick: {
+              alignWithLabel: true,
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+          },
+        ],
+        series: [
+          {
+            name: '访问量',
+            type: 'line',
+            data: [],
+            smooth: true,
+            areaStyle: {},
+          },
+        ],
+      },
+      authcount: {
+        grid: {
+          top: '4%',
+          left: '2%',
+          right: '4%',
+          bottom: '0%',
+          containLabel: true,
+        },
+        legend: [['admin']],
+        xAxis: [
+          {
+            type: 'category',
+            /*boundaryGap: false,*/
+            data: ['0时', '4时', '8时', '12时', '16时', '20时', '24时'],
+            axisTick: {
+              alignWithLabel: true,
+            },
+          },
+        ],
+        yAxis: [
+          {
+            type: 'value',
+          },
+        ],
+        series: [
+          {
+            name: 'admin',
+            type: 'bar',
+            barWidth: '60%',
+            data: [10, 52, 20, 33, 39, 33, 22],
+          },
+        ],
+      },
     };
   },
   beforeMount() {
     this.fetchData();
   },
-  mounted() {},
+  mounted() {
+    this.initPV();
+  },
   methods: {
+    initPV() {
+      let base = +new Date(2020, 1, 1);
+      let oneDay = 24 * 3600 * 1000;
+      let date = [];
+
+      let data = [Math.random() * 1500];
+      let now = new Date(base);
+
+      const addData = (shift) => {
+        now = [now.getFullYear(), now.getMonth() + 1, now.getDate()].join('/');
+        date.push(now);
+        data.push(this.$baseLodash.random(20000, 60000));
+
+        if (shift) {
+          date.shift();
+          data.shift();
+        }
+
+        now = new Date(+new Date(now) + oneDay);
+      };
+
+      for (let i = 1; i < 6; i++) {
+        addData();
+      }
+      addData(true);
+      this.pv.xAxis[0].data = date;
+      this.pv.series[0].data = data;
+      this.timer = setInterval(() => {
+        addData(true);
+        this.pv.xAxis[0].data = date;
+        this.pv.series[0].data = data;
+      }, 3000);
+    },
     async fetchData() {
       const { data } = await getList();
       data.map((item, index) => {

@@ -65,7 +65,7 @@ export default {
   },
   mixins: [Media],
   data() {
-    return {};
+    return { oldLayout: '' };
   },
   computed: {
     ...mapGetters({
@@ -81,7 +81,35 @@ export default {
       };
     },
   },
+  beforeMount() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.handleResize);
+  },
   mounted() {
+    this.oldLayout = this.layout;
+    const userAgent = navigator.userAgent;
+    if (userAgent.includes('Juejin')) {
+      this.$baseAlert(
+        '不支持在掘金内置浏览器演示，请手动复制以下地址到浏览器中查看http://xxx'
+      );
+    }
+    const isMobile = this.handleIsMobile();
+    if (isMobile) {
+      if (isMobile) {
+        //横向布局时如果是手机端访问那么改成纵向版
+        this.$store.dispatch('settings/changeLayout', 'vertical');
+      } else {
+        this.$store.dispatch('settings/changeLayout', this.oldLayout);
+      }
+      this.$store.dispatch('settings/toggleDevice', 'mobile');
+      setTimeout(() => {
+        this.$store.dispatch('settings/foldSideBar');
+      }, 2000);
+    } else {
+      this.$store.dispatch('settings/openSideBar');
+    }
     this.$nextTick(() => {
       window.addEventListener(
         'storage',
@@ -94,6 +122,25 @@ export default {
     });
   },
   methods: {
+    handleIsMobile() {
+      return document.body.getBoundingClientRect().width - 1 < 992;
+    },
+    handleResize() {
+      if (!document.hidden) {
+        const isMobile = this.handleIsMobile();
+        if (isMobile) {
+          //横向布局时如果是手机端访问那么改成纵向版
+          this.$store.dispatch('settings/changeLayout', 'vertical');
+        } else {
+          this.$store.dispatch('settings/changeLayout', this.oldLayout);
+        }
+
+        this.$store.dispatch(
+          'settings/toggleDevice',
+          isMobile ? 'mobile' : 'desktop'
+        );
+      }
+    },
     ...mapActions({
       handleFoldSideBar: 'settings/foldSideBar',
     }),

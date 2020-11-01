@@ -1,7 +1,7 @@
 export { default as Logo } from './Logo';
 export { default as Avatar } from './Avatar';
 export { default as AppMain } from './AppMain';
-export { default as tabsBar } from './tabsBar';
+export { default as TabsBar } from './TabsBar';
 export { default as MenuBar } from './MenuBar';
 export { default as Submenu } from './MenuBar/Submenu';
 export { default as SideBarItem } from './MenuBar/SideBarItem';

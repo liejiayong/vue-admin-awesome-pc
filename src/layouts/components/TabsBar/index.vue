@@ -52,7 +52,7 @@ import path from 'path';
 import { mapGetters } from 'vuex';
 
 export default {
-  name: 'tabsBar',
+  name: 'TabsBar',
   data() {
     return {
       affixTags: [],

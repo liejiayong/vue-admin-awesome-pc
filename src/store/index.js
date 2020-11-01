@@ -12,7 +12,7 @@ files.keys().forEach((key) => {
 Object.keys(modules).forEach((key) => {
   modules[key]['namespaced'] = true;
 });
-console.log('store modules', modules);
+// console.log('store modules', modules);
 
 export default new Vuex.Store({
   modules,
