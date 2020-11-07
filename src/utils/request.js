@@ -11,7 +11,6 @@ import {
   tokenName,
   debounce,
 } from '@/config/settings';
-import { Loading, Message } from 'element-ui';
 import store from '@/store';
 import qs from 'qs';
 import router from '@/router';
