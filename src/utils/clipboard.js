@@ -15,7 +15,7 @@ function clipboardError() {
  * @param {*} event
  * @param {*} text
  */
-export default function handleClipboard(event, text) {
+export default function handleClipboard(text, event) {
   const clipboard = new Clipboard(event.target, {
     text: () => text,
   });

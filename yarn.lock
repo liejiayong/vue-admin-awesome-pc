@@ -12377,6 +12377,11 @@ vue-style-loader@^4.1.0, vue-style-loader@^4.1.2:
     hash-sum "^1.0.2"
     loader-utils "^1.0.2"
 
+vue-svgx@^0.3.0:
+  version "0.3.0"
+  resolved "https://registry.npmjs.org/vue-svgx/-/vue-svgx-0.3.0.tgz#b98320a8ee8186386f988b3747feb5926b22dcf1"
+  integrity sha512-JOMiOBWG9bYWSdm5TwMLapGFxjqEQfcR0YjkbT6OlF2MN5+0aYk3el/yx3rTmFHuEzYjL5AItH8lDxLGnWBSaw==
+
 vue-template-compiler@^2.6.12:
   version "2.6.12"
   resolved "https://registry.npm.taobao.org/vue-template-compiler/download/vue-template-compiler-2.6.12.tgz?cache=0&sync_timestamp=1597927407682&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fvue-template-compiler%2Fdownload%2Fvue-template-compiler-2.6.12.tgz#947ed7196744c8a5285ebe1233fe960437fcc57e"

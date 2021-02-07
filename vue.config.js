@@ -106,6 +106,15 @@ module.exports = {
       .loader('svg-sprite-loader')
       .options({ symbolId: 'svg-icon-[name]' })
       .end();
+    config.module
+      .rule('colorfulIcon')
+      .test(/\.svg$/)
+      .include.add(resolve('src/assets/colorful'))
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({ symbolId: 'svg-icon-[name]' })
+      .end();
 
     config
       .plugin('banner')

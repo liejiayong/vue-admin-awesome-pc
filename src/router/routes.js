@@ -99,6 +99,22 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: '/news',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'NewsManagement',
+    alwaysShow: true,
+    meta: { title: '新闻管理', icon: 'users-cog', permissions: ['admin'] },
+    children: [
+      {
+        path: 'notice',
+        name: 'news_notices',
+        component: () => import('@/views/news/notices'),
+        meta: { title: '公告管理' },
+      },
+    ],
+  },
+  {
     path: '/temp',
     component: Layout,
     redirect: 'noRedirect',
@@ -175,6 +191,36 @@ export const asyncRoutes = [
             component: () => import('@/views/temp/charts/echarts'),
             name: 'Charts_echart',
             meta: { title: 'echarts' },
+          },
+        ],
+      },
+      {
+        path: 'icon',
+        component: EmptyLayout,
+        redirect: 'noRedirect',
+        name: 'Icon',
+        meta: {
+          title: '图标',
+          permissions: ['admin'],
+        },
+        children: [
+          {
+            path: 'awesomeIcon',
+            name: 'AwesomeIcon',
+            component: () => import('@/views/temp/icon/index'),
+            meta: { title: '常规图标' },
+          },
+          {
+            path: 'remixIcon',
+            name: 'RemixIcon',
+            component: () => import('@/views/temp/icon/remixIcon'),
+            meta: { title: '小清新图标' },
+          },
+          {
+            path: 'colorfulIcon',
+            name: 'ColorfulIcon',
+            component: () => import('@/views/temp/icon/colorfulIcon'),
+            meta: { title: '多彩图标' },
           },
         ],
       },

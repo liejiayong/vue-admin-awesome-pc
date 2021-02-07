@@ -160,7 +160,7 @@ export default {
               ? '/'
               : this.redirect;
           console.log('login nav to page:', routerPath);
-          await this.$router.push(routerPath).catch(() => {});
+          await this.$router.push(routerPath);
           this.loading = false;
         } else {
           return false;
