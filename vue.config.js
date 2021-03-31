@@ -41,8 +41,21 @@ module.exports = {
       warnings: true,
       errors: true,
     },
+    proxy: {
+      // 设置代理
+      '/upload': {
+        target: 'http://192.168.10.8:3888/upload', //目标 API 地址
+        ws: false, // 如果要代理 websockets
+        secure: true,
+        changeOrigin: true,
+        pathRewrite: {
+          '^/api': '', //这里理解成用/api代替target里面的地址，
+        },
+      },
+    },
     after: mockServer(),
   },
+
   runtimeCompiler: true,
   productionSourceMap: false,
   css: {
