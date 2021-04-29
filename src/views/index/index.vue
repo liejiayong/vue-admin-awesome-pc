@@ -222,6 +222,7 @@ import { getList } from '@/api/changeLog';
 import { getNoticeList } from '@/api/notice';
 import echarts from '@/plugins/echarts';
 import { dependencies, devDependencies } from '../../../package.json';
+import dayjs from 'dayjs';
 
 export default {
   name: 'Index',
@@ -229,7 +230,7 @@ export default {
   data() {
     return {
       timer: 0,
-      updateTime: process.env.VUE_APP_UPDATE_TIME,
+      updateTime: dayjs().format('YYYY-M-D HH:mm:ss'),
       nodeEnv: process.env.NODE_ENV,
       dependencies: dependencies,
       devDependencies: devDependencies,

@@ -2,6 +2,7 @@
  * @copyright JyLie 809206619@qq.com
  * @description 导出默认通用配置
  */
+const { version, author } = require('../../../package.json');
 const settings = {
   // 开发以及部署时的URL
   publicPath: '',
@@ -25,9 +26,9 @@ const settings = {
   // 开发环境端口号
   devPort: '28888',
   // 版本号
-  version: process.env.VUE_APP_VERSION,
+  version: version,
   // 烦请保留package.json作者信息 保留版权可免费商用 如需去除并自定义为自己企业的版权请联系群主QQ 1204505056 需支付299元 恶意修改发生纠纷及出现任何问题 由修改人自行承担
-  copyright: process.env.VUE_APP_AUTHOR,
+  copyright: author,
   // 是否显示页面底部版权信息，建议您显示，当然您也可以选择不显示，不管您是付费用户还是未付费用户您都有选择显示或者不显示的权利
   footerCopyright: process.env.NODE_ENV !== 'development' ? true : false,
   // 是否显示右上角github图标

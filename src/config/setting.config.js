@@ -21,8 +21,6 @@ const setting = {
   title: 'vue-admin-beautiful-pro',
   //简写
   abbreviation: 'vab',
-  //开发环境端口号
-  devPort: '80',
   //版本号
   version: process.env.VUE_APP_VERSION,
   //这一项非常重要！请务必保留MIT协议下package.json及copyright作者信息 即可免费商用，不遵守此项约定你将无法使用该框架，如需自定义版权信息请联系QQ1204505056
