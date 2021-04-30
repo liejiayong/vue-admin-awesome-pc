@@ -5,7 +5,7 @@
  * @returns {boolean}
  */
 export function isExternal(path) {
-  return /^(https?:|mailto:|tel:)/.test(path);
+  return /^(https?:|ftp:|mailto:|tel:)/.test(path);
 }
 
 /**
@@ -15,7 +15,7 @@ export function isExternal(path) {
  * @returns {boolean}
  */
 export function isPassword(str) {
-  return str.length >= 6;
+  return [...str].length >= 6;
 }
 
 /**

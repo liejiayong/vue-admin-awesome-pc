@@ -1,6 +1,12 @@
 <template>
   <div>
-    <el-upload class="upload-demo" drag action="upload/" multiple>
+    <el-upload
+      http-request="onRequest"
+      class="upload-demo"
+      drag
+      action="/upload"
+      multiple
+    >
       <i class="el-icon-upload"></i>
       <div class="el-upload__text">
         将文件拖到此处，或
@@ -14,7 +20,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods: {
+    onRequest() {
+      console.lg('uploader request');
+    },
+  },
+};
 </script>
 
 <style></style>

@@ -5,10 +5,10 @@
 
 @charset "utf-8";
 
-@import "./transition.scss";
-@import "./loading.scss";
+@import './transition.scss';
+@import './loading.scss';
 
-$base: ".vab";
+$base: '.vab';
 
 @mixin scrollbar {
   max-height: 88vh;
@@ -80,7 +80,7 @@ html {
     height: 100vh;
     padding: 0;
     margin: 0;
-    font-family: "PingFang SC", Arial, "Microsoft YaHei", sans-serif;
+    font-family: 'PingFang SC', Arial, 'Microsoft YaHei', sans-serif;
     font-size: $base-font-size-default;
     background: #f6f8f9;
 
@@ -137,7 +137,7 @@ html {
       .app-main-container {
         @include base-scrollbar;
 
-        > [class*="-container"] {
+        > [class*='-container'] {
           padding: $base-padding;
           background: $base-color-white;
         }

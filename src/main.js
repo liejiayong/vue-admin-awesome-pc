@@ -1,5 +1,6 @@
-import 'core-js/stable';
-// import 'regenerator-runtime/runtime'
+// 兼容IE
+// import 'core-js/stable';
+// import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
@@ -7,7 +8,7 @@ import store from './store';
 import './plugins';
 
 /**
- * @author JyLie 809206619@qq.com （不想保留author可删除）
+ * @author JyLie 809206619@qq.com
  * @description 生产环境默认都使用mock，如果正式用于生产环境时，记得去掉
  */
 

@@ -3,7 +3,7 @@ const WebpackBar = require('webpackbar');
 const Webpack = require('webpack');
 // const WebpackAnalyzer = require('webpack-bundle-analyzer')
 
-const IS_PROD = ["production", "prod"].includes(process.env.NODE_ENV);
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
 const mockServer = () => {
   if (process.env.NODE_ENV === 'development')
@@ -12,24 +12,25 @@ const mockServer = () => {
 };
 
 module.exports = {
-  publicPath: IS_PROD ? process.env.VUE_APP_PUBLIC_PATH : "./", // 默认'/'，部署应用包时的基本 URL,
+  publicPath: IS_PROD ? process.env.VUE_APP_PUBLIC_PATH : './', // 默认'/'，部署应用包时的基本 URL,
   // outputDir: process.env.outputDir || 'dist', // 'dist', 生产环境构建文件的目录
   // assetsDir: "",  // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   lintOnSave: true,
   runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   productionSourceMap: !IS_PROD, // 生产环境的 source map
-  parallel: require("os").cpus().length > 1,
+  parallel: require('os').cpus().length > 1,
   pwa: {},
   // 进行编译的依赖
-  transpileDependencies: ['vue-echarts', 'resize-detector'],,
+  transpileDependencies: ['vue-echarts', 'resize-detector'],
   devServer: {
     open: false, // 是否打开浏览器
-    host: "localhost",
-    port: "8080", // 代理断就
+    // host: 'localhost',
+    port: 28888, // 代理断就
     https: false,
     hotOnly: false, // 热更新
     noInfo: false,
-    overlay: {  // 让浏览器 overlay 同时显示警告和错误
+    overlay: {
+      // 让浏览器 overlay 同时显示警告和错误
       warnings: true,
       errors: true,
     },
@@ -44,16 +45,15 @@ module.exports = {
           '^/api': '', //这里理解成用/api代替target里面的地址，
         },
       },
-      "/mock": {
-        target:
-          "https://www.easy-mock.com/", // 目标代理接口地址
+      '/mock': {
+        target: 'https://www.easy-mock.com/', // 目标代理接口地址
         secure: false,
         changeOrigin: true, // 开启代理，在本地创建一个虚拟服务端
         // ws: true, // 是否启用websockets
         pathRewrite: {
-          "^/mock": "/"
-        }
-      }
+          '^/mock': '/',
+        },
+      },
     },
     after: mockServer(),
   },
@@ -91,24 +91,27 @@ module.exports = {
         },
       },
       plugins: [
-          // 需要自动注入并加载的模块
-        new Webpack.ProvidePlugin( { maptalks: 'maptalks', 'window.maptalks': 'maptalks' }),
+        // 需要自动注入并加载的模块
+        new Webpack.ProvidePlugin({
+          maptalks: 'maptalks',
+          'window.maptalks': 'maptalks',
+        }),
         new WebpackBar({
           name: `vue-admin-awesome`,
         }),
         // new WebpackAnalyzer()
       ],
-      externals:{
-              vue: "Vue",
-      "element-ui": "ELEMENT",
-      "vue-router": "VueRouter",
-      vuex: "Vuex",
-      axios: "axios"
-      }
+      externals: {
+        // vue: 'Vue',
+        // 'element-ui': 'ELEMENT',
+        // 'vue-router': 'VueRouter',
+        // vuex: 'Vuex',
+        // axios: 'axios',
+      },
     };
   },
   chainWebpack(config) {
-    //  修复 HMR(热更新)失效  
+    //  修复 HMR(热更新)失效
     config.resolve.symlinks(true);
 
     //     // 添加别名

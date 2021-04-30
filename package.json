@@ -10,7 +10,9 @@
     "svgo": "svgo -f src/assets/svg --config=build/svgo.yml",
     "use:npm": "nrm use npm",
     "use:taobao": "nrm use taobao",
-    "plop": "plop"
+    "plop": "plop",
+    "release": "standard-version",
+    "prettier:fix": "prettier --config prettier.config.js --write src/**/*.{vue,js,css,less,scss,json}"
   },
   "dependencies": {
     "axios": "^0.20.0",
@@ -61,6 +63,7 @@
     "prettier": "^2.1.2",
     "sass": "^1.27.0",
     "sass-loader": "^10.0.3",
+    "standard-version": "^9.2.0",
     "stylelint": "^13.7.2",
     "stylelint-config-prettier": "^8.0.2",
     "stylelint-config-recess-order": "^2.1.0",
