@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="basemsg-container">
     <el-row>
       <el-col>
         <el-button @click="$baseLoading(6, '全局加载层')">默认按钮</el-button>

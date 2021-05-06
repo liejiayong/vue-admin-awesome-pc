@@ -1,5 +1,5 @@
 <template>
-  <div>xx</div>
+  <div class="excel-container">xx</div>
 </template>
 
 <script>

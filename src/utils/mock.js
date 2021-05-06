@@ -3,12 +3,11 @@
  * @description 导入所有 controller 模块，浏览器环境中自动输出controller文件夹下Mock接口，请勿修改。
  */
 import Mock from 'mockjs';
-import { paramObj } from '../../mock/utils';
 
 const mocks = [];
 const files = require.context('../../mock/controller', false, /\.js$/);
-
 files.keys().forEach((key) => {
+  console.log(key);
   // 方式一
   // const obj = files(key).default
   // mocks.push(...obj)
@@ -17,6 +16,7 @@ files.keys().forEach((key) => {
 });
 
 export function mockXHR() {
+  console.log('files', Mock, files);
   Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send;
   Mock.XHR.prototype.send = function () {
     if (this.custom.xhr) {

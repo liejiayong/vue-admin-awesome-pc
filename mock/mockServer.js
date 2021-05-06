@@ -40,6 +40,7 @@ const responseFake = (url, type, respond) => {
     url: new RegExp(`${baseURL}${url}`),
     type: type || 'get',
     response(req, res) {
+      console.log(chalk.green(`> 请求===========`));
       res.status(200);
       if (JSON.stringify(req.body) !== '{}') {
         console.log(chalk.green(`> 请求地址：${req.path}`));
@@ -68,7 +69,9 @@ module.exports = (app) => {
     })
   );
 
+  // 注册自定义 mock 数据
   const mockRoutes = registerRoutes(app);
+  // 监听mock数据文件变化，文件改变或新增则重新注册新路由
   let mockRoutesLength = mockRoutes.mockRoutesLength;
   let mockStartIndex = mockRoutes.mockStartIndex;
   chokidar

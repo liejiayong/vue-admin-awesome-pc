@@ -1,7 +1,6 @@
 <template>
   <div class="index-container">
-    <!-- index<svg-icon  class="logo" :icon-class="'user'" />
-		<jcount :end-val="9999999"></jcount> -->
+    <!-- index<svg-icon  class="logo" :icon-class="'user'" /> -->
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <el-alert
@@ -9,21 +8,18 @@
           :title="noticeList[0].title"
           :closable="noticeList[0].closable"
         >
-          <a
-            target="_blank"
-            href="https://github.com/chuzhixin/vue-admin-beautiful"
-          >
+          <a target="_blank" href="https://github.com/liejiayong">
             <img
               style="height: 100%; margin-right: 10px"
-              src="https://img.shields.io/github/stars/chuzhixin/vue-admin-beautiful?style=flat-square&label=Stars&logo=github"
+              src="https://img.shields.io/github/stars/liejiayong/-liejy-vue-count"
             />
             <img
               style="height: 100%; margin-right: 10px"
-              src=" https://img.shields.io/badge/Visitors-79.3k/month-blue?style=flat-square&logo=Visual Studio Code"
+              src=" https://img.shields.io/badge/Visitors-20/month-blue?style=flat-square&logo=Visual Studio Code"
             />
             <img
               style="height: 100%; margin-right: 10px"
-              src="https://img.shields.io/github/last-commit/chuzhixin/vue-admin-beautiful?style=flat-square&label=Last Commit&logo=vue.js"
+              src="https://img.shields.io/github/last-commit/liejiayong/-liejy-vue-count?style=flat-square&label=Last Commit&logo=vue.js"
             />
           </a>
         </el-alert>
@@ -35,7 +31,7 @@
           <echarts :autoresize="true" :options="pv" theme="jtheme"></echarts>
           <div class="bottom">
             <span>日均访问量:</span>
-            <jcount :start-val="99" :end-val="9999" :duration="3000"></jcount>
+            <jcount :start-val="99" :end-val="9999" :duration="6000"></jcount>
           </div>
         </el-card>
       </el-col>
@@ -50,7 +46,7 @@
           ></echarts>
           <div class="bottom">
             <span>总授权数:</span>
-            <jcount :start-val="99" :end-val="99999" :duration="3000"></jcount>
+            <jcount :start-val="99" :end-val="99999" :duration="6000"></jcount>
           </div>
         </el-card>
       </el-col>
@@ -67,7 +63,7 @@
           ></echarts>
           <div class="bottom">
             <span>词云数量:</span>
-            <jcount :start-val="99" :end-val="99999" :duration="3000"></jcount>
+            <jcount :start-val="99" :end-val="99999" :duration="6000"></jcount>
           </div>
         </el-card>
       </el-col>
@@ -114,7 +110,7 @@
                 src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
               ></el-image>
               <a slot="reference" target="_blank">
-                <el-button type="primary">QQ讨论群</el-button>
+                <el-button type="primary">建议</el-button>
               </a>
             </el-popover>
             <a @click="$baseEventBus.$emit('theme')">
@@ -188,7 +184,6 @@
             <span>其他信息</span>
           </div>
           <div style="text-align: center">
-            <vab-colorful-icon style="font-size: 140px" icon-class="vab" />
             <h1 style="font-size: 30px">vue-admin-awesome</h1>
           </div>
           <div v-for="(item, index) in noticeList" :key="index">
@@ -364,7 +359,7 @@ export default {
               },
               {
                 name: 'never',
-                value: 3000,
+                value: 6000,
               },
               {
                 name: 'boy',
@@ -607,7 +602,7 @@ export default {
         addData(true);
         this.pv.xAxis[0].data = date;
         this.pv.series[0].data = data;
-      }, 3000);
+      }, 6000);
     },
     async fetchData() {
       const { data } = await getList();
