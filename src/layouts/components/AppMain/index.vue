@@ -10,11 +10,7 @@
 			<vab-keel-text :lines="8" />
 		</vab-keel> -->
     <transition mode="out-in" name="fade-transform">
-      <keep-alive
-        v-if="routerView"
-        :include="cachedRoutes"
-        :max="keepAliveMaxNum"
-      >
+      <keep-alive v-if="routerView" :include="cachedRoutes" :max="keepAliveMaxNum">
         <router-view :key="key" class="app-main-height" />
       </keep-alive>
     </transition>
@@ -30,14 +26,8 @@
 // import { VabKeel, VabKeelHeading, VabKeelText } from '@/plugins/vabKeel'
 import { mapGetters } from 'vuex';
 import GithubCorner from '../GithubCorner';
-import {
-  copyright,
-  footerCopyright,
-  githubCorner,
-  keepAliveMaxNum,
-  title,
-} from '@/config/settings';
-
+import opts from '@/config/settings';
+const { copyright, footerCopyright, githubCorner, keepAliveMaxNum, title } = opts;
 export default {
   name: 'AppMain',
   components: {
@@ -102,6 +92,7 @@ export default {
   },
   mounted() {
     this.handleSkeleton();
+    console.log(this);
   },
   methods: {
     handleSkeleton() {

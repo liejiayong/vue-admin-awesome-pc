@@ -10,26 +10,14 @@
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
         <el-card shadow="hover">
           <div slot="header">环形图</div>
-          <chart
-            ref="myCircle"
-            autoresize
-            theme="jtheme"
-            :options="circleChart"
-            class="my-circle"
-          ></chart>
+          <chart ref="myCircle" autoresize theme="jtheme" :options="circleChart" class="my-circle"></chart>
         </el-card>
       </el-col>
       <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="8">
         <el-card shadow="hover">
           <div slot="header">关系图</div>
           <div>
-            <chart
-              ref="myLine1"
-              theme="jtheme"
-              autoresize
-              :options="relationChart"
-              class="my-line1"
-            />
+            <chart ref="myLine1" theme="jtheme" autoresize :options="relationChart" class="my-line1" />
           </div>
         </el-card>
       </el-col>

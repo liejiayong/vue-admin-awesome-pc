@@ -1,10 +1,7 @@
 <template>
   <el-breadcrumb class="breadcrumb-container" separator=">">
     <el-breadcrumb-item v-for="(item, index) in levelList" :key="item.path">
-      <span
-        v-if="item.redirect === 'noRedirect' || index === levelList.length - 1"
-        class="no-redirect"
-      >
+      <span v-if="item.redirect === 'noRedirect' || index === levelList.length - 1" class="no-redirect">
         <jfas-icon v-if="item.meta.icon" :icon="['fas', item.meta.icon]" />
         {{ item.meta.title }}
       </span>
@@ -36,9 +33,7 @@ export default {
   },
   methods: {
     getBreadcrumb() {
-      let matched = this.$route.matched.filter(
-        (item) => item.meta && item.meta.title
-      );
+      let matched = this.$route.matched.filter((item) => item.meta && item.meta.title);
       // const first = matched[0]
 
       /* if (!this.isIndex(first)) {
@@ -53,9 +48,7 @@ export default {
           ].concat(matched);
         } */
 
-      this.levelList = matched.filter(
-        (item) => item.meta && item.meta.title && item.meta.breadcrumb !== false
-      );
+      this.levelList = matched.filter((item) => item.meta && item.meta.title && item.meta.breadcrumb !== false);
     },
     isIndex(route) {
       const name = route && route.name;

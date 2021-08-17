@@ -2,18 +2,14 @@
  * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
  * @description 路由守卫，目前两种模式：all模式与intelligence模式
  */
+import Vue from 'vue';
 import router from '@/router';
 import store from '@/store';
 import VabProgress from 'nprogress';
 import 'nprogress/nprogress.css';
 import { setDocumentTitle } from '@/utils/dom';
-import {
-  authentication,
-  loginInterception,
-  progressBar,
-  recordRoute,
-  routesWhiteList,
-} from '@/config';
+
+const { authentication, loginInterception, progressBar, recordRoute, routesWhiteList } = Vue.prototype.$confOpts;
 
 VabProgress.configure({
   easing: 'ease',
@@ -21,6 +17,7 @@ VabProgress.configure({
   trickleSpeed: 200,
   showSpinner: false,
 });
+
 router.beforeResolve(async (to, from, next) => {
   if (progressBar) VabProgress.start();
   let hasToken = store.getters['user/accessToken'];
@@ -32,9 +29,7 @@ router.beforeResolve(async (to, from, next) => {
       next({ path: '/' });
       if (progressBar) VabProgress.done();
     } else {
-      const hasPermissions =
-        store.getters['user/permissions'] &&
-        store.getters['user/permissions'].length > 0;
+      const hasPermissions = store.getters['user/permissions'] && store.getters['user/permissions'].length > 0;
       if (hasPermissions) {
         next();
       } else {
@@ -50,10 +45,7 @@ router.beforeResolve(async (to, from, next) => {
 
           let accessRoutes = [];
           if (authentication === 'intelligence') {
-            accessRoutes = await store.dispatch(
-              'routes/setRoutes',
-              permissions
-            );
+            accessRoutes = await store.dispatch('routes/setRoutes', permissions);
           } else if (authentication === 'all') {
             accessRoutes = await store.dispatch('routes/setAllRoutes');
           }

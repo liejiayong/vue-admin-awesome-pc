@@ -1,20 +1,8 @@
 <template>
-  <el-submenu
-    ref="subMenu"
-    :index="handlePath(item.path)"
-    :popper-append-to-body="false"
-  >
+  <el-submenu ref="subMenu" :index="handlePath(item.path)" :popper-append-to-body="false">
     <template slot="title">
-      <jfas-icon
-        v-if="item.meta && item.meta.icon"
-        :icon="['fas', item.meta.icon]"
-        class="jy-nav-icon"
-      />
-      <svg-icon
-        v-if="item.meta && item.meta.remixIcon"
-        :icon-class="item.meta.remixIcon"
-        class="jy-nav-icon"
-      />
+      <jfas-icon v-if="item.meta && item.meta.icon" :icon="['fas', item.meta.icon]" class="jy-nav-icon" />
+      <svg-icon v-if="item.meta && item.meta.remixIcon" :icon-class="item.meta.remixIcon" class="jy-nav-icon" />
       <span>{{ item.meta.title }}</span>
     </template>
     <slot></slot>

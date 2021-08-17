@@ -3,11 +3,7 @@
     <!-- index<svg-icon  class="logo" :icon-class="'user'" /> -->
     <el-row :gutter="20">
       <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-        <el-alert
-          v-if="noticeList[0]"
-          :title="noticeList[0].title"
-          :closable="noticeList[0].closable"
-        >
+        <el-alert v-if="noticeList[0]" :title="noticeList[0].title" :closable="noticeList[0].closable">
           <a target="_blank" href="https://github.com/liejiayong">
             <img
               style="height: 100%; margin-right: 10px"
@@ -39,11 +35,7 @@
       <el-col :xs="24" :sm="24" :md="12" :lg="6" :xl="6">
         <el-card shadow="never">
           <template #header><span>授权量</span></template>
-          <echarts
-            :autoresize="true"
-            :options="authcount"
-            theme="jtheme"
-          ></echarts>
+          <echarts :autoresize="true" :options="authcount" theme="jtheme"></echarts>
           <div class="bottom">
             <span>总授权数:</span>
             <jcount :start-val="99" :end-val="99999" :duration="6000"></jcount>
@@ -68,21 +60,10 @@
         </el-card>
       </el-col>
 
-      <el-col
-        v-for="(item, index) in iconList"
-        :key="index"
-        :xs="12"
-        :sm="6"
-        :md="3"
-        :lg="3"
-        :xl="3"
-      >
+      <el-col v-for="(item, index) in iconList" :key="index" :xs="12" :sm="6" :md="3" :lg="3" :xl="3">
         <router-link :to="item.link" target="_blank">
           <el-card class="icon-panel" shadow="never">
-            <jfas-icon
-              :style="{ color: item.color }"
-              :icon="['fas', item.icon]"
-            ></jfas-icon>
+            <jfas-icon :style="{ color: item.color }" :icon="['fas', item.icon]"></jfas-icon>
             <p>{{ item.title }}</p>
           </el-card>
         </router-link>
@@ -106,9 +87,7 @@
           <div class="bottom-btn">
             <el-popover placement="top" width="250" trigger="hover">
               <p>这是一个基础模板</p>
-              <el-image
-                src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"
-              ></el-image>
+              <el-image src="https://www.baidu.com/img/PCtm_d9c8750bed0b3c7d089fa7d55720d6cf.png"></el-image>
               <a slot="reference" target="_blank">
                 <el-button type="primary">建议</el-button>
               </a>
@@ -117,9 +96,7 @@
               <el-button type="success">修改主题和布局</el-button>
             </a>
             <a target="_blank" href="https://github.com/liejiayong">
-              <el-button type="fail">
-                github下载源码点star（实时更新）
-              </el-button>
+              <el-button type="fail">github下载源码点star（实时更新）</el-button>
             </a>
             <a target="_blank" href="https://gitee.com/liejiayong">
               <el-button type="warning">码云下载源码点star</el-button>
@@ -187,12 +164,7 @@
             <h1 style="font-size: 30px">vue-admin-awesome</h1>
           </div>
           <div v-for="(item, index) in noticeList" :key="index">
-            <el-alert
-              v-if="index !== 0"
-              :title="item.title"
-              :type="item.type"
-              :closable="item.closable"
-            ></el-alert>
+            <el-alert v-if="index !== 0" :title="item.title" :type="item.type" :closable="item.closable"></el-alert>
             <br />
           </div>
           <el-alert :closable="false" :title="userAgent" type="info"></el-alert>
@@ -202,10 +174,7 @@
           <div slot="header">
             <span>关于开发者</span>
           </div>
-          <img
-            src="https://github-readme-stats.vercel.app/api?username=chuzhixin"
-            alt=""
-          />
+          <img src="https://github-readme-stats.vercel.app/api?username=chuzhixin" alt="" />
         </el-card>
       </el-col>
     </el-row>
@@ -314,14 +283,7 @@ export default {
             textStyle: {
               normal: {
                 color() {
-                  const arr = [
-                    '#1890FF',
-                    '#36CBCB',
-                    '#4ECB73',
-                    '#FBD437',
-                    '#F2637B',
-                    '#975FE5',
-                  ];
+                  const arr = ['#1890FF', '#36CBCB', '#4ECB73', '#FBD437', '#F2637B', '#975FE5'];
                   let index = Math.floor(Math.random() * arr.length);
                   return arr[index];
                 },

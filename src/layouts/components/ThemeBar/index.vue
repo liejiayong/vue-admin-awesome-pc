@@ -1,10 +1,6 @@
 <template>
   <span v-if="themeBar">
-    <jfas-icon
-      title="主题配置"
-      :icon="['fas', 'palette']"
-      @click="handleChangeTheme"
-    />
+    <jfas-icon title="主题配置" :icon="['fas', 'palette']" @click="handleChangeTheme" />
     <div class="theme-bar-setting">
       <div @click="handleChangeTheme">
         <jfas-icon :icon="['fas', 'palette']" />
@@ -20,13 +16,7 @@
       </div>-->
     </div>
 
-    <el-drawer
-      title="主题配置"
-      :visible.sync="drawerVisible"
-      direction="rtl"
-      append-to-body
-      size="300px"
-    >
+    <el-drawer title="主题配置" :visible.sync="drawerVisible" direction="rtl" append-to-body size="300px">
       <el-scrollbar style="height: 94vh; overflow: hidden">
         <div class="el-drawer__body">
           <el-form ref="form" :model="theme">
@@ -51,15 +41,7 @@
             <el-form-item label="菜单背景色">
               <el-color-picker
                 v-model="theme.menuBackground"
-                :predefine="[
-                  '#2a58ad',
-                  '#001529',
-                  '#f56c6c',
-                  '#0fd59d',
-                  '#3fb884',
-                  '#ff7a47',
-                  '#a80505',
-                ]"
+                :predefine="['#2a58ad', '#001529', '#f56c6c', '#0fd59d', '#3fb884', '#ff7a47', '#a80505']"
                 show-alpha
               ></el-color-picker>
             </el-form-item>
@@ -71,11 +53,7 @@
               ></el-color-picker>
             </el-form-item>
             <el-form-item label="菜单文字色">
-              <el-color-picker
-                v-model="theme.menuColor"
-                :predefine="['#000', '#fff']"
-                show-alpha
-              ></el-color-picker>
+              <el-color-picker v-model="theme.menuColor" :predefine="['#000', '#fff']" show-alpha></el-color-picker>
             </el-form-item>
             <el-form-item label="标签主题色">
               <el-color-picker
@@ -100,9 +78,7 @@
             </el-form-item>
             <el-form-item>
               <el-button @click="handleSetDfaultTheme">恢复默认</el-button>
-              <el-button type="primary" @click="handleSaveTheme">
-                保存
-              </el-button>
+              <el-button type="primary" @click="handleSaveTheme">保存</el-button>
             </el-form-item>
           </el-form>
         </div>
@@ -113,10 +89,10 @@
 
 <script>
 import variables from '@/styles/variables.scss';
-import { storageTheme } from '@/config/settings';
+import opts from '@/config/settings';
 import { mapGetters } from 'vuex';
 import GetCode from '../Mixin/GetCode';
-
+const { storageTheme } = opts;
 export default {
   name: 'ThemeBar',
   mixins: [GetCode],
@@ -155,27 +131,11 @@ export default {
     this.theme.tabsBar = this.tabsBar;
     if (null !== theme) {
       this.$set(this.theme, 'menuBackground', JSON.parse(theme).menuBackground);
-      this.$set(
-        this.theme,
-        'menuBackgroundActive',
-        JSON.parse(theme).menuBackgroundActive
-      );
+      this.$set(this.theme, 'menuBackgroundActive', JSON.parse(theme).menuBackgroundActive);
       this.$set(this.theme, 'menuColor', JSON.parse(theme).menuColor);
-      this.$set(
-        this.theme,
-        'tagBackgroundActive',
-        JSON.parse(theme).tagBackgroundActive
-      );
-      this.$set(
-        this.theme,
-        'buttonBackground',
-        JSON.parse(theme).buttonBackground
-      );
-      this.$set(
-        this.theme,
-        'paginationBackgroundActive',
-        JSON.parse(theme).paginationBackgroundActive
-      );
+      this.$set(this.theme, 'tagBackgroundActive', JSON.parse(theme).tagBackgroundActive);
+      this.$set(this.theme, 'buttonBackground', JSON.parse(theme).buttonBackground);
+      this.$set(this.theme, 'paginationBackgroundActive', JSON.parse(theme).paginationBackgroundActive);
       this.handleSetTheme();
     }
   },

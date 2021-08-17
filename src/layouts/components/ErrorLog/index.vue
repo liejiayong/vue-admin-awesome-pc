@@ -1,9 +1,6 @@
 <template>
   <div v-if="errorLogs.length > 0">
-    <el-badge
-      :value="errorLogs.length"
-      @click.native="dialogTableVisible = true"
-    >
+    <el-badge :value="errorLogs.length" @click.native="dialogTableVisible = true">
       <el-button type="danger">
         <jfas-icon :icon="['fas', 'bug']" />
       </el-button>
@@ -56,17 +53,17 @@
       </el-table>
       <span slot="footer" class="dialog-footer">
         <el-button @click="dialogTableVisible = false">取 消</el-button>
-        <el-button type="danger" icon="el-icon-delete" @click="clearAll">
-          暂不显示
-        </el-button>
+        <el-button type="danger" icon="el-icon-delete" @click="clearAll">暂不显示</el-button>
       </span>
     </el-dialog>
   </div>
 </template>
 
 <script>
-import { abbreviation, title } from '@/config/settings';
+import opts from '@/config/settings';
 import { mapGetters } from 'vuex';
+
+const { abbreviation, title } = opts;
 
 export default {
   name: 'ErrorLog',
@@ -74,7 +71,7 @@ export default {
   data() {
     return {
       dialogTableVisible: false,
-      title: title,
+      title,
       abbreviation: abbreviation,
       searchList: [
         {

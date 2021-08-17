@@ -1,12 +1,6 @@
 <template>
   <span :title="isFullscreen ? '退出全屏' : '进入全屏'">
-    <jfas-icon
-      :icon="[
-        'fas',
-        isFullscreen ? 'compress-arrows-alt' : 'expand-arrows-alt',
-      ]"
-      @click="click"
-    ></jfas-icon>
+    <jfas-icon :icon="['fas', isFullscreen ? 'compress-arrows-alt' : 'expand-arrows-alt']" @click="click"></jfas-icon>
   </span>
 </template>
 

@@ -3,12 +3,15 @@ import { Loading, Message, MessageBox, Notification } from 'element-ui';
 import * as lodash from 'lodash';
 import store from '@/store';
 import { getAccessToken } from '@/utils/accessToken';
-import { title, loadingText, messageDuration } from '@/config/settings';
-
+import settings from '@/config/settings';
+const { title, loadingText, messageDuration } = settings;
 const accessToken = store.getters['user/accessToken'];
 const layout = store.getters['settings/layout'];
 
 const install = (Vue, opts = {}) => {
+  /* 全局配置 */
+  Vue.prototype.$confOpts = settings;
+
   /* 全局标题 */
   Vue.prototype.$baseTitle = title;
   /* 全局accessToken */
@@ -171,11 +174,9 @@ const install = (Vue, opts = {}) => {
       },
       baseLayer: new maptalks.TileLayer('base', {
         cssFilter: 'sepia(100%) invert(90%)',
-        urlTemplate:
-          'http://online{s}.map.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=1&p=1',
+        urlTemplate: 'http://online{s}.map.bdimg.com/onlinelabel/?qt=tile&x={x}&y={y}&z={z}&styles=pl&scaler=1&p=1',
         subdomains: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
-        attribution:
-          '&copy; <a target="_blank" href="http://map.baidu.com">Baidu</a>',
+        attribution: '&copy; <a target="_blank" href="http://map.baidu.com">Baidu</a>',
       }),
     });
   };

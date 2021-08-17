@@ -10,10 +10,7 @@
     >
       <div :class="header === 'fixed' ? 'fixed-header' : ''">
         <top-bar></top-bar>
-        <div
-          v-if="tabsBar === 'true' || tabsBar === true"
-          :class="{ 'tag-view-show': tabsBar }"
-        >
+        <div v-if="tabsBar === 'true' || tabsBar === true" :class="{ 'tag-view-show': tabsBar }">
           <div class="jy-main">
             <tabs-bar></tabs-bar>
           </div>
@@ -31,11 +28,7 @@
         'no-tabs-bar': tabsBar === 'false' || tabsBar === false,
       }"
     >
-      <div
-        v-if="device === 'mobile' && collapse === false"
-        class="mask"
-        @click="handleFoldSideBar"
-      />
+      <div v-if="device === 'mobile' && collapse === false" class="mask" @click="handleFoldSideBar" />
       <menu-bar></menu-bar>
       <div class="jy-main" :class="collapse ? 'is-collapse-main' : ''">
         <div :class="header === 'fixed' ? 'fixed-header' : ''">
@@ -52,7 +45,7 @@
 <script>
 import { Media, AppMain, NavBar, MenuBar, TabsBar, TopBar } from './components';
 import { mapActions, mapGetters } from 'vuex';
-import { tokenName } from '@/config/settings';
+import opts from '@/config/settings';
 
 export default {
   name: 'Layout',
@@ -91,9 +84,7 @@ export default {
     this.oldLayout = this.layout;
     const userAgent = navigator.userAgent;
     if (userAgent.includes('Juejin')) {
-      this.$baseAlert(
-        '不支持在掘金内置浏览器演示，请手动复制以下地址到浏览器中查看http://xxx'
-      );
+      this.$baseAlert('不支持在掘金内置浏览器演示，请手动复制以下地址到浏览器中查看http://xxx');
     }
     const isMobile = this.handleIsMobile();
     if (isMobile) {
@@ -114,6 +105,7 @@ export default {
       window.addEventListener(
         'storage',
         (e) => {
+          const { tokenName } = opts;
           if (e.key === tokenName || e.key === null) window.location.reload();
           if (e.key === tokenName && e.value === null) window.location.reload();
         },
@@ -135,10 +127,7 @@ export default {
           this.$store.dispatch('settings/changeLayout', this.oldLayout);
         }
 
-        this.$store.dispatch(
-          'settings/toggleDevice',
-          isMobile ? 'mobile' : 'desktop'
-        );
+        this.$store.dispatch('settings/toggleDevice', isMobile ? 'mobile' : 'desktop');
       }
     },
     ...mapActions({

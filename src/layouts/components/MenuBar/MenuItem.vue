@@ -1,24 +1,9 @@
 <template>
-  <el-menu-item
-    :index="handlePath(onlyOneChildren.path)"
-    @click.native="handleLink"
-  >
-    <jfas-icon
-      v-if="onlyOneChildren.meta.icon"
-      :icon="['fas', onlyOneChildren.meta.icon]"
-      class="jy-nav-icon"
-    />
-    <svg-icon
-      v-if="onlyOneChildren.meta.remixIcon"
-      :icon-class="onlyOneChildren.meta.remixIcon"
-      class="jy-nav-icon"
-    />
+  <el-menu-item :index="handlePath(onlyOneChildren.path)" @click.native="handleLink">
+    <jfas-icon v-if="onlyOneChildren.meta.icon" :icon="['fas', onlyOneChildren.meta.icon]" class="jy-nav-icon" />
+    <svg-icon v-if="onlyOneChildren.meta.remixIcon" :icon-class="onlyOneChildren.meta.remixIcon" class="jy-nav-icon" />
     <span>{{ onlyOneChildren.meta.title }}</span>
-    <el-tag
-      v-if="onlyOneChildren.meta && onlyOneChildren.meta.badge"
-      type="danger"
-      effect="dark"
-    >
+    <el-tag v-if="onlyOneChildren.meta && onlyOneChildren.meta.badge" type="danger" effect="dark">
       {{ onlyOneChildren.meta.badge }}
     </el-tag>
   </el-menu-item>
@@ -69,9 +54,7 @@ export default {
           if (isExternal(this.basePath)) {
             window.open(routePath);
           }
-          let routeData = this.$router.resolve(
-            path.resolve(this.basePath, routePath)
-          );
+          let routeData = this.$router.resolve(path.resolve(this.basePath, routePath));
           window.open(routeData.href);
         } else {
           if (isExternal(routePath)) {

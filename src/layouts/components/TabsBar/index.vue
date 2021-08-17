@@ -93,10 +93,7 @@ export default {
           view = item;
         }
       });
-      const { visitedRoutes } = await this.$store.dispatch(
-        'tabsBar/delRoute',
-        view
-      );
+      const { visitedRoutes } = await this.$store.dispatch('tabsBar/delRoute', view);
       if (this.isActive(view)) {
         this.toLastTag(visitedRoutes, view);
       }
@@ -180,10 +177,7 @@ export default {
       this.$baseEventBus.$emit('reloadrouter');
     },
     async closeSelectedTag(view) {
-      const { visitedRoutes } = await this.$store.dispatch(
-        'tabsBar/delRoute',
-        view
-      );
+      const { visitedRoutes } = await this.$store.dispatch('tabsBar/delRoute', view);
       if (this.isActive(view)) {
         this.toLastTag(visitedRoutes, view);
       }
@@ -202,9 +196,7 @@ export default {
     },
     async closeAllTags() {
       const view = await this.toThisTag();
-      const { visitedRoutes } = await this.$store.dispatch(
-        'tabsBar/delAllRoutes'
-      );
+      const { visitedRoutes } = await this.$store.dispatch('tabsBar/delAllRoutes');
       if (this.affixTags.some((tag) => tag.path === view.path)) {
         return;
       }

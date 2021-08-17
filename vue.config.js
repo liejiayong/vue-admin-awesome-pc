@@ -1,13 +1,18 @@
 const path = require('path');
 const WebpackBar = require('webpackbar');
 const Webpack = require('webpack');
+const { version, author, name } = require('./package.json');
 // const WebpackAnalyzer = require('webpack-bundle-analyzer')
+
+process.env.VUE_APP_TITLE = name || 'vue-admin-awesome-pc';
+process.env.VUE_APP_AUTHOR = author || 'JyLie 809206619@qq.com';
+// process.env.VUE_APP_UPDATE_TIME = time;
+process.env.VUE_APP_VERSION = version;
 
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
 const mockServer = () => {
-  if (process.env.NODE_ENV === 'development')
-    return require('./mock/mockServer.js');
+  if (process.env.NODE_ENV === 'development') return require('./mock/mockServer.js');
   else return '';
 };
 
@@ -72,9 +77,7 @@ module.exports = {
         additionalData(content, loaderContext) {
           const { resourcePath, rootContext } = loaderContext;
           const relativePath = path.relative(rootContext, resourcePath);
-          if (
-            relativePath.replace(/\\/g, '/') !== 'src/styles/variables.scss'
-          ) {
+          if (relativePath.replace(/\\/g, '/') !== 'src/styles/variables.scss') {
             return '@import "~@/styles/variables.scss";' + content;
           }
           return content;
@@ -176,8 +179,6 @@ module.exports = {
       .options({ symbolId: 'svg-icon-[name]' })
       .end();
 
-    config
-      .plugin('banner')
-      .use(Webpack.BannerPlugin, ['copyright:JyLie 809206619@qq.com']);
+    config.plugin('banner').use(Webpack.BannerPlugin, ['copyright:JyLie 809206619@qq.com']);
   },
 };

@@ -48,8 +48,7 @@ export default {
     menuComponent() {
       if (
         this.handleChildren(this.item.children, this.item) &&
-        (!this.onlyOneChildren.children ||
-          this.onlyOneChildren.notShowChildren) &&
+        (!this.onlyOneChildren.children || this.onlyOneChildren.notShowChildren) &&
         !this.item.alwaysShow
       ) {
         return 'MenuItem';

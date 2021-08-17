@@ -1,4 +1,4 @@
-import { title } from '@/config/settings';
+const title = process.env.VUE_APP_TITLE;
 
 /**
  * @copyright JyLie 809206619@qq.com

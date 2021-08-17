@@ -3,17 +3,11 @@ import Vue from 'vue';
 import VueRouter from 'vue-router';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css';
-import {
-  authentication,
-  loginInterception,
-  routesWhiteList,
-  progressBar,
-  routerMode,
-} from '@/config/settings';
 import store from '@/store';
 import { constantRoutes } from './routes';
 import { setDocumentTitle } from '@/utils/dom';
 
+const { authentication, loginInterception, routesWhiteList, progressBar, routerMode } = Vue.prototype.$confOpts;
 Vue.use(VueRouter);
 NProgress.configure({
   easing: 'ease',
@@ -67,10 +61,7 @@ router.beforeResolve(async (to, from, next) => {
           // console.log('router user/getInfo:', permissions, authentication)
           let accessRoutes = [];
           if (authentication === 'intelligence') {
-            accessRoutes = await store.dispatch(
-              'routes/setRoutes',
-              permissions
-            );
+            accessRoutes = await store.dispatch('routes/setRoutes', permissions);
           } else {
             accessRoutes = await store.dispatch('routes/setAllRoutes');
           }

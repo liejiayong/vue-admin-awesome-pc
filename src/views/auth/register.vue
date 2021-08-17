@@ -8,13 +8,7 @@
     ></el-alert>
     <el-row>
       <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-        <el-form
-          ref="registerForm"
-          :model="form"
-          class="register-form"
-          :rules="registerRules"
-          size="mini"
-        >
+        <el-form ref="registerForm" :model="form" class="register-form" :rules="registerRules" size="mini">
           <div class="title">hello !</div>
           <div class="title-tips">欢迎来到{{ title }}！</div>
           <el-form-item prop="userName">
@@ -38,50 +32,24 @@
               show-word-limit
               autocomplete="off"
             >
-              <jfas-icon
-                slot="prefix"
-                :icon="['fas', 'mobile-alt']"
-              ></jfas-icon>
+              <jfas-icon slot="prefix" :icon="['fas', 'mobile-alt']"></jfas-icon>
             </el-input>
           </el-form-item>
           <el-form-item prop="phoneCode" style="position: relative">
-            <el-input
-              v-model.trim="form.phoneCode"
-              type="text"
-              placeholder="手机验证码"
-            >
-              <jfas-icon
-                slot="prefix"
-                :icon="['fas', 'envelope-open']"
-              ></jfas-icon>
+            <el-input v-model.trim="form.phoneCode" type="text" placeholder="手机验证码">
+              <jfas-icon slot="prefix" :icon="['fas', 'envelope-open']"></jfas-icon>
             </el-input>
-            <el-button
-              type="primary"
-              class="show-pwd phone-code"
-              :disabled="isGetphone"
-              @click="getPhoneCode"
-            >
+            <el-button type="primary" class="show-pwd phone-code" :disabled="isGetphone" @click="getPhoneCode">
               {{ phoneCode }}
             </el-button>
           </el-form-item>
           <el-form-item prop="password">
-            <el-input
-              v-model.trim="form.password"
-              type="password"
-              placeholder="设置密码"
-              autocomplete="new-password"
-            >
+            <el-input v-model.trim="form.password" type="password" placeholder="设置密码" autocomplete="new-password">
               <jfas-icon slot="prefix" :icon="['fas', 'unlock']"></jfas-icon>
             </el-input>
           </el-form-item>
           <el-form-item>
-            <el-button
-              class="register-btn"
-              type="primary"
-              @click.native.prevent="handleReister"
-            >
-              注册
-            </el-button>
+            <el-button class="register-btn" type="primary" @click.native.prevent="handleReister">注册</el-button>
             <router-link to="/login">
               <div style="margin-top: 20px">登录</div>
             </router-link>
@@ -147,9 +115,7 @@ export default {
           { required: true, trigger: 'blur', message: '请输入密码' },
           { validator: validatePassword, trigger: 'blur' },
         ],
-        phoneCode: [
-          { required: true, trigger: 'blur', message: '请输入手机验证码' },
-        ],
+        phoneCode: [{ required: true, trigger: 'blur', message: '请输入手机验证码' }],
       },
       loading: false,
       passwordType: 'password',
@@ -193,8 +159,7 @@ export default {
 .register-container {
   height: 100vh;
   min-height: 780px;
-  background: url('~@/assets/login_images/background.jpg') center center fixed
-    no-repeat;
+  background: url('~@/assets/login_images/background.jpg') center center fixed no-repeat;
   background-size: cover;
   .title {
     height: 50px;

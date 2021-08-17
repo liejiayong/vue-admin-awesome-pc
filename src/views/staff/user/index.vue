@@ -2,26 +2,16 @@
   <div class="userManagement-container">
     <jy-form-query>
       <jy-form-query-left-panel :span="12">
-        <el-button icon="el-icon-plus" type="primary" @click="handleEdit">
-          添加
-        </el-button>
-        <el-button icon="el-icon-delete" type="danger" @click="handleDelete">
-          批量删除
-        </el-button>
+        <el-button icon="el-icon-plus" type="primary" @click="handleEdit">添加</el-button>
+        <el-button icon="el-icon-delete" type="danger" @click="handleDelete">批量删除</el-button>
       </jy-form-query-left-panel>
       <jy-form-query-right-panel :span="12">
         <el-form :inline="true" :model="queryForm" @submit.native.prevent>
           <el-form-item>
-            <el-input
-              v-model.trim="queryForm.userName"
-              placeholder="请输入用户名"
-              clearable
-            />
+            <el-input v-model.trim="queryForm.userName" placeholder="请输入用户名" clearable />
           </el-form-item>
           <el-form-item>
-            <el-button icon="el-icon-search" type="primary" @click="queryData">
-              查询
-            </el-button>
+            <el-button icon="el-icon-search" type="primary" @click="queryData">查询</el-button>
           </el-form-item>
         </el-form>
       </jy-form-query-right-panel>
@@ -50,9 +40,7 @@
       <el-table-column fixed="right" label="操作" width="200">
         <template #default="scope">
           <el-button type="text" @click="handleEdit(scope.row)">编辑</el-button>
-          <el-button type="text" @click="handleDelete(scope.row)">
-            删除
-          </el-button>
+          <el-button type="text" @click="handleDelete(scope.row)">删除</el-button>
         </template>
       </el-table-column>
     </el-table>

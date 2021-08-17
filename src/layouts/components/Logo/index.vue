@@ -2,11 +2,7 @@
   <div :class="'logo-container-' + layout">
     <router-link to="/">
       <svg-icon v-if="logo" class="logo" :icon-class="logo" />
-      <span
-        class="title"
-        :class="{ 'hidden-xs-only': layout === 'horizontal' }"
-        :title="title"
-      >
+      <span class="title" :class="{ 'hidden-xs-only': layout === 'horizontal' }" :title="title">
         {{ title }}
       </span>
     </router-link>

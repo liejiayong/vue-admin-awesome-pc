@@ -53,10 +53,7 @@ export function filterAllRoutes(routes) {
         route.component = (resolve) => require(['@/layouts/empty'], resolve);
       } else {
         let path = 'views/' + route.component;
-        if (
-          new RegExp('^/views/.*$').test(route.component) ||
-          new RegExp('^views/.*$').test(route.component)
-        ) {
+        if (new RegExp('^/views/.*$').test(route.component) || new RegExp('^views/.*$').test(route.component)) {
           path = route.component;
         } else if (new RegExp('^/.*$').test(route.component)) {
           path = 'views' + route.component;

@@ -180,13 +180,7 @@ export function isChina(str) {
  * @returns {boolean}
  */
 export function isBlank(str) {
-  return (
-    str == null ||
-    false ||
-    str === '' ||
-    str.trim() === '' ||
-    str.toLocaleLowerCase().trim() === 'null'
-  );
+  return str == null || false || str === '' || str.trim() === '' || str.toLocaleLowerCase().trim() === 'null';
 }
 
 /**

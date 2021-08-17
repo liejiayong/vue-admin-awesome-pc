@@ -1,6 +1,13 @@
 import Vue from 'vue';
 import axios from 'axios';
-import {
+import opts from '@/config/settings';
+import store from '@/store';
+import qs from 'qs';
+import router from '@/router';
+import _ from 'lodash';
+import { isArray } from '@/utils/validate';
+
+const {
   baseURL,
   contentType,
   invalidCode,
@@ -10,12 +17,7 @@ import {
   successCode,
   tokenName,
   debounce,
-} from '@/config/settings';
-import store from '@/store';
-import qs from 'qs';
-import router from '@/router';
-import _ from 'lodash';
-import { isArray } from '@/utils/validate';
+} = opts;
 
 let loadingInstance;
 /**
@@ -57,16 +59,9 @@ service.interceptors.request.use(
     }
     // 过滤所有为空、0、false的key，如果不需要请自行注释
     if (config.data) {
-      config.data = Vue.prototype.$baseLodash.pickBy(
-        config.data,
-        Vue.prototype.$baseLodash.identity
-      );
+      config.data = Vue.prototype.$baseLodash.pickBy(config.data, Vue.prototype.$baseLodash.identity);
     }
-    if (
-      config.data &&
-      config.headers['Content-Type'] ===
-        'application/x-www-form-urlencoded;charset=UTF-8'
-    ) {
+    if (config.data && config.headers['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8') {
       config.data = qs.stringify(config.data);
     }
 
@@ -84,17 +79,14 @@ service.interceptors.response.use(
     const { status, data, config } = response;
     const { code, msg } = data;
     // 操作正常Code数组
-    const codeVerificationArray = isArray(successCode)
-      ? [...successCode]
-      : [...[successCode]];
+    const codeVerificationArray = isArray(successCode) ? [...successCode] : [...[successCode]];
 
     if (codeVerificationArray.includes(code)) {
       return data;
     } else {
       handleException(code, msg);
       return Promise.reject(
-        'vue-admin-beautiful请求异常拦截:' +
-          JSON.stringify({ url: config.url, code, msg }) || 'Error'
+        'vue-admin-beautiful请求异常拦截:' + JSON.stringify({ url: config.url, code, msg }) || 'Error'
       );
     }
   },

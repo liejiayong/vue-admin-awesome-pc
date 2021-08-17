@@ -24,7 +24,6 @@
 
 <script>
 import { mapGetters } from 'vuex';
-import { recordRoute } from '@/config/settings';
 
 export default {
   name: 'Avatar',
@@ -49,19 +48,16 @@ export default {
       this.$router.push('/user/index');
     },
     logout() {
-      this.$baseConfirm(
-        '您确定要退出' + this.$baseTitle + '吗?',
-        null,
-        async () => {
-          await this.$store.dispatch('user/logout');
-          if (recordRoute) {
-            const fullPath = this.$route.fullPath;
-            this.$router.push(`/login?redirect=${fullPath}`);
-          } else {
-            this.$router.push('/login');
-          }
+      this.$baseConfirm('您确定要退出' + this.$baseTitle + '吗?', null, async () => {
+        await this.$store.dispatch('user/logout');
+        const { recordRoute } = this.$confOpts;
+        if (recordRoute) {
+          const fullPath = this.$route.fullPath;
+          this.$router.push(`/login?redirect=${fullPath}`);
+        } else {
+          this.$router.push('/login');
         }
-      );
+      });
     },
   },
 };

@@ -21,12 +21,9 @@ if (isServer) {
       break;
     }
     prefix = prefixes[i];
-    requestAnimationFrame =
-      requestAnimationFrame || window[prefix + 'RequestAnimationFrame'];
+    requestAnimationFrame = requestAnimationFrame || window[prefix + 'RequestAnimationFrame'];
     cancelAnimationFrame =
-      cancelAnimationFrame ||
-      window[prefix + 'CancelAnimationFrame'] ||
-      window[prefix + 'CancelRequestAnimationFrame'];
+      cancelAnimationFrame || window[prefix + 'CancelAnimationFrame'] || window[prefix + 'CancelRequestAnimationFrame'];
   }
 
   if (!requestAnimationFrame || !cancelAnimationFrame) {

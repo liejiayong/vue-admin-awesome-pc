@@ -45,25 +45,14 @@
               tabindex="2"
               @keyup.enter.native="handleLogin"
             />
-            <span
-              v-if="passwordType === 'password'"
-              class="show-pwd"
-              @click="showPwd"
-            >
+            <span v-if="passwordType === 'password'" class="show-pwd" @click="showPwd">
               <jfas-icon :icon="['fas', 'eye-slash']" />
             </span>
             <span v-else class="show-pwd" @click="showPwd">
               <jfas-icon :icon="['fas', 'eye']" />
             </span>
           </el-form-item>
-          <el-button
-            :loading="loading"
-            class="login-btn"
-            type="primary"
-            @click="handleLogin"
-          >
-            登录
-          </el-button>
+          <el-button :loading="loading" class="login-btn" type="primary" @click="handleLogin">登录</el-button>
           <router-link to="/register">
             <div style="margin-top: 20px">注册</div>
           </router-link>
@@ -143,9 +132,7 @@ export default {
   },
   methods: {
     showPwd() {
-      this.passwordType === 'password'
-        ? (this.passwordType = '')
-        : (this.passwordType = 'password');
+      this.passwordType === 'password' ? (this.passwordType = '') : (this.passwordType = 'password');
       this.$nextTick(() => {
         this.$refs.password.focus();
       });
@@ -155,10 +142,7 @@ export default {
         if (valid) {
           this.loading = true;
           await this.$store.dispatch('user/login', this.loginForm);
-          const routerPath =
-            this.redirect === '/404' || this.redirect === '/401'
-              ? '/'
-              : this.redirect;
+          const routerPath = this.redirect === '/404' || this.redirect === '/401' ? '/' : this.redirect;
           console.log('login nav to page:', routerPath);
           await this.$router.push(routerPath);
           this.loading = false;
@@ -175,8 +159,7 @@ export default {
 .login-container {
   height: 100vh;
   min-height: 600px;
-  background: url('~@/assets/login_images/background.jpg') center center fixed
-    no-repeat;
+  background: url('~@/assets/login_images/background.jpg') center center fixed no-repeat;
   background-size: cover;
 
   .title {

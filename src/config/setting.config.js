@@ -1,7 +1,7 @@
 /**
  * @description 导出默认通用配置
  */
-const setting = {
+const settings = {
   // 开发以及部署时的URL
   publicPath: '',
   // 生产环境构建文件的目录名
@@ -12,17 +12,12 @@ const setting = {
   lintOnSave: true,
   // 进行编译的依赖
   transpileDependencies: ['vue-echarts', 'resize-detector'],
-  // 默认的接口地址 如果是开发环境和生产环境走vab-mock-server，当然你也可以选择自己配置成需要的接口地址
-  baseURL:
-    process.env.NODE_ENV === 'development'
-      ? 'vab-mock-server'
-      : 'vab-mock-server',
   //标题 （包括初次加载雪花屏的标题 页面的标题 浏览器的标题）
-  title: 'vue-admin-beautiful-pro',
+  title: process.env.VUE_APP_TITLE,
   //简写
   abbreviation: 'vab',
-  //版本号
-  version: process.env.VUE_APP_VERSION,
+  //开发环境端口号
+  devPort: '28888',
   //这一项非常重要！请务必保留MIT协议下package.json及copyright作者信息 即可免费商用，不遵守此项约定你将无法使用该框架，如需自定义版权信息请联系QQ1204505056
   copyright: 'vab',
   //是否显示页面底部自定义版权信息
@@ -40,7 +35,7 @@ const setting = {
   //token名称
   tokenName: 'accessToken',
   //token在localStorage、sessionStorage存储的key的名称
-  tokenTableName: 'vue-admin-beautiful-2021',
+  tokenTableName: 'vadmint',
   //token存储位置localStorage sessionStorage
   storage: 'localStorage',
   //token失效回退到登录页时是否记录本次的路由
@@ -70,4 +65,5 @@ const setting = {
   //是否显示终端donation打印
   donation: true,
 };
-module.exports = setting;
+
+export default settings;

@@ -10,7 +10,6 @@ const theme = {
   themeBar: true,
   //是否显示多标签页
   tabsBar: true,
-  // 主题名称键值
-  storageTheme: 'JYLie-VUE-ADMIN-THEME',
 };
-module.exports = theme;
+
+export default theme;

@@ -10,27 +10,13 @@
             <el-input v-model="queryForm.title"></el-input>
           </el-form-item>
           <el-form-item label-width="0">
-            <el-button native-type="submit" type="primary" @click="queryData">
-              搜索
-            </el-button>
+            <el-button native-type="submit" type="primary" @click="queryData">搜索</el-button>
           </el-form-item>
         </el-form>
       </el-col>
 
-      <el-col
-        v-for="(item, index) in queryIcon"
-        :key="index"
-        :xs="6"
-        :sm="8"
-        :md="3"
-        :lg="2"
-        :xl="2"
-      >
-        <el-card
-          shadow="hover"
-          style="cursor: pointer"
-          @click.native="handleCopyIcon(item, $event)"
-        >
+      <el-col v-for="(item, index) in queryIcon" :key="index" :xs="6" :sm="8" :md="3" :lg="2" :xl="2">
+        <el-card shadow="hover" style="cursor: pointer" @click.native="handleCopyIcon(item, $event)">
           <jfas-icon :icon="['fas', item]"></jfas-icon>
         </el-card>
         <div class="icon-text">{{ item }}</div>

@@ -100,6 +100,22 @@ export const asyncRoutes = [
     ],
   },
   {
+    path: '/customer',
+    component: Layout,
+    redirect: 'noRedirect',
+    name: 'CustomerManagement',
+    alwaysShow: true,
+    meta: { title: '客服管理', icon: 'users-cog', permissions: ['admin'] },
+    children: [
+      {
+        path: 'user',
+        name: 'CustomerManagement_User',
+        component: () => import('@/views/customer/Table'),
+        meta: { title: '用户管理' },
+      },
+    ],
+  },
+  {
     path: '/news',
     component: Layout,
     redirect: 'noRedirect',

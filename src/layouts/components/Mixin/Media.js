@@ -31,10 +31,7 @@ export default {
     handleResize() {
       if (!document.hidden) {
         const isMobile = this.handleIsMobile();
-        store.dispatch(
-          'settings/toggleDevice',
-          isMobile ? 'mobile' : 'desktop'
-        );
+        store.dispatch('settings/toggleDevice', isMobile ? 'mobile' : 'desktop');
       }
     },
   },

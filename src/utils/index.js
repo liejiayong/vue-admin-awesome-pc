@@ -75,17 +75,7 @@ export function formatTime(time, option) {
   if (option) {
     return parseTime(time, option);
   } else {
-    return (
-      d.getMonth() +
-      1 +
-      '月' +
-      d.getDate() +
-      '日' +
-      d.getHours() +
-      '时' +
-      d.getMinutes() +
-      '分'
-    );
+    return d.getMonth() + 1 + '月' + d.getDate() + '日' + d.getHours() + '时' + d.getMinutes() + '分';
   }
 }
 
@@ -102,11 +92,7 @@ export function paramObj(url) {
   }
   return JSON.parse(
     '{"' +
-      decodeURIComponent(search)
-        .replace(/"/g, '\\"')
-        .replace(/&/g, '","')
-        .replace(/=/g, '":"')
-        .replace(/\+/g, ' ') +
+      decodeURIComponent(search).replace(/"/g, '\\"').replace(/&/g, '","').replace(/=/g, '":"').replace(/\+/g, ' ') +
       '"}'
   );
 }
@@ -118,12 +104,8 @@ export function paramObj(url) {
  * @returns {*}
  */
 export function translateDataToTree(data) {
-  const parent = data.filter(
-    (value) => value.parentId === 'undefined' || value.parentId == null
-  );
-  const children = data.filter(
-    (value) => value.parentId !== 'undefined' && value.parentId != null
-  );
+  const parent = data.filter((value) => value.parentId === 'undefined' || value.parentId == null);
+  const children = data.filter((value) => value.parentId !== 'undefined' && value.parentId != null);
   const translator = (parent, children) => {
     parent.forEach((parent) => {
       children.forEach((current, index) => {
@@ -131,9 +113,7 @@ export function translateDataToTree(data) {
           const temp = JSON.parse(JSON.stringify(children));
           temp.splice(index, 1);
           translator([current], temp);
-          typeof parent.children !== 'undefined'
-            ? parent.children.push(current)
-            : (parent.children = [current]);
+          typeof parent.children !== 'undefined' ? parent.children.push(current) : (parent.children = [current]);
         }
       });
     });

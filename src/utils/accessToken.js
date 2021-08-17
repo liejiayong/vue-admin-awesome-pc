@@ -1,5 +1,7 @@
 import cookie from 'js-cookie';
-import { storage, tokenTableName } from '@/config/settings';
+import opts from '@/config/settings';
+
+const { storage, tokenTableName } = opts;
 
 /**
  * @description: 获取accessToken

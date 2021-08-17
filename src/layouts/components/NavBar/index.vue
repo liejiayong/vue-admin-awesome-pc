@@ -17,12 +17,7 @@
           <error-log></error-log>
           <full-screen-bar @refresh="refreshRoute"></full-screen-bar>
           <theme-bar></theme-bar>
-          <jfas-icon
-            title="重载所有路由"
-            :pulse="pulse"
-            :icon="['fas', 'redo']"
-            @click="refreshRoute"
-          ></jfas-icon>
+          <jfas-icon title="重载所有路由" :pulse="pulse" :icon="['fas', 'redo']" @click="refreshRoute"></jfas-icon>
           <avatar></avatar>
           <!--  <jfas-icon
 						title="退出系统"
@@ -38,13 +33,7 @@
 <script>
 import { mapGetters } from 'vuex';
 
-import {
-  Avatar,
-  Breadcrumb,
-  ErrorLog,
-  FullScreenBar,
-  ThemeBar,
-} from '@/layouts/components';
+import { Avatar, Breadcrumb, ErrorLog, FullScreenBar, ThemeBar } from '@/layouts/components';
 
 export default {
   name: 'NavBar',

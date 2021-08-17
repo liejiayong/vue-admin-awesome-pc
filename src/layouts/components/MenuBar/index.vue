@@ -13,18 +13,14 @@
       mode="vertical"
     >
       <template v-for="route in routes">
-        <side-bar-item
-          :key="route.path"
-          :base-path="route.path"
-          :item="route"
-        ></side-bar-item>
+        <side-bar-item :key="route.path" :base-path="route.path" :item="route"></side-bar-item>
       </template>
     </el-menu>
   </el-scrollbar>
 </template>
 <script>
 import { mapGetters } from 'vuex';
-import { defaultOopeneds, uniqueOpened } from '@/config/settings';
+import opts from '@/config/settings';
 import Logo from '../Logo';
 import SideBarItem from './SideBarItem';
 import variables from '@/styles/variables.scss';
@@ -34,7 +30,7 @@ export default {
   components: { SideBarItem, Logo },
   data() {
     return {
-      uniqueOpened,
+      uniqueOpened: opts.uniqueOpened,
     };
   },
   computed: {
@@ -45,7 +41,7 @@ export default {
     defaultOpens() {
       // if (this.collapse) {
       // }
-      return defaultOopeneds;
+      return opts.defaultOopeneds;
     },
     activeMenu() {
       const route = this.$route;

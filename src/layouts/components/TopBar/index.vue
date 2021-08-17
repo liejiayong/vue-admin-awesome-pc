@@ -27,10 +27,7 @@
         <el-col :xl="4" :lg="5" :md="2" :sm="2" :xs="5">
           <div class="right-panel">
             <error-log class="hidden-md-and-down" />
-            <full-screen-bar
-              class="hidden-md-and-down"
-              @refresh="refreshRoute"
-            ></full-screen-bar>
+            <full-screen-bar class="hidden-md-and-down" @refresh="refreshRoute"></full-screen-bar>
             <theme-bar></theme-bar>
             <jfas-icon
               class="hidden-md-and-down"
@@ -50,14 +47,7 @@
 <script>
 import { mapGetters } from 'vuex';
 import variables from '@/styles/variables.scss';
-import {
-  Avatar,
-  ErrorLog,
-  FullScreenBar,
-  Logo,
-  ThemeBar,
-  SideBarItem,
-} from '@/layouts/components';
+import { Avatar, ErrorLog, FullScreenBar, Logo, ThemeBar, SideBarItem } from '@/layouts/components';
 
 export default {
   components: {

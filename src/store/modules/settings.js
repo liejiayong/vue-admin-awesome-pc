@@ -2,15 +2,9 @@
  * @author JyLie 809206619@qq.com （不想保留author可删除）
  * @description 所有全局配置的状态管理，如无必要请勿修改
  */
-import {
-  tabsBar,
-  logo,
-  layout,
-  header,
-  themeBar,
-  skeleton,
-  storageTheme,
-} from '@/config/settings';
+import opts from '@/config/settings';
+
+const { tabsBar, logo, layout, header, themeBar, skeleton, storageTheme } = opts;
 
 const theme = JSON.parse(localStorage.getItem(storageTheme)) || '';
 

@@ -141,13 +141,7 @@ export default {
       if (this.useEasing) {
         if (this.countDown) {
           this.printVal =
-            this.localStartVal -
-            this.easingFn(
-              progress,
-              0,
-              this.localStartVal - this.endVal,
-              this.localDuration
-            );
+            this.localStartVal - this.easingFn(progress, 0, this.localStartVal - this.endVal, this.localDuration);
         } else {
           this.printVal = this.easingFn(
             progress,
@@ -158,23 +152,15 @@ export default {
         }
       } else {
         if (this.countDown) {
-          this.printVal =
-            this.localStartVal -
-            (this.localStartVal - this.endVal) *
-              (progress / this.localDuration);
+          this.printVal = this.localStartVal - (this.localStartVal - this.endVal) * (progress / this.localDuration);
         } else {
-          this.printVal =
-            this.localStartVal +
-            (this.endVal - this.localStartVal) *
-              (progress / this.localDuration);
+          this.printVal = this.localStartVal + (this.endVal - this.localStartVal) * (progress / this.localDuration);
         }
       }
       if (this.countDown) {
-        this.printVal =
-          this.printVal < this.endVal ? this.endVal : this.printVal;
+        this.printVal = this.printVal < this.endVal ? this.endVal : this.printVal;
       } else {
-        this.printVal =
-          this.printVal > this.endVal ? this.endVal : this.printVal;
+        this.printVal = this.printVal > this.endVal ? this.endVal : this.printVal;
       }
 
       this.displayValue = this.formatNumber(this.printVal);

@@ -1,12 +1,10 @@
 import Vue from 'vue';
 import { getInfo, login, logout } from '@/api/user';
-import {
-  getAccessToken,
-  setAccessToken,
-  removeAccessToken,
-} from '@/utils/accessToken';
+import { getAccessToken, setAccessToken, removeAccessToken } from '@/utils/accessToken';
 import { resetRouter } from '@/router';
-import { title, tokenName } from '@/config/settings';
+import opts from '@/config/settings';
+
+const { title, tokenName } = opts;
 
 const state = {
   accessToken: getAccessToken(),
@@ -47,21 +45,10 @@ const actions = {
       commit('setAccessToken', accessToken);
       const hour = new Date().getHours();
       const time =
-        hour < 8
-          ? '早上好'
-          : hour <= 11
-          ? '上午好'
-          : hour <= 13
-          ? '中午好'
-          : hour <= 18
-          ? '下午好'
-          : '晚上好';
+        hour < 8 ? '早上好' : hour <= 11 ? '上午好' : hour <= 13 ? '中午好' : hour <= 18 ? '下午好' : '晚上好';
       Vue.prototype.$baseNotify(`欢迎登录${title}`, `${time}!`);
     } else {
-      Vue.prototype.$baseNotify(
-        `登录接口异常，未正确返回${tokenName}...`,
-        `error`
-      );
+      Vue.prototype.$baseNotify(`登录接口异常，未正确返回${tokenName}...`, `error`);
     }
   },
   async getInfo({ commit, state }) {
