@@ -1,29 +1,16 @@
 <template>
   <div class="login-container">
-    <!-- <el-alert
-      v-if="nodeEnv !== 'development'"
-      title="beautiful boys and girls欢迎加入vue-admin-beautifulQQ群：972435319"
-      type="success"
-      :closable="false"
-    ></el-alert> -->
     <el-row>
       <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-        <el-form
-          ref="loginForm"
-          :model="loginForm"
-          :rules="loginRules"
-          auto-complete="off"
-          class="login-form"
-          label-position="left"
-        >
+        <el-form ref="form" :model="form" :rules="rules" auto-complete="off" class="login-form" label-position="left">
           <div class="title">hello !</div>
-          <div class="title-tips">欢迎来到{{ title }}！</div>
+          <div class="title-tips">欢迎来到{{ $baseTitle }}！</div>
           <el-form-item style="margin-top: 40px" prop="userName">
             <span class="svg-container svg-container-admin">
               <jfas-icon :icon="['fas', 'user']" />
             </span>
             <el-input
-              v-model.trim="loginForm.userName"
+              v-model.trim="form.userName"
               v-focus
               auto-complete="off"
               placeholder="请输入用户名"
@@ -38,7 +25,7 @@
             <el-input
               :key="passwordType"
               ref="password"
-              v-model.trim="loginForm.password"
+              v-model.trim="form.password"
               :type="passwordType"
               auto-complete="off"
               placeholder="请输入密码"
@@ -91,12 +78,11 @@ export default {
     };
     return {
       nodeEnv: process.env.NODE_ENV,
-      title: this.$baseTitle,
-      loginForm: {
+      form: {
         userName: '',
         password: '',
       },
-      loginRules: {
+      rules: {
         userName: [
           {
             required: true,
@@ -127,8 +113,8 @@ export default {
   },
   mounted() {
     //项目上线时记得去掉
-    this.loginForm.userName = 'admin';
-    this.loginForm.password = '123456';
+    this.form.userName = 'admin';
+    this.form.password = '123456';
   },
   methods: {
     showPwd() {
@@ -138,10 +124,10 @@ export default {
       });
     },
     handleLogin() {
-      this.$refs.loginForm.validate(async (valid) => {
+      this.$refs.form.validate(async (valid) => {
         if (valid) {
           this.loading = true;
-          await this.$store.dispatch('user/login', this.loginForm);
+          await this.$store.dispatch('user/login', this.form);
           const routerPath = this.redirect === '/404' || this.redirect === '/401' ? '/' : this.redirect;
           console.log('login nav to page:', routerPath);
           await this.$router.push(routerPath);

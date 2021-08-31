@@ -1,11 +1,10 @@
 import Vue from 'vue';
 import request from '@/utils/request';
 import { encryptedData } from '@/utils/encrypt';
-const opt = Vue.prototype.$confOpts;
+import settings from '@/config/settings';
 
-console.log('11', opt);
 export async function login(data) {
-  if (loginRSA) {
+  if (settings.loginRSA) {
     data = await encryptedData(data);
   }
   return request({

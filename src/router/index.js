@@ -6,8 +6,8 @@ import 'nprogress/nprogress.css';
 import store from '@/store';
 import { constantRoutes } from './routes';
 import { setDocumentTitle } from '@/utils/dom';
+import settings from '@/config/settings';
 
-const { authentication, loginInterception, routesWhiteList, progressBar, routerMode } = Vue.prototype.$confOpts;
 Vue.use(VueRouter);
 NProgress.configure({
   easing: 'ease',
@@ -17,7 +17,7 @@ NProgress.configure({
 });
 
 const router = new VueRouter({
-  mode: routerMode,
+  mode: settings.routerMode,
   base: process.env.BASE_URL,
   scrollBehavior: () => ({
     y: 0,
@@ -33,7 +33,7 @@ VueRouter.prototype.push = function push(location) {
 
 export function resetRouter() {
   router.matcher = new VueRouter({
-    mode: routerMode,
+    mode: settings.routerMode,
     base: process.env.BASE_URL,
     scrollBehavior: () => ({
       y: 0,
@@ -43,9 +43,9 @@ export function resetRouter() {
 }
 
 router.beforeResolve(async (to, from, next) => {
-  if (progressBar) NProgress.start();
+  if (settings.progressBar) NProgress.start();
   let hasToken = store.getters['user/accessToken'];
-  if (!loginInterception) hasToken = true;
+  if (!settings.loginInterception) hasToken = true;
   if (hasToken) {
     if (to.path === '/login') {
       next({ path: '/' });
@@ -60,7 +60,7 @@ router.beforeResolve(async (to, from, next) => {
           const permissions = await store.dispatch('user/getInfo');
           // console.log('router user/getInfo:', permissions, authentication)
           let accessRoutes = [];
-          if (authentication === 'intelligence') {
+          if (settings.authentication === 'intelligence') {
             accessRoutes = await store.dispatch('routes/setRoutes', permissions);
           } else {
             accessRoutes = await store.dispatch('routes/setAllRoutes');
@@ -75,18 +75,18 @@ router.beforeResolve(async (to, from, next) => {
       }
     }
   } else {
-    if (routesWhiteList.includes(to.path)) {
+    if (settings.routesWhiteList.includes(to.path)) {
       next();
     } else {
       next(`/login?redirect=${to.path}`);
     }
   }
   setDocumentTitle(to.meta.title);
-  if (progressBar) NProgress.done();
+  if (settings.progressBar) NProgress.done();
 });
 
 router.afterEach(() => {
-  if (progressBar) NProgress.done();
+  if (settings.progressBar) NProgress.done();
 });
 
 export default router;

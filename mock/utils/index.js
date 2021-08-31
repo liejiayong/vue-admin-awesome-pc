@@ -3,7 +3,6 @@ const { join } = require('path');
 const fs = require('fs');
 
 /**
- * @copyright JyLie 809206619@qq.com
  * @description 随机生成图片url。
  * @param width
  * @param height
@@ -14,7 +13,6 @@ function handleRandomImage(width = 50, height = 50) {
 }
 
 /**
- * @copyright JyLie 809206619@qq.com
  * @description 处理所有 controller 模块，npm run serve时在node环境中自动输出controller文件夹下Mock接口，请勿修改。
  * @returns {[]}
  */
@@ -37,7 +35,6 @@ function handleMockArray() {
   getFiles('mock/controller');
   return mockArray;
 }
-
 module.exports = {
   handleRandomImage,
   handleMockArray,

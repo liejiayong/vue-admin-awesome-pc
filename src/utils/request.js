@@ -8,7 +8,6 @@ import _ from 'lodash';
 import { isArray } from '@/utils/validate';
 
 const {
-  baseURL,
   contentType,
   invalidCode,
   messageDuration,
@@ -19,14 +18,11 @@ const {
   debounce,
 } = opts;
 
+const baseURL = process.env.VUE_APP_BASE_URL;
+console.log('mock client baseURL', baseURL);
 let loadingInstance;
-/**
- * @author chuzhixin 1204505056@qq.com （不想保留author可删除）
- * @description 处理code异常
- * @param {*} code
- * @param {*} msg
- */
-const handleException = (code, msg) => {
+
+const handleCode = (code, msg) => {
   switch (code) {
     case invalidCode:
       Vue.prototype.$baseMessage(msg || `后端接口${code}异常`, 'error');
@@ -43,7 +39,6 @@ const handleException = (code, msg) => {
       break;
   }
 };
-
 const service = axios.create({
   baseURL,
   timeout: requestTimeout,
@@ -64,7 +59,6 @@ service.interceptors.request.use(
     if (config.data && config.headers['Content-Type'] === 'application/x-www-form-urlencoded;charset=UTF-8') {
       config.data = qs.stringify(config.data);
     }
-
     return config;
   },
   (error) => {

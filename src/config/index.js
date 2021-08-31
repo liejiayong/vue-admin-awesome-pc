@@ -6,4 +6,6 @@ import theme from './theme.config';
 import network from './net.config';
 import db from './db';
 
+export { setting, theme, network, db };
+
 export default Object.assign({}, setting, theme, network, db);

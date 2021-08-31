@@ -12,7 +12,7 @@ process.env.VUE_APP_VERSION = version;
 const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
 const mockServer = () => {
-  if (process.env.NODE_ENV === 'development') return require('./mock/mockServer.js');
+  if (!IS_PROD) return require('./mock');
   else return '';
 };
 
@@ -29,7 +29,7 @@ module.exports = {
   transpileDependencies: ['vue-echarts', 'resize-detector'],
   devServer: {
     open: false, // 是否打开浏览器
-    // host: 'localhost',
+    host: 'localhost',
     port: 28888, // 代理断就
     https: false,
     hotOnly: false, // 热更新

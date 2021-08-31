@@ -8,6 +8,8 @@ import db from './db';
 
 const CONFIG = Object.assign({}, setting, theme, network, db);
 
+export { setting, theme, network, db };
+
 console.log('settings', CONFIG);
 
 export default Object.freeze(CONFIG);
