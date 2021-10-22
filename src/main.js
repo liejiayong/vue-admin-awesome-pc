@@ -1,6 +1,6 @@
 // 兼容IE
-// import 'core-js/stable';
-// import 'regenerator-runtime/runtime';
+import 'core-js/stable';
+import 'regenerator-runtime/runtime';
 import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
@@ -11,10 +11,10 @@ import './plugins';
  * @author JyLie 809206619@qq.com
  * @description 生产环境默认都使用mock，如果正式用于生产环境时，记得去掉
  */
-// if (process.env.NODE_ENV === 'development') {
-//   const { mockXHR } = require('@/utils/mock');
-//   mockXHR();
-// }
+if (process.env.NODE_ENV === 'development') {
+  const { mockXHR } = require('@/utils/mock');
+  mockXHR();
+}
 
 Vue.config.productionTip = false;
 

@@ -16,7 +16,7 @@ files.keys().forEach((key) => {
 });
 
 export function mockXHR() {
-  console.log('files', Mock, files);
+  // console.log('files', Mock, files);
   Mock.XHR.prototype.proxy_send = Mock.XHR.prototype.send;
   Mock.XHR.prototype.send = function () {
     if (this.custom.xhr) {
@@ -37,7 +37,7 @@ export function mockXHR() {
         result = respond({
           method: type,
           body: JSON.parse(body),
-          query: paramObj(url),
+          query: url,
         });
       } else {
         result = respond;

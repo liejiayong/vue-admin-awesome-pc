@@ -7,7 +7,7 @@ const { handleMockArray } = require('./utils');
 const mockDir = path.join(process.cwd(), 'mock');
 
 const baseURL = process.env.VUE_APP_BASE_URL;
-console.log(process.env.NODE_ENV, ' mock server baseURL', baseURL);
+// console.log(process.env.NODE_ENV, ' mock server baseURL', baseURL);
 
 /**
  *

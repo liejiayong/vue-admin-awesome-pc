@@ -19,7 +19,7 @@ const {
 } = opts;
 
 const baseURL = process.env.VUE_APP_BASE_URL;
-console.log('mock client baseURL', baseURL);
+// console.log('mock client baseURL', baseURL);
 let loadingInstance;
 
 const handleCode = (code, msg) => {
