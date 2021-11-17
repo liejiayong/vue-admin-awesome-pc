@@ -25,3 +25,9 @@ const vm = new Vue({
 }).$mount('#app-awesome');
 
 console.log(vm);
+
+console.log('VUE_APP_TITLE', process.env.VUE_APP_TITLE);
+console.log('VUE_APP_AUTHOR', process.env.VUE_APP_AUTHOR);
+console.log('VUE_APP_PUBLIC_PATH', process.env.VUE_APP_PUBLIC_PATH);
+console.log('VUE_APP_OUTPUT_DIR', process.env.VUE_APP_OUTPUT_DIR);
+console.log('VUE_APP_HTTP_BASE_URL', process.env.VUE_APP_HTTP_BASE_URL);
