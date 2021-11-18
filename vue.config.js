@@ -3,6 +3,7 @@ const WebpackBar = require('webpackbar');
 const Webpack = require('webpack');
 const { version, author, name } = require('./package.json');
 // const WebpackAnalyzer = require('webpack-bundle-analyzer')
+const { genVersionFile, configureOutputFilenameMap } = require('./scripts/systemUpdate.js');
 
 process.env.VUE_APP_TITLE = name || 'vue-admin-awesome-pc';
 process.env.VUE_APP_AUTHOR = author || 'JyLie 809206619@qq.com';
@@ -16,12 +17,15 @@ const mockServer = () => {
   else return () => {};
 };
 
+genVersionFile();
 module.exports = {
   /* 从 Vue CLI 3.3 起已弃用baseUrl, 改用publicPath。
   且 publicPath会覆盖 .env等文件所设置的BASE_URL的值 */
   publicPath: process.env.VUE_APP_PUBLIC_PATH, // 默认'/'，部署应用包时的基本 URL,
   outputDir: process.env.VUE_APP_OUTPUT_DIR, // 'dist', 生产环境构建文件的目录
   // assetsDir: "",  // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
+  filenameHashing: false, // 打包的时候不使用hash值.因为我们有时间戳来确定项目的唯一性了.
+
   lintOnSave: true,
   runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   productionSourceMap: !IS_PROD, // 生产环境的 source map
@@ -89,6 +93,10 @@ module.exports = {
   },
   configureWebpack() {
     return {
+      output: {
+        filename: configureOutputFilenameMap.filename,
+        chunkFilename: configureOutputFilenameMap.chunkFilename,
+      },
       resolve: {
         alias: {
           '@': resolve('src'),

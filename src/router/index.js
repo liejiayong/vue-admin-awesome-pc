@@ -8,6 +8,8 @@ import { constantRoutes } from './routes';
 import { setDocumentTitle } from '@/utils/dom';
 import settings from '@/config/settings';
 
+import { isNewVersion } from '@/utils/systemUpdate';
+
 Vue.use(VueRouter);
 NProgress.configure({
   easing: 'ease',
@@ -42,7 +44,16 @@ export function resetRouter() {
   }).matcher;
 }
 
+let updateTimeStamp = Date.now() - 2000;
+
 router.beforeResolve(async (to, from, next) => {
+  // 判断版本号，如果不一致则提示用户刷新页面
+  if (Date.now() - updateTimeStamp > 1000) {
+    updateTimeStamp = Date.now() + 180000;
+    const isUpdate = await isNewVersion();
+    if (isUpdate) return false;
+  }
+
   if (settings.progressBar) NProgress.start();
   let hasToken = store.getters['user/accessToken'];
   if (!settings.loginInterception) hasToken = true;
