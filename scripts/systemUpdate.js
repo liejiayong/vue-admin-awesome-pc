@@ -4,7 +4,7 @@
  * @Author: liejiayong(809206619@qq.com)
  * @Date: 2021-11-18 16:42:44
  * @LastEditors: liejiayong(809206619@qq.com)
- * @LastEditTime: 2021-11-18 17:24:00
+ * @LastEditTime: 2022-02-11 17:57:34
  * @FilePath: \vue-admin-awesome-pc\scripts\systemUpdate.js
  * 可以输入预定的版权声明、个性签名、空行等
  */
@@ -54,10 +54,10 @@ exports.genVersionFile = () => {
  * @param {object} config
  */
 exports.configureOutputFilename = (config) => {
-  config.output.filename = `js/js-[name]-${timeStamp}.js`;
-  config.output.chunkFilename = `js/[id]-${timeStamp}.js`;
+  config.output.filename = `[name][contenthash:8]${timeStamp}.js`;
+  config.output.chunkFilename = `[id][contenthash:8].js`; // 不需要设置，使用chunkhash来判断
 };
 exports.configureOutputFilenameMap = {
-  filename: `js/js-[name]-${timeStamp}.js`,
-  chunkFilename: `js/[id]-${timeStamp}.js`,
+  filename: `[name][contenthash:8]${timeStamp}.js`,
+  // chunkFilename: `[id][contenthash:8].js`, // 不需要设置，使用chunkhash来判断
 };
