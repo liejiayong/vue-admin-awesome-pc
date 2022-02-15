@@ -25,7 +25,6 @@ module.exports = {
   outputDir: process.env.VUE_APP_OUTPUT_DIR, // 'dist', 生产环境构建文件的目录
   // assetsDir: "",  // 放置生成的静态资源 (js、css、img、fonts) 的 (相对于 outputDir 的) 目录。
   filenameHashing: false, // 打包的时候不使用hash值.因为我们有时间戳来确定项目的唯一性了.
-
   lintOnSave: true,
   runtimeCompiler: true, // 是否使用包含运行时编译器的 Vue 构建版本
   productionSourceMap: !IS_PROD, // 生产环境的 source map

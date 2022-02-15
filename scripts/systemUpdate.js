@@ -4,7 +4,7 @@
  * @Author: liejiayong(809206619@qq.com)
  * @Date: 2021-11-18 16:42:44
  * @LastEditors: liejiayong(809206619@qq.com)
- * @LastEditTime: 2022-02-11 17:57:34
+ * @LastEditTime: 2022-02-15 15:12:58
  * @FilePath: \vue-admin-awesome-pc\scripts\systemUpdate.js
  * 可以输入预定的版权声明、个性签名、空行等
  */
@@ -13,6 +13,7 @@ const fs = require('fs');
 const { GitRevisionPlugin } = require('git-revision-webpack-plugin');
 const pkg = require('../package.json');
 
+const IS_PROD = ['production', 'prod'].includes(process.env.NODE_ENV);
 const resolve = (dir) => path.join(__dirname, dir);
 const timeStamp = Date.now();
 const gitRevisionPlugin = new GitRevisionPlugin(); // 依赖 git-revision-webpack-plugin
@@ -54,10 +55,13 @@ exports.genVersionFile = () => {
  * @param {object} config
  */
 exports.configureOutputFilename = (config) => {
-  config.output.filename = `[name][contenthash:8]${timeStamp}.js`;
-  config.output.chunkFilename = `[id][contenthash:8].js`; // 不需要设置，使用chunkhash来判断
+  config.output.filename =
+    IS_PROD === 'production' ? `[name][contenthash:8]${timeStamp}.js` : `[name][hash:8]${timeStamp}.js`;
+  config.output.chunkFilename =
+    IS_PROD === 'production' ? `[id][contenthash:8]${timeStamp}.js` : `[id][hash:8]${timeStamp}.js`; // 不需要设置，使用chunkhash来判断
 };
+
 exports.configureOutputFilenameMap = {
-  filename: `[name][contenthash:8]${timeStamp}.js`,
-  // chunkFilename: `[id][contenthash:8].js`, // 不需要设置，使用chunkhash来判断
+  filename: IS_PROD === 'production' ? `[name][contenthash:8]${timeStamp}.js` : `[name][hash:8]${timeStamp}.js`,
+  chunkFilename: IS_PROD === 'production' ? `[id][contenthash:8]${timeStamp}.js` : `[id][hash:8]${timeStamp}.js`, // 不需要设置，使用chunkhash来判断
 };
