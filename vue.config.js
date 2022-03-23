@@ -71,6 +71,12 @@ module.exports = {
   runtimeCompiler: true,
   productionSourceMap: false,
   css: {
+    extract: IS_PROD
+      ? {
+          filename: `css/[name].[contenthash:8].css`,
+          chunkFilename: `css/[name].[contenthash:8].css`,
+        }
+      : false,
     requireModuleExtension: true,
     sourceMap: true,
     loaderOptions: {
@@ -113,6 +119,41 @@ module.exports = {
         }),
         // new WebpackAnalyzer()
       ],
+      optimization: {
+        splitChunks: {
+          chunks: 'async',
+          minSize: 30000,
+          maxSize: 0,
+          minChunks: 1,
+          maxAsyncRequests: 6,
+          maxInitialRequests: 4,
+          automaticNameDelimiter: '~',
+          cacheGroups: {
+            common: {
+              name: 'common',
+              chunks: 'initial',
+              minChunks: 2,
+              maxInitialRequests: 6,
+              minSize: 0,
+              priority: -20,
+              reuseExistingChunk: true,
+              enforce: true,
+            },
+            vendors: {
+              name: 'vendors',
+              test: /[\\/]node_modules[\\/]/,
+              chunks: 'initial',
+              priority: -10,
+            },
+            elementUI: {
+              name: 'elementui',
+              test: /[\\/]element-ui[\\/]/,
+              chunks: 'all',
+              priority: 0,
+            },
+          },
+        },
+      },
       externals: {
         // vue: 'Vue',
         // 'element-ui': 'ELEMENT',
@@ -123,6 +164,10 @@ module.exports = {
     };
   },
   chainWebpack(config) {
+    // config.plugins.delete("preload");
+    config.plugins.delete('prefetch');
+    config.resolve.alias.set('@', resolve('src'));
+
     //  修复 HMR(热更新)失效
     config.resolve.symlinks(true);
 

@@ -4,7 +4,7 @@
  * @Author: liejiayong(809206619@qq.com)
  * @Date: 2021-11-18 16:42:44
  * @LastEditors: liejiayong(809206619@qq.com)
- * @LastEditTime: 2022-02-15 15:12:58
+ * @LastEditTime: 2022-03-23 16:09:21
  * @FilePath: \vue-admin-awesome-pc\scripts\systemUpdate.js
  * 可以输入预定的版权声明、个性签名、空行等
  */
@@ -56,12 +56,11 @@ exports.genVersionFile = () => {
  */
 exports.configureOutputFilename = (config) => {
   config.output.filename =
-    IS_PROD === 'production' ? `[name][contenthash:8]${timeStamp}.js` : `[name][hash:8]${timeStamp}.js`;
-  config.output.chunkFilename =
-    IS_PROD === 'production' ? `[id][contenthash:8]${timeStamp}.js` : `[id][hash:8]${timeStamp}.js`; // 不需要设置，使用chunkhash来判断
+    IS_PROD === 'production' ? `js/[name].[contenthash:8]${timeStamp}.js` : `js/[name].[hash:8]${timeStamp}.js`;
+  config.output.chunkFilename = IS_PROD === 'production' ? `js/[id].[contenthash:8].js` : `js/[id].[hash:8].js`; // 不需要设置，使用chunkhash来判断
 };
 
 exports.configureOutputFilenameMap = {
-  filename: IS_PROD === 'production' ? `[name][contenthash:8]${timeStamp}.js` : `[name][hash:8]${timeStamp}.js`,
-  chunkFilename: IS_PROD === 'production' ? `[id][contenthash:8]${timeStamp}.js` : `[id][hash:8]${timeStamp}.js`, // 不需要设置，使用chunkhash来判断
+  filename: IS_PROD === 'production' ? `js/[name].[contenthash:8]${timeStamp}.js` : `js/[name].[hash:8]${timeStamp}.js`,
+  chunkFilename: IS_PROD === 'production' ? `js/[id].[contenthash:8].js` : `js/[id].[hash:8].js`, // 不需要设置，使用chunkhash来判断
 };
