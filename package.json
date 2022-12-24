@@ -8,14 +8,22 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "kuan-vue-waterfall": "^3.0.1",
-    "vue": "^3.2.25",
-    "vue-grid-layout": "^2.3.12",
-    "vue-waterfall-plugin": "^3.1.0"
+    "@element-plus/icons-vue": "^2.0.10",
+    "element-plus": "^2.2.26",
+    "pinia": "^2.0.28",
+    "vue": "^3.2.45",
+    "vue-grid-layout": "^2.4.0",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@vitejs/plugin-vue": "^2.3.3",
-    "vite": "^2.9.9",
-    "vue-flex-waterfall": "^1.0.7"
+    "@vitejs/plugin-vue": "^4.0.0",
+    "kuan-vue-waterfall": "^3.0.1",
+    "sass": "^1.57.0",
+    "unplugin-auto-import": "^0.12.1",
+    "unplugin-vue-components": "^0.22.12",
+    "vite": "^4.0.1",
+    "vite-plugin-svg-icons": "^2.0.1",
+    "vue-flex-waterfall": "^2.1.0",
+    "vue-waterfall-plugin": "^3.1.0"
   }
 }
